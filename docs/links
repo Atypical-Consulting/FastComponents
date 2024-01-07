@@ -1,5 +1,15 @@
 
+M:FastComponents.ClassNamesBuilder.#ctor(System.String,System.String,System.String)|FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).md|ClassNamesBuilder(string, string, string)
+M:FastComponents.ClassNamesBuilder.Default(System.String)|FastComponents.ClassNamesBuilder.Default(string).md|Default(string)
+M:FastComponents.ClassNamesBuilder.Empty|FastComponents.ClassNamesBuilder.Empty().md|Empty()
+M:FastComponents.ClassNamesBuilder.AddRawValue(System.String)|FastComponents.ClassNamesBuilder.AddRawValue(string).md|AddRawValue(string)
+M:FastComponents.ClassNamesBuilder.AddClass(System.String)|FastComponents.ClassNamesBuilder.AddClass(string).md|AddClass(string)
+M:FastComponents.ClassNamesBuilder.AddClass(System.String,System.Boolean)|FastComponents.ClassNamesBuilder.AddClass(string,bool).md|AddClass(string, bool)
+M:FastComponents.ClassNamesBuilder.AddClass(System.String,System.Func{System.Boolean})|FastComponents.ClassNamesBuilder.AddClass(string,System.Func_bool_).md|AddClass(string, Func<bool>)
+M:FastComponents.ClassNamesBuilder.Build|FastComponents.ClassNamesBuilder.Build().md|Build()
+M:FastComponents.ClassNamesBuilder.ToString|FastComponents.ClassNamesBuilder.ToString().md|ToString()
 N:FastComponents|FastComponents.md|FastComponents
+T:FastComponents.ClassNamesBuilder|FastComponents.ClassNamesBuilder.md|ClassNamesBuilder
 T:FastComponents.HtmxComponentBase|FastComponents.HtmxComponentBase.md|HtmxComponentBase
 P:FastComponents.HtmxComponentBase`1.Parameters|FastComponents.HtmxComponentBase_TParameters_.Parameters.md|Parameters
 M:FastComponents.HtmxComponentBase`1.CreateDefaultParameters|FastComponents.HtmxComponentBase_TParameters_.CreateDefaultParameters().md|CreateDefaultParameters()

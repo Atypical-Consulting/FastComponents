@@ -8,6 +8,10 @@
 | [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents.HtmxComponentBase') | Base class for all components that are rendered on the server. |
 | [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents.HtmxComponentBase<TParameters>') | Base class for all components that are rendered on the server. |
 
+| Structs | |
+| :--- | :--- |
+| [ClassNamesBuilder](FastComponents.ClassNamesBuilder.md 'FastComponents.ClassNamesBuilder') | A helper class for building a string of CSS class names. |
+
 | Interfaces | |
 | :--- | :--- |
 | [IHxAdditionalAttributes](FastComponents.IHxAdditionalAttributes.md 'FastComponents.IHxAdditionalAttributes') | |
