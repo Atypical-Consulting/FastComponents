@@ -1,0 +1,14 @@
+@HtmxAppServer_HostAddress = http://localhost:5004
+
+### App
+GET {{HtmxAppServer_HostAddress}}/
+Accept: text/html
+
+### Components > Counter
+@count = 5
+GET {{HtmxAppServer_HostAddress}}/ui/blocks/counter/{{count}}
+Accept: text/html
+
+### Components > Table
+GET {{HtmxAppServer_HostAddress}}/htmx/table
+Accept: text/html

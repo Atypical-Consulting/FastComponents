@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastComponents", "src\FastComponents\FastComponents.csproj", "{6ADB078A-97C4-45D4-BE76-62328767ABB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lib", "lib", "{062EAA7A-79B6-4BF2-AF58-9DEF0A73B024}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "demo", "demo", "{15A02DE6-0793-497A-BD0E-F9E778FB3C13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmxAppServer", "demo\HtmxAppServer\HtmxAppServer.csproj", "{4CC7445F-B783-4CB4-8125-E128F6747FE0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6ADB078A-97C4-45D4-BE76-62328767ABB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6ADB078A-97C4-45D4-BE76-62328767ABB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6ADB078A-97C4-45D4-BE76-62328767ABB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6ADB078A-97C4-45D4-BE76-62328767ABB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC7445F-B783-4CB4-8125-E128F6747FE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC7445F-B783-4CB4-8125-E128F6747FE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC7445F-B783-4CB4-8125-E128F6747FE0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC7445F-B783-4CB4-8125-E128F6747FE0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6ADB078A-97C4-45D4-BE76-62328767ABB6} = {062EAA7A-79B6-4BF2-AF58-9DEF0A73B024}
+		{4CC7445F-B783-4CB4-8125-E128F6747FE0} = {15A02DE6-0793-497A-BD0E-F9E778FB3C13}
+	EndGlobalSection
+EndGlobal

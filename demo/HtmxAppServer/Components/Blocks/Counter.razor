@@ -1,0 +1,40 @@
+@inherits HtmxComponentBase<CounterEndpoint.CounterParameters>
+
+@* A simple counter using Htmx
+   The button will make a GET request to the server
+   The server will render this Counter component with an incremented count *@
+
+<section id="@Id">
+  <h3>The "Counter" example</h3>
+  <div class="grid">
+    @* You can choose to use the hx-* attributes... *@
+    <button
+      hx-get="/ui/blocks/counter?Count=@(Parameters.Count - 1)"
+      hx-swap="outerHTML"
+      hx-target="#@Id">
+      Decrement
+    </button>
+
+    <input
+      name="count"
+      type="text"
+      value="@Parameters.Count"
+      class="text-center"
+      readonly/>
+
+    @* ...or the HtmxContainer component *@
+    <HtmxTag
+      As="button"
+      HxGet="@Parameters.Increment()"
+      HxSwap="@Hx.Swap.OuterHtml"
+      HxTarget="@Hx.TargetId(Id)">
+      Increment
+    </HtmxTag>
+  </div>
+</section>
+
+@code{
+
+  private const string Id = "block-counter";
+
+}

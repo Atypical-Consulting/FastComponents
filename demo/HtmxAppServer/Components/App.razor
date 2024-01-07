@@ -1,0 +1,56 @@
+@inherits HtmxComponentBase<AppEndpoint.AppParameters>
+
+<!DOCTYPE html>
+<html lang="@Parameters.Language" data-theme="@Parameters.Theme">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Demo HTMX Blazor</title>
+  @* TODO: load this script from the FastComponents package *@
+  <script src="lib/htmx.min.js"></script>
+  @* Basic styling for demo purposes *@
+  <link href="lib/pico.min.css" rel="stylesheet">
+  <style>
+    /* PICO - Pink Dark scheme (Forced) */
+    /* Enabled if forced with data-theme="dark" */
+    [data-theme="dark"] {
+      --primary: #1b60a4;
+      // hover is luminar
+      --primary-hover: #1b60a4;
+      --primary-focus: rgba(27, 96, 164, 0.25);
+      --primary-inverse: #FFF;
+    }
+  </style>
+</head>
+<body>
+
+<header class="container">
+  <nav>
+    <ul>
+      <li><strong>FastComponents</strong></li>
+    </ul>
+    <ul>
+      <li><a role="button" href="https://github.com/Atypical-Consulting/FastComponents" target="_blank">View on GitHub</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="container">
+  <h1>Renders Blazor components as HTMX tags</h1>
+  <Counter/>
+  <MovieCharacters/>
+</main>
+
+<footer class="container">
+  This architecture was brought to you by
+  <a href="https://www.linkedin.com/in/phmatray/" target="_blank">
+    Philippe Matray
+  </a>
+  from
+  <a href="https://atypical.consulting" target="_blank">
+    Atypical Consulting
+  </a>
+</footer>
+
+</body>
+</html>

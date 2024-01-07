@@ -1,2 +1,3 @@
 # FastComponents
-Code web, think .NET - FastComponents for a successful MRA (Multiple Resources Application).
+
+Code web, think .NET 8 with FastComponents for a successful MRA (Multiple Resources Application).

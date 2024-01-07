@@ -1,0 +1,52 @@
+@inherits HtmxComponentBase<MovieCharactersRowsEndpoint.MovieCharacterRowsParameters>
+@inject MovieService MovieService
+
+@* This first block fills the first rows of the table *@
+@foreach(var character in _characters)
+{
+  <tr>
+    <td>@character.Key</td>
+    <td>@character.Value.FirstName</td>
+    <td>@character.Value.LastName</td>
+  </tr>
+}
+
+@if (_characters.Count == Parameters.PageSize)
+{
+  @* if we have some results from our service, we can render the load more button *@
+  <tr id="replaceMe">
+    <td colspan="3" style="padding: 1em 0 0 0;">
+      <HtmxTag
+        As="button"
+        HxGet="@Parameters.NextPage()"
+        HxTarget="#replaceMe"
+        HxSwap="@Hx.Swap.OuterHtml">
+        Load More Characters
+      </HtmxTag>
+    </td>
+  </tr>
+}
+else
+{
+  @* else we can render a message saying there are no more characters to load *@ 
+  <tr>
+    <td colspan="3">
+      <p>There are no more characters to load.</p>
+    </td>
+  </tr>
+}
+
+@code {
+
+  private const string Id = "block-movie-characters-rows";
+  private ReadOnlyDictionary<int, Character> _characters = null!;
+  
+  // Because we are in a Blazor component,
+  // we can inject our services and use the OnInitialized lifecycle method.
+  // Just remember that this content is rendered on the server.
+  protected override void OnInitialized()
+  {
+    _characters = MovieService.GetCharacters(Parameters.Page, Parameters.PageSize);
+  }
+
+}
