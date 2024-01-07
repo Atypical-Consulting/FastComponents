@@ -1,23 +1,68 @@
 <Project Sdk="Microsoft.NET.Sdk.Razor">
 
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <ItemGroup>
+    <SupportedPlatform Include="browser"/>
+  </ItemGroup>
+  
+  <PropertyGroup>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <DefaultDocumentationFolder>../../docs/fast-components</DefaultDocumentationFolder>
+    <DefaultDocumentationLinksOutputFile>../../docs/links</DefaultDocumentationLinksOutputFile>
+    <DefaultDocumentationAssemblyPageName>FastComponents</DefaultDocumentationAssemblyPageName>
+  </PropertyGroup>
 
-    <ItemGroup>
-        <SupportedPlatform Include="browser"/>
-    </ItemGroup>
+  <!-- File inclusion -->
+  <ItemGroup>
+    <None Include="../../Logo.png" Pack="true" PackagePath="" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="" />
+    <None Include="../../README.md" Pack="true" PackagePath="" />
+  </ItemGroup>
 
-    <ItemGroup>
-        <PackageReference Include="AngleSharp" Version="1.0.7" />
-        <PackageReference Include="FastEndpoints" Version="5.21.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0"/>
-        <PackageReference Include="MinVer" Version="4.3.0">
-          <PrivateAssets>all</PrivateAssets>
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
-    </ItemGroup>
+  <!-- Development dependencies -->
+  <ItemGroup>
+    <PackageReference Include="DefaultDocumentation" Version="0.8.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="MinVer" Version="4.3.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <!-- Dependencies -->
+  <ItemGroup>
+    <PackageReference Include="AngleSharp" Version="1.0.7" />
+    <PackageReference Include="FastEndpoints" Version="5.21.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.0"/>
+  </ItemGroup>
+
+  <!-- NuGet metadata -->
+  <PropertyGroup>
+    <PackageId>FastComponents</PackageId>
+    <PackageIcon>Logo.png</PackageIcon>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Authors>Philippe Matray</Authors>
+    <Company>Atypical Consulting SRL</Company>
+    <Product>FastComponents</Product>
+    <Description>
+      Code web, think .NET 8 with FastComponents for a successful MRA (Multiple Resources Application).
+    </Description>
+    <PackageTags>fastcomponents;mra architecture;core;net8</PackageTags>
+    <Copyright>Copyright (c) 2020-2024 Atypical Consulting SRL</Copyright>
+    <PackageProjectUrl>https://github.com/Atypical-Consulting/FastComponents</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Atypical-Consulting/FastComponents.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageReleaseNotes>
+      This is the first release of FastComponents.
+      It is considered as a preview version, so it is not (yet) recommended to use it in production.
+      Discover the power of MRA (Multiple Resources Application) with FastComponents.
+    </PackageReleaseNotes>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageLanguage>en-US</PackageLanguage>
+  </PropertyGroup>
 
 </Project>
