@@ -1,4 +1,5 @@
 using FastEndpoints;
+using Microsoft.AspNetCore.Http;
 
 namespace FastComponents;
 
@@ -7,13 +8,15 @@ public abstract class HtmxComponentEndpoint<TComponent>
     where TComponent : HtmxComponentBase
 {
     public ComponentHtmlResponseService ComponentHtmlResponseService { get; set; } = null!;
-    
+
     public override async Task HandleAsync(CancellationToken ct)
-        => await SendHtmlResultAsync();
+    {
+        await SendHtmlResultAsync();
+    }
 
     private async Task SendHtmlResultAsync()
     {
-        var response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>();
+        IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>();
         await SendResultAsync(response);
     }
 }
@@ -24,16 +27,16 @@ public abstract class HtmxComponentEndpoint<TComponent, TParameters>
     where TParameters : class, new()
 {
     public ComponentHtmlResponseService ComponentHtmlResponseService { get; set; } = null!;
-    
+
     public override async Task HandleAsync(TParameters req, CancellationToken ct)
     {
         Dictionary<string, object?> parameters = new() { [nameof(HtmxComponentBase<TParameters>.Parameters)] = req };
         await SendHtmlResultAsync(parameters);
     }
-    
+
     protected async Task SendHtmlResultAsync(Dictionary<string, object?>? parameters = null)
     {
-        var response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>(parameters);
+        IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>(parameters);
         await SendResultAsync(response);
     }
 }

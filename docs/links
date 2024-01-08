@@ -90,6 +90,9 @@ P:FastComponents.IHxCssClasses.HxCssRequest|FastComponents.IHxCssClasses.HxCssRe
 P:FastComponents.IHxCssClasses.HxCssSettling|FastComponents.IHxCssClasses.HxCssSettling.md|HxCssSettling
 P:FastComponents.IHxCssClasses.HxCssSwapping|FastComponents.IHxCssClasses.HxCssSwapping.md|HxCssSwapping
 T:FastComponents.IHxCssClasses|FastComponents.IHxCssClasses.md|IHxCssClasses
+P:FastComponents.HtmxTag.As|FastComponents.HtmxTag.As.md|As
+P:FastComponents.HtmxTag.ChildContent|FastComponents.HtmxTag.ChildContent.md|ChildContent
+T:FastComponents.HtmxTag|FastComponents.HtmxTag.md|HtmxTag
 M:FastComponents.MainExtensions.AddFastComponents(Microsoft.Extensions.DependencyInjection.IServiceCollection)|FastComponents.MainExtensions.AddFastComponents(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).md|AddFastComponents(this IServiceCollection)
 M:FastComponents.MainExtensions.UseFastComponents(Microsoft.AspNetCore.Builder.IApplicationBuilder)|FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.IApplicationBuilder).md|UseFastComponents(this IApplicationBuilder)
 T:FastComponents.MainExtensions|FastComponents.MainExtensions.md|MainExtensions
@@ -98,3 +101,14 @@ M:FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent``1(System.Coll
 M:FastComponents.ComponentHtmlResponseService.RenderComponent``1(System.Collections.Generic.Dictionary{System.String,System.Object})|FastComponents.ComponentHtmlResponseService.RenderComponent_TComponent_(System.Collections.Generic.Dictionary_string,object_).md|RenderComponent<TComponent>(Dictionary<string,object>)
 M:FastComponents.ComponentHtmlResponseService.RenderComponent``1(Microsoft.AspNetCore.Components.ParameterView)|FastComponents.ComponentHtmlResponseService.RenderComponent_TComponent_(Microsoft.AspNetCore.Components.ParameterView).md|RenderComponent<TComponent>(ParameterView)
 T:FastComponents.ComponentHtmlResponseService|FastComponents.ComponentHtmlResponseService.md|ComponentHtmlResponseService
+M:FastComponents.Hx.TargetId(System.String)|FastComponents.Hx.TargetId(string).md|TargetId(string)
+T:FastComponents.Hx|FastComponents.Hx.md|Hx
+F:FastComponents.Hx.Swap.InnerHtml|FastComponents.Hx.Swap.InnerHtml.md|InnerHtml
+F:FastComponents.Hx.Swap.OuterHtml|FastComponents.Hx.Swap.OuterHtml.md|OuterHtml
+F:FastComponents.Hx.Swap.BeforeBegin|FastComponents.Hx.Swap.BeforeBegin.md|BeforeBegin
+F:FastComponents.Hx.Swap.AfterBegin|FastComponents.Hx.Swap.AfterBegin.md|AfterBegin
+F:FastComponents.Hx.Swap.BeforeEnd|FastComponents.Hx.Swap.BeforeEnd.md|BeforeEnd
+F:FastComponents.Hx.Swap.AfterEnd|FastComponents.Hx.Swap.AfterEnd.md|AfterEnd
+F:FastComponents.Hx.Swap.Delete|FastComponents.Hx.Swap.Delete.md|Delete
+F:FastComponents.Hx.Swap.None|FastComponents.Hx.Swap.None.md|None
+T:FastComponents.Hx.Swap|FastComponents.Hx.Swap.md|Swap
