@@ -8,44 +8,151 @@ namespace FastComponents;
 public abstract class HtmxComponentBase
     : ComponentBase, IHxAttributes
 {
-    [Parameter] public virtual string As { get; set; } = "div";
+    /// <summary>
+    /// Gets or sets a custom tag name for the component.
+    /// </summary>
+    [Parameter]
+    public virtual string As { get; set; } = "div";
     
-    // Core Attributes
-    [Parameter] public virtual string? HxBoost { get; set; }
-    [Parameter] public virtual string? HxGet { get; set; }
-    [Parameter] public virtual string? HxPost { get; set; }
-    [Parameter] public string? HxOn { get; set; }
-    [Parameter] public string? HxPushUrl { get; set; }
-    [Parameter] public string? HxSelect { get; set; }
-    [Parameter] public string? HxSelectOob { get; set; }
-    [Parameter] public string? HxSwap { get; set; }
-    [Parameter] public string? HxSwapOob { get; set; }
-    [Parameter] public string? HxTarget { get; set; }
-    [Parameter] public string? HxTrigger { get; set; }
-    [Parameter] public string? HxVals { get; set; }
+    /////////////////////
+    // Core Attributes //
+    /////////////////////
     
-    // Additional Attributes
-    [Parameter] public string? HxConfirm { get; set; }
-    [Parameter] public string? HxDelete { get; set; }
-    [Parameter] public string? HxDisable { get; set; }
-    [Parameter] public string? HxDisabledElt { get; set; }
-    [Parameter] public string? HxDisinherit { get; set; }
-    [Parameter] public string? HxEncoding { get; set; }
-    [Parameter] public string? HxExt { get; set; }
-    [Parameter] public string? HxHeaders { get; set; }
-    [Parameter] public string? HxHistory { get; set; }
-    [Parameter] public string? HxHistoryElt { get; set; }
-    [Parameter] public string? HxInclude { get; set; }
-    [Parameter] public string? HxIndicator { get; set; }
-    [Parameter] public string? HxParams { get; set; }
-    [Parameter] public string? HxPatch { get; set; }
-    [Parameter] public string? HxPreserve { get; set; }
-    [Parameter] public string? HxPrompt { get; set; }
-    [Parameter] public string? HxPut { get; set; }
-    [Parameter] public string? HxReplaceUrl { get; set; }
-    [Parameter] public string? HxRequest { get; set; }
-    [Parameter] public string? HxSync { get; set; }
-    [Parameter] public string? HxValidate { get; set; }
+    /// <inheritdoc />
+    [Parameter]
+    public virtual string? HxBoost { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public virtual string? HxGet { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public virtual string? HxPost { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxOn { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxPushUrl { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxSelect { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxSelectOob { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxSwap { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxSwapOob { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter] 
+    public string? HxTarget { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxTrigger { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxVals { get; set; }
+    
+    ///////////////////////////
+    // Additional Attributes //
+    ///////////////////////////
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxConfirm { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxDelete { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxDisable { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxDisabledElt { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxDisinherit { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxEncoding { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxExt { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxHeaders { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxHistory { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxHistoryElt { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxInclude { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxIndicator { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxParams { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxPatch { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxPreserve { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxPrompt { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxPut { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxReplaceUrl { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxRequest { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxSync { get; set; }
+    
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxValidate { get; set; }
     
     // Custom Attributes
     [Parameter(CaptureUnmatchedValues = true)]
@@ -53,6 +160,7 @@ public abstract class HtmxComponentBase
 
     protected string? ClassName { get; private set; }
 
+    /// <inheritdoc />
     protected override void OnParametersSet()
     {
         ClassName = BuildClassNames();

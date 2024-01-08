@@ -1,5 +1,8 @@
 namespace FastComponents;
 
+/// <summary>
+/// Htmx attributes (core and additional)
+/// </summary>
 public interface IHxAttributes
     : IHxCoreAttributes, IHxAdditionalAttributes;
     

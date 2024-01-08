@@ -1,5 +1,8 @@
 namespace FastComponents;
 
+/// <summary>
+/// Htmx CSS classes
+/// </summary>
 public interface IHxCssClasses
 {
     /// <summary>

@@ -3,12 +3,15 @@
 
 ## IHxAdditionalAttributes Interface
 
+Htmx additional attributes
+
 ```csharp
 public interface IHxAdditionalAttributes
 ```
 
 Derived  
-&#8627; [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents.HtmxComponentBase')
+&#8627; [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents.HtmxComponentBase')  
+&#8627; [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents.IHxAttributes')
 
 | Properties | |
 | :--- | :--- |

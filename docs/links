@@ -10,6 +10,40 @@ M:FastComponents.ClassNamesBuilder.Build|FastComponents.ClassNamesBuilder.Build(
 M:FastComponents.ClassNamesBuilder.ToString|FastComponents.ClassNamesBuilder.ToString().md|ToString()
 N:FastComponents|FastComponents.md|FastComponents
 T:FastComponents.ClassNamesBuilder|FastComponents.ClassNamesBuilder.md|ClassNamesBuilder
+P:FastComponents.HtmxComponentBase.As|FastComponents.HtmxComponentBase.As.md|As
+P:FastComponents.HtmxComponentBase.HxBoost|FastComponents.HtmxComponentBase.HxBoost.md|HxBoost
+P:FastComponents.HtmxComponentBase.HxGet|FastComponents.HtmxComponentBase.HxGet.md|HxGet
+P:FastComponents.HtmxComponentBase.HxPost|FastComponents.HtmxComponentBase.HxPost.md|HxPost
+P:FastComponents.HtmxComponentBase.HxOn|FastComponents.HtmxComponentBase.HxOn.md|HxOn
+P:FastComponents.HtmxComponentBase.HxPushUrl|FastComponents.HtmxComponentBase.HxPushUrl.md|HxPushUrl
+P:FastComponents.HtmxComponentBase.HxSelect|FastComponents.HtmxComponentBase.HxSelect.md|HxSelect
+P:FastComponents.HtmxComponentBase.HxSelectOob|FastComponents.HtmxComponentBase.HxSelectOob.md|HxSelectOob
+P:FastComponents.HtmxComponentBase.HxSwap|FastComponents.HtmxComponentBase.HxSwap.md|HxSwap
+P:FastComponents.HtmxComponentBase.HxSwapOob|FastComponents.HtmxComponentBase.HxSwapOob.md|HxSwapOob
+P:FastComponents.HtmxComponentBase.HxTarget|FastComponents.HtmxComponentBase.HxTarget.md|HxTarget
+P:FastComponents.HtmxComponentBase.HxTrigger|FastComponents.HtmxComponentBase.HxTrigger.md|HxTrigger
+P:FastComponents.HtmxComponentBase.HxVals|FastComponents.HtmxComponentBase.HxVals.md|HxVals
+P:FastComponents.HtmxComponentBase.HxConfirm|FastComponents.HtmxComponentBase.HxConfirm.md|HxConfirm
+P:FastComponents.HtmxComponentBase.HxDelete|FastComponents.HtmxComponentBase.HxDelete.md|HxDelete
+P:FastComponents.HtmxComponentBase.HxDisable|FastComponents.HtmxComponentBase.HxDisable.md|HxDisable
+P:FastComponents.HtmxComponentBase.HxDisabledElt|FastComponents.HtmxComponentBase.HxDisabledElt.md|HxDisabledElt
+P:FastComponents.HtmxComponentBase.HxDisinherit|FastComponents.HtmxComponentBase.HxDisinherit.md|HxDisinherit
+P:FastComponents.HtmxComponentBase.HxEncoding|FastComponents.HtmxComponentBase.HxEncoding.md|HxEncoding
+P:FastComponents.HtmxComponentBase.HxExt|FastComponents.HtmxComponentBase.HxExt.md|HxExt
+P:FastComponents.HtmxComponentBase.HxHeaders|FastComponents.HtmxComponentBase.HxHeaders.md|HxHeaders
+P:FastComponents.HtmxComponentBase.HxHistory|FastComponents.HtmxComponentBase.HxHistory.md|HxHistory
+P:FastComponents.HtmxComponentBase.HxHistoryElt|FastComponents.HtmxComponentBase.HxHistoryElt.md|HxHistoryElt
+P:FastComponents.HtmxComponentBase.HxInclude|FastComponents.HtmxComponentBase.HxInclude.md|HxInclude
+P:FastComponents.HtmxComponentBase.HxIndicator|FastComponents.HtmxComponentBase.HxIndicator.md|HxIndicator
+P:FastComponents.HtmxComponentBase.HxParams|FastComponents.HtmxComponentBase.HxParams.md|HxParams
+P:FastComponents.HtmxComponentBase.HxPatch|FastComponents.HtmxComponentBase.HxPatch.md|HxPatch
+P:FastComponents.HtmxComponentBase.HxPreserve|FastComponents.HtmxComponentBase.HxPreserve.md|HxPreserve
+P:FastComponents.HtmxComponentBase.HxPrompt|FastComponents.HtmxComponentBase.HxPrompt.md|HxPrompt
+P:FastComponents.HtmxComponentBase.HxPut|FastComponents.HtmxComponentBase.HxPut.md|HxPut
+P:FastComponents.HtmxComponentBase.HxReplaceUrl|FastComponents.HtmxComponentBase.HxReplaceUrl.md|HxReplaceUrl
+P:FastComponents.HtmxComponentBase.HxRequest|FastComponents.HtmxComponentBase.HxRequest.md|HxRequest
+P:FastComponents.HtmxComponentBase.HxSync|FastComponents.HtmxComponentBase.HxSync.md|HxSync
+P:FastComponents.HtmxComponentBase.HxValidate|FastComponents.HtmxComponentBase.HxValidate.md|HxValidate
 T:FastComponents.HtmxComponentBase|FastComponents.HtmxComponentBase.md|HtmxComponentBase
 P:FastComponents.HtmxComponentBase`1.Parameters|FastComponents.HtmxComponentBase_TParameters_.Parameters.md|Parameters
 M:FastComponents.HtmxComponentBase`1.CreateDefaultParameters|FastComponents.HtmxComponentBase_TParameters_.CreateDefaultParameters().md|CreateDefaultParameters()
@@ -36,6 +70,7 @@ P:FastComponents.IHxAdditionalAttributes.HxRequest|FastComponents.IHxAdditionalA
 P:FastComponents.IHxAdditionalAttributes.HxSync|FastComponents.IHxAdditionalAttributes.HxSync.md|HxSync
 P:FastComponents.IHxAdditionalAttributes.HxValidate|FastComponents.IHxAdditionalAttributes.HxValidate.md|HxValidate
 T:FastComponents.IHxAdditionalAttributes|FastComponents.IHxAdditionalAttributes.md|IHxAdditionalAttributes
+T:FastComponents.IHxAttributes|FastComponents.IHxAttributes.md|IHxAttributes
 P:FastComponents.IHxCoreAttributes.HxBoost|FastComponents.IHxCoreAttributes.HxBoost.md|HxBoost
 P:FastComponents.IHxCoreAttributes.HxGet|FastComponents.IHxCoreAttributes.HxGet.md|HxGet
 P:FastComponents.IHxCoreAttributes.HxPost|FastComponents.IHxCoreAttributes.HxPost.md|HxPost
@@ -55,6 +90,9 @@ P:FastComponents.IHxCssClasses.HxCssRequest|FastComponents.IHxCssClasses.HxCssRe
 P:FastComponents.IHxCssClasses.HxCssSettling|FastComponents.IHxCssClasses.HxCssSettling.md|HxCssSettling
 P:FastComponents.IHxCssClasses.HxCssSwapping|FastComponents.IHxCssClasses.HxCssSwapping.md|HxCssSwapping
 T:FastComponents.IHxCssClasses|FastComponents.IHxCssClasses.md|IHxCssClasses
+M:FastComponents.MainExtensions.AddFastComponents(Microsoft.Extensions.DependencyInjection.IServiceCollection)|FastComponents.MainExtensions.AddFastComponents(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).md|AddFastComponents(this IServiceCollection)
+M:FastComponents.MainExtensions.UseFastComponents(Microsoft.AspNetCore.Builder.IApplicationBuilder)|FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.IApplicationBuilder).md|UseFastComponents(this IApplicationBuilder)
+T:FastComponents.MainExtensions|FastComponents.MainExtensions.md|MainExtensions
 M:FastComponents.ComponentHtmlResponseService.#ctor(Microsoft.AspNetCore.Components.Web.HtmlRenderer,FastComponents.HtmlBeautifier)|FastComponents.ComponentHtmlResponseService.ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRenderer,FastComponents.HtmlBeautifier).md|ComponentHtmlResponseService(HtmlRenderer, HtmlBeautifier)
 M:FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent``1(System.Collections.Generic.Dictionary{System.String,System.Object})|FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent_TComponent_(System.Collections.Generic.Dictionary_string,object_).md|RenderAsHtmlContent<TComponent>(Dictionary<string,object>)
 M:FastComponents.ComponentHtmlResponseService.RenderComponent``1(System.Collections.Generic.Dictionary{System.String,System.Object})|FastComponents.ComponentHtmlResponseService.RenderComponent_TComponent_(System.Collections.Generic.Dictionary_string,object_).md|RenderComponent<TComponent>(Dictionary<string,object>)

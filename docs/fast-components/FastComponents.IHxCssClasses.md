@@ -3,6 +3,8 @@
 
 ## IHxCssClasses Interface
 
+Htmx CSS classes
+
 ```csharp
 public interface IHxCssClasses
 ```
