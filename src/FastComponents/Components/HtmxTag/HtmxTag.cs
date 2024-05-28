@@ -36,180 +36,89 @@ public class HtmxTag : HtmxComponentBase
         builder.AddMultipleAttributes(1, CustomAttributes);
 
         // Core attributes
-        if (!string.IsNullOrWhiteSpace(HxBoost))
-        {
+        if (IsTruthy(HxBoost))
             builder.AddAttribute(2, "hx-boost", HxBoost);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxGet))
-        {
+        if (IsTruthy(HxGet))
             builder.AddAttribute(3, "hx-get", HxGet);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPost))
-        {
+        if (IsTruthy(HxPost))
             builder.AddAttribute(4, "hx-post", HxPost);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxOn))
-        {
+        if (IsTruthy(HxOn))
             builder.AddAttribute(5, "hx-on", HxOn);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPushUrl))
-        {
+        if (IsTruthy(HxPushUrl))
             builder.AddAttribute(6, "hx-push-url", HxPushUrl);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxSelect))
-        {
+        if (IsTruthy(HxSelect))
             builder.AddAttribute(7, "hx-select", HxSelect);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxSelectOob))
-        {
+        if (IsTruthy(HxSelectOob))
             builder.AddAttribute(8, "hx-select-oob", HxSelectOob);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxSwap))
-        {
+        if (IsTruthy(HxSwap))
             builder.AddAttribute(9, "hx-swap", HxSwap);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxSwapOob))
-        {
+        if (IsTruthy(HxSwapOob))
             builder.AddAttribute(10, "hx-swap-oob", HxSwapOob);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxTarget))
-        {
+        if (IsTruthy(HxTarget))
             builder.AddAttribute(11, "hx-target", HxTarget);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxTrigger))
-        {
+        if (IsTruthy(HxTrigger))
             builder.AddAttribute(12, "hx-trigger", HxTrigger);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxVals))
-        {
+        if (IsTruthy(HxVals))
             builder.AddAttribute(13, "hx-vals", HxVals);
-        }
 
         // Additional attributes
-        if (!string.IsNullOrWhiteSpace(HxConfirm))
-        {
+        if (IsTruthy(HxConfirm))
             builder.AddAttribute(14, "hx-confirm", HxConfirm);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxDelete))
-        {
+        if (IsTruthy(HxDelete))
             builder.AddAttribute(15, "hx-delete", HxDelete);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxDisable))
-        {
+        if (IsTruthy(HxDisable))
             builder.AddAttribute(16, "hx-disable", HxDisable);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxDisabledElt))
-        {
+        if (IsTruthy(HxDisabledElt))
             builder.AddAttribute(17, "hx-disabled-elt", HxDisabledElt);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxDisinherit))
-        {
+        if (IsTruthy(HxDisinherit))
             builder.AddAttribute(18, "hx-disinherit", HxDisinherit);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxEncoding))
-        {
+        if (IsTruthy(HxEncoding))
             builder.AddAttribute(19, "hx-encoding", HxEncoding);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxExt))
-        {
+        if (IsTruthy(HxExt))
             builder.AddAttribute(20, "hx-ext", HxExt);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxHeaders))
-        {
+        if (IsTruthy(HxHeaders))
             builder.AddAttribute(21, "hx-headers", HxHeaders);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxHistory))
-        {
+        if (IsTruthy(HxHistory))
             builder.AddAttribute(22, "hx-history", HxHistory);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxHistoryElt))
-        {
+        if (IsTruthy(HxHistoryElt))
             builder.AddAttribute(23, "hx-history-elt", HxHistoryElt);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxInclude))
-        {
+        if (IsTruthy(HxInclude))
             builder.AddAttribute(24, "hx-include", HxInclude);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxIndicator))
-        {
+        if (IsTruthy(HxIndicator))
             builder.AddAttribute(25, "hx-indicator", HxIndicator);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxParams))
-        {
+        if (IsTruthy(HxParams))
             builder.AddAttribute(26, "hx-params", HxParams);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPatch))
-        {
+        if (IsTruthy(HxPatch))
             builder.AddAttribute(27, "hx-patch", HxPatch);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPreserve))
-        {
+        if (IsTruthy(HxPreserve))
             builder.AddAttribute(28, "hx-preserve", HxPreserve);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPrompt))
-        {
+        if (IsTruthy(HxPrompt))
             builder.AddAttribute(29, "hx-prompt", HxPrompt);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxPut))
-        {
+        if (IsTruthy(HxPut))
             builder.AddAttribute(30, "hx-put", HxPut);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxReplaceUrl))
-        {
+        if (IsTruthy(HxReplaceUrl))
             builder.AddAttribute(31, "hx-replace-url", HxReplaceUrl);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxRequest))
-        {
+        if (IsTruthy(HxRequest))
             builder.AddAttribute(32, "hx-request", HxRequest);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxSync))
-        {
+        if (IsTruthy(HxSync))
             builder.AddAttribute(33, "hx-sync", HxSync);
-        }
-
-        if (!string.IsNullOrWhiteSpace(HxValidate))
-        {
+        if (IsTruthy(HxValidate))
             builder.AddAttribute(34, "hx-validate", HxValidate);
-        }
 
         // Class names
-        if (!string.IsNullOrWhiteSpace(ClassName))
-        {
-            builder.AddAttribute(14, "class", ClassName);
-        }
+        if (IsTruthy(ClassName))
+            builder.AddAttribute(35, "class", ClassName);
 
         // Child content
-        builder.AddContent(15, ChildContent);
+        builder.AddContent(36, ChildContent);
         builder.CloseElement();
     }
+    
+    /// <summary>
+    /// Check if the value is not null, empty, or whitespace
+    /// </summary>
+    /// <param name="value">The value to check.</param>
+    /// <returns>True if the value is not null, empty, or whitespace; otherwise, false.</returns>
+    private static bool IsTruthy(string? value)
+        => !string.IsNullOrWhiteSpace(value);
 }
