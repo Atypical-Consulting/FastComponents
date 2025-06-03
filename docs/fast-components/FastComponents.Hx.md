@@ -3,6 +3,8 @@
 
 ## Hx Class
 
+Provides helper constants and methods for HTMX operations\.
+
 ```csharp
 public static class Hx
 ```

@@ -13,7 +13,7 @@ Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.
 
 | Constructors | |
 | :--- | :--- |
-| [ComponentHtmlResponseService\(HtmlRenderer, HtmlBeautifier\)](FastComponents.ComponentHtmlResponseService.ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRenderer,FastComponents.HtmlBeautifier).md 'FastComponents\.ComponentHtmlResponseService\.ComponentHtmlResponseService\(Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer, FastComponents\.HtmlBeautifier\)') | Service responsible for rendering components as HTML and returning them as HTTP responses\. |
+| [ComponentHtmlResponseService\(HtmlRenderer\)](FastComponents.ComponentHtmlResponseService.ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRenderer).md 'FastComponents\.ComponentHtmlResponseService\.ComponentHtmlResponseService\(Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer\)') | Service responsible for rendering components as HTML and returning them as HTTP responses\. |
 
 | Methods | |
 | :--- | :--- |

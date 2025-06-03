@@ -1,0 +1,17 @@
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{cs,vb}]
+indent_style = space
+indent_size = 4
+
+# File header requirement - headers have been applied manually 
+dotnet_diagnostic.IDE0073.severity = none
+
+# Disable expression value not used warnings for fluent API patterns
+dotnet_diagnostic.IDE0058.severity = suggestion

@@ -3,6 +3,8 @@
 
 ## Hx\.Swap Class
 
+Constants for HTMX swap strategies\.
+
 ```csharp
 public static class Hx.Swap
 ```

@@ -10,7 +10,7 @@ public static class HtmxEndpointConfiguration
     public static void MapHtmxEndpoints(this IEndpointRouteBuilder app)
     {
         // Map the main App component
-        app.MapHtmxGet<App, AppEndpoint.AppParameters>(RouteApp)
+        app.MapHtmxGet<App, AppParameters>(RouteApp)
             .AllowAnonymous();
 
         // Map the Counter component

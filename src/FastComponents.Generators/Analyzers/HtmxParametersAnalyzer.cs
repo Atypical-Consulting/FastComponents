@@ -75,7 +75,7 @@ public class HtmxParametersAnalyzer : DiagnosticAnalyzer
         var semanticModel = context.SemanticModel;
         var symbol = semanticModel.GetDeclaredSymbol(recordDeclaration);
 
-        if (symbol is not INamedTypeSymbol namedTypeSymbol)
+        if (symbol is not { } namedTypeSymbol)
             return;
 
         bool hasGenerateParameterMethodsAttribute = HasGenerateParameterMethodsAttribute(namedTypeSymbol);

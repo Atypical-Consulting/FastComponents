@@ -1,3 +1,19 @@
+/*
+ * Copyright 2025 Atypical Consulting SRL
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 using Microsoft.AspNetCore.Components;
 
 namespace FastComponents;
@@ -12,7 +28,7 @@ public abstract class HtmxComponentBase
     /// Gets or sets a custom tag name for the component.
     /// </summary>
     [Parameter]
-    public virtual string As { get; set; } = "div";
+    public virtual string Element { get; set; } = "div";
     
     /////////////////////
     // Core Attributes //
@@ -154,10 +170,15 @@ public abstract class HtmxComponentBase
     [Parameter]
     public string? HxValidate { get; set; }
     
-    // Custom Attributes
+    /// <summary>
+    /// Gets or sets additional custom attributes for the component.
+    /// </summary>
     [Parameter(CaptureUnmatchedValues = true)]
     public IReadOnlyDictionary<string, object>? CustomAttributes { get; set; }
 
+    /// <summary>
+    /// Gets the computed CSS class names for the component.
+    /// </summary>
     protected string? ClassName { get; private set; }
 
     /// <inheritdoc />
@@ -166,6 +187,11 @@ public abstract class HtmxComponentBase
         ClassName = BuildClassNames();
     }
 
+    /// <summary>
+    /// Override this method to add custom class names to the component.
+    /// </summary>
+    /// <param name="builder">The class names builder.</param>
+    /// <returns>The updated class names builder.</returns>
     protected virtual ClassNamesBuilder OnBuildClassNames(ClassNamesBuilder builder)
     {
         return builder;
@@ -188,7 +214,7 @@ public abstract class HtmxComponentBase
         builder = OnBuildClassNames(builder);
 
         // add class names from attributes
-        builder.AddClassFromAttributes(CustomAttributes);
+        builder = builder.AddClassFromAttributes(CustomAttributes);
         
         return builder.Build();
     }

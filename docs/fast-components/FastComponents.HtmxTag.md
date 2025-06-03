@@ -13,8 +13,8 @@ Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.
 
 | Properties | |
 | :--- | :--- |
-| [As](FastComponents.HtmxTag.As.md 'FastComponents\.HtmxTag\.As') | The tag name to use for the root element, e\.g\. "div", "span", "li"\. Defaults to "div"\. |
 | [ChildContent](FastComponents.HtmxTag.ChildContent.md 'FastComponents\.HtmxTag\.ChildContent') | The content to be rendered inside this element\. |
+| [Element](FastComponents.HtmxTag.Element.md 'FastComponents\.HtmxTag\.Element') | The tag name to use for the root element, e\.g\. "div", "span", "li"\. Defaults to "div"\. |
 
 | Methods | |
 | :--- | :--- |

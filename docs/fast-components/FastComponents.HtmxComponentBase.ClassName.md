@@ -1,12 +1,12 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
 ### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase')
 
-## HtmxComponentBase\.As Property
+## HtmxComponentBase\.ClassName Property
 
-Gets or sets a custom tag name for the component\.
+Gets the computed CSS class names for the component\.
 
 ```csharp
-public virtual string As { get; set; }
+protected string? ClassName { protected get; private set; }
 ```
 
 #### Property Value

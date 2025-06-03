@@ -19,7 +19,9 @@ Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxA
 
 | Properties | |
 | :--- | :--- |
-| [As](FastComponents.HtmxComponentBase.As.md 'FastComponents\.HtmxComponentBase\.As') | Gets or sets a custom tag name for the component\. |
+| [ClassName](FastComponents.HtmxComponentBase.ClassName.md 'FastComponents\.HtmxComponentBase\.ClassName') | Gets the computed CSS class names for the component\. |
+| [CustomAttributes](FastComponents.HtmxComponentBase.CustomAttributes.md 'FastComponents\.HtmxComponentBase\.CustomAttributes') | Gets or sets additional custom attributes for the component\. |
+| [Element](FastComponents.HtmxComponentBase.Element.md 'FastComponents\.HtmxComponentBase\.Element') | Gets or sets a custom tag name for the component\. |
 | [HxBoost](FastComponents.HtmxComponentBase.HxBoost.md 'FastComponents\.HtmxComponentBase\.HxBoost') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Add or remove progressive enhancement for links and forms |
 | [HxConfirm](FastComponents.HtmxComponentBase.HxConfirm.md 'FastComponents\.HtmxComponentBase\.HxConfirm') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Shows a confirm\(\) dialog before issuing a request\. |
 | [HxDelete](FastComponents.HtmxComponentBase.HxDelete.md 'FastComponents\.HtmxComponentBase\.HxDelete') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Issues a DELETE to the specified URL\. |
@@ -56,4 +58,5 @@ Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxA
 
 | Methods | |
 | :--- | :--- |
+| [OnBuildClassNames\(ClassNamesBuilder\)](FastComponents.HtmxComponentBase.OnBuildClassNames(FastComponents.ClassNamesBuilder).md 'FastComponents\.HtmxComponentBase\.OnBuildClassNames\(FastComponents\.ClassNamesBuilder\)') | Override this method to add custom class names to the component\. |
 | [OnParametersSet\(\)](FastComponents.HtmxComponentBase.OnParametersSet().md 'FastComponents\.HtmxComponentBase\.OnParametersSet\(\)') | Method invoked when the component has received parameters from its parent in the render tree, and the incoming values have been assigned to properties\. |

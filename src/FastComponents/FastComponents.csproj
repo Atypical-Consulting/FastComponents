@@ -39,6 +39,8 @@
     <AnalysisModeSecurity>All</AnalysisModeSecurity>
     <AnalysisModeStyle>All</AnalysisModeStyle>
     <AnalysisModeUsage>All</AnalysisModeUsage>
+    <!-- Suppress specific warnings for applied license headers -->
+    <NoWarn>$(NoWarn);IDE0073</NoWarn>
   </PropertyGroup>
   
   <!-- Development dependencies -->
