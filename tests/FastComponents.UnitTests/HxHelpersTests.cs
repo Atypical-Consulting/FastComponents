@@ -84,7 +84,7 @@ public class HxHelpersTests
     public void TargetId_ShouldPrependHashSymbol(string id, string expected)
     {
         // Act
-        var result = Hx.TargetId(id);
+        string result = Hx.TargetId(id);
 
         // Assert
         result.ShouldBe(expected);
@@ -94,7 +94,7 @@ public class HxHelpersTests
     public void TargetId_WithNullInput_ShouldReturnHashWithNull()
     {
         // Act
-        var result = Hx.TargetId(null!);
+        string result = Hx.TargetId(null!);
 
         // Assert
         result.ShouldBe("#");

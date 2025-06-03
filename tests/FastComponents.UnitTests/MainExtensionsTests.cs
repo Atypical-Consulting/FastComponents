@@ -27,16 +27,16 @@ public class MainExtensionsTests
     public void AddFastComponents_ShouldRegisterRequiredServices()
     {
         // Arrange
-        var services = new ServiceCollection();
+        ServiceCollection services = new();
         services.AddLogging(); // Add required logging dependencies
 
         // Act
-        var result = services.AddFastComponents();
+        IServiceCollection result = services.AddFastComponents();
 
         // Assert
         result.ShouldBe(services);
-        
-        var serviceProvider = services.BuildServiceProvider();
+
+        ServiceProvider serviceProvider = services.BuildServiceProvider();
         serviceProvider.GetService<HtmlRenderer>().ShouldNotBeNull();
         serviceProvider.GetService<ComponentHtmlResponseService>().ShouldNotBeNull();
     }
@@ -45,10 +45,10 @@ public class MainExtensionsTests
     public void AddFastComponents_ShouldReturnSameServiceCollection()
     {
         // Arrange
-        var services = new ServiceCollection();
+        ServiceCollection services = new();
 
         // Act
-        var result = services.AddFastComponents();
+        IServiceCollection result = services.AddFastComponents();
 
         // Assert
         result.ShouldBeSameAs(services);
@@ -58,7 +58,7 @@ public class MainExtensionsTests
     public void AddFastComponents_WithExistingServices_ShouldNotThrow()
     {
         // Arrange
-        var services = new ServiceCollection();
+        ServiceCollection services = new();
         services.AddScoped<HtmlRenderer>();
 
         // Act & Assert
@@ -69,11 +69,11 @@ public class MainExtensionsTests
     public void UseFastComponents_ShouldReturnSameWebApplication()
     {
         // Arrange
-        var builder = WebApplication.CreateBuilder();
-        var app = builder.Build();
+        WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        WebApplication app = builder.Build();
 
         // Act
-        var result = app.UseFastComponents();
+        WebApplication result = app.UseFastComponents();
 
         // Assert
         result.ShouldBeSameAs(app);
@@ -83,8 +83,8 @@ public class MainExtensionsTests
     public void UseFastComponents_ShouldNotThrow()
     {
         // Arrange
-        var builder = WebApplication.CreateBuilder();
-        var app = builder.Build();
+        WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        WebApplication app = builder.Build();
 
         // Act & Assert
         Should.NotThrow(() => app.UseFastComponents());

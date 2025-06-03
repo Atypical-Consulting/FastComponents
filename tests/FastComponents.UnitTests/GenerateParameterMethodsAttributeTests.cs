@@ -8,79 +8,79 @@ public class GenerateParameterMethodsAttributeTests
     public void GenerateParameterMethodsAttribute_DefaultValues_SkipDefaultsIsTrue()
     {
         // Act
-        var attribute = new GenerateParameterMethodsAttribute();
-        
+        GenerateParameterMethodsAttribute attribute = new();
+
         // Assert
         attribute.SkipDefaults.ShouldBe(true);
     }
-    
+
     [Fact]
     public void GenerateParameterMethodsAttribute_CanSetSkipDefaults()
     {
         // Act
-        var attribute = new GenerateParameterMethodsAttribute
+        GenerateParameterMethodsAttribute attribute = new()
         {
             SkipDefaults = false
         };
-        
+
         // Assert
         attribute.SkipDefaults.ShouldBe(false);
     }
-    
+
     [Fact]
     public void GenerateParameterMethodsAttribute_CanBeAppliedToClass()
     {
         // Arrange
-        var type = typeof(TestClassWithAttribute);
-        
+        Type type = typeof(TestClassWithAttribute);
+
         // Act
-        var attributes = type.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
-        
+        object[] attributes = type.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
+
         // Assert
         attributes.Length.ShouldBe(1);
-        var attribute = attributes[0] as GenerateParameterMethodsAttribute;
+        GenerateParameterMethodsAttribute? attribute = attributes[0] as GenerateParameterMethodsAttribute;
         attribute.ShouldNotBeNull();
     }
-    
+
     [Fact]
     public void GenerateParameterMethodsAttribute_IsNotInheritable()
     {
         // Arrange
-        var baseType = typeof(TestClassWithAttribute);
-        var derivedType = typeof(DerivedTestClass);
-        
+        Type baseType = typeof(TestClassWithAttribute);
+        Type derivedType = typeof(DerivedTestClass);
+
         // Act
-        var baseAttributes = baseType.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
-        var derivedAttributes = derivedType.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
-        
+        object[] baseAttributes = baseType.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
+        object[] derivedAttributes = derivedType.GetCustomAttributes(typeof(GenerateParameterMethodsAttribute), false);
+
         // Assert
         baseAttributes.Length.ShouldBe(1);
         derivedAttributes.Length.ShouldBe(0);
     }
-    
+
     [Fact]
     public void GenerateParameterMethodsAttribute_AttributeUsage_IsCorrect()
     {
         // Arrange
-        var attributeType = typeof(GenerateParameterMethodsAttribute);
-        
+        Type attributeType = typeof(GenerateParameterMethodsAttribute);
+
         // Act
-        var usageAttributes = attributeType.GetCustomAttributes(typeof(AttributeUsageAttribute), false);
-        
+        object[] usageAttributes = attributeType.GetCustomAttributes(typeof(AttributeUsageAttribute), false);
+
         // Assert
         usageAttributes.Length.ShouldBe(1);
-        var usage = usageAttributes[0] as AttributeUsageAttribute;
+        AttributeUsageAttribute? usage = usageAttributes[0] as AttributeUsageAttribute;
         usage.ShouldNotBeNull();
         usage.ValidOn.ShouldBe(AttributeTargets.Class);
         usage.Inherited.ShouldBe(false);
         usage.AllowMultiple.ShouldBe(false);
     }
-    
+
     [GenerateParameterMethods]
     private class TestClassWithAttribute
     {
     }
-    
+
     private class DerivedTestClass : TestClassWithAttribute
     {
     }

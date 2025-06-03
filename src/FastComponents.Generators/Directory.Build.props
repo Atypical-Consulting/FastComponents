@@ -1,0 +1,24 @@
+<Project>
+  <!-- Import the root Directory.Build.props -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- Generator-specific settings -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Generators have different quality requirements -->
+  <PropertyGroup>
+    <!-- Allow expression values not being used (for fluent APIs) -->
+    <NoWarn>$(NoWarn);IDE0058</NoWarn>
+    <!-- Allow blank lines after arrow expressions -->
+    <NoWarn>$(NoWarn);IDE2006</NoWarn>
+    <!-- Allow collection initialization patterns -->
+    <NoWarn>$(NoWarn);IDE0305</NoWarn>
+    <!-- Allow non-sealed types -->
+    <NoWarn>$(NoWarn);CA1852</NoWarn>
+  </PropertyGroup>
+
+</Project>

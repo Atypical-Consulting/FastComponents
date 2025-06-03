@@ -24,8 +24,8 @@ public class ClassNamesBuilderTests
     public void Default_ShouldCreateBuilderWithInitialValue()
     {
         // Arrange & Act
-        var builder = ClassNamesBuilder.Default("initial");
-        var result = builder.Build();
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -35,8 +35,8 @@ public class ClassNamesBuilderTests
     public void Empty_ShouldCreateBuilderWithEmptyValue()
     {
         // Arrange & Act
-        var builder = ClassNamesBuilder.Empty();
-        var result = builder.Build();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("");
@@ -46,8 +46,8 @@ public class ClassNamesBuilderTests
     public void Constructor_ShouldInitializeWithValue()
     {
         // Arrange & Act
-        var builder = new ClassNamesBuilder("test-class");
-        var result = builder.Build();
+        ClassNamesBuilder builder = new("test-class");
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("test-class");
@@ -57,9 +57,9 @@ public class ClassNamesBuilderTests
     public void Constructor_WithPrefixAndSuffix_ShouldApplyThem()
     {
         // Arrange & Act
-        var builder = new ClassNamesBuilder("initial", "pre-", "-suf");
+        ClassNamesBuilder builder = new("initial", "pre-", "-suf");
         builder = builder.AddClass("test");
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial pre-test-suf");
@@ -69,11 +69,11 @@ public class ClassNamesBuilderTests
     public void AddRawValue_ShouldAppendValueDirectly()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddRawValue(" raw-value");
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("raw-value");
@@ -83,7 +83,7 @@ public class ClassNamesBuilderTests
     public void AddRawValue_WithNullOrWhitespace_ShouldNotAppend()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act & Assert
         builder.AddRawValue(null!).Build().ShouldBe("initial");
@@ -95,11 +95,11 @@ public class ClassNamesBuilderTests
     public void AddClass_ShouldAppendClassWithSpace()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClass("new-class");
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial new-class");
@@ -109,11 +109,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithConditionTrue_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddClass("conditional", true);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("conditional");
@@ -123,11 +123,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithConditionFalse_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClass("conditional", false);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -137,11 +137,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithFunctionConditionTrue_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddClass("conditional", () => true);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("conditional");
@@ -151,11 +151,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithFunctionConditionFalse_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClass("conditional", () => false);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -165,11 +165,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithNullFunction_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddClass("conditional", null);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("conditional");
@@ -179,11 +179,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithValueFunctionAndConditionTrue_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddClass(() => "dynamic-class", true);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("dynamic-class");
@@ -193,11 +193,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithValueFunctionAndConditionFalse_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClass(() => "dynamic-class", false);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -207,11 +207,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithValueFunctionAndFunctionConditionTrue_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
 
         // Act
         builder = builder.AddClass(() => "dynamic-class", () => true);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("dynamic-class");
@@ -221,11 +221,11 @@ public class ClassNamesBuilderTests
     public void AddClass_WithValueFunctionAndFunctionConditionFalse_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClass(() => "dynamic-class", () => false);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -235,12 +235,12 @@ public class ClassNamesBuilderTests
     public void AddClass_WithBuilderAndConditionTrue_ShouldAppendBuilderClasses()
     {
         // Arrange
-        var builder1 = ClassNamesBuilder.Empty();
-        var builder2 = ClassNamesBuilder.Default("class1").AddClass("class2");
+        ClassNamesBuilder builder1 = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder2 = ClassNamesBuilder.Default("class1").AddClass("class2");
 
         // Act
         builder1 = builder1.AddClass(builder2, true);
-        var result = builder1.Build();
+        string result = builder1.Build();
 
         // Assert
         result.ShouldBe("class1 class2");
@@ -250,12 +250,12 @@ public class ClassNamesBuilderTests
     public void AddClass_WithBuilderAndConditionFalse_ShouldNotAppendBuilderClasses()
     {
         // Arrange
-        var builder1 = ClassNamesBuilder.Default("initial");
-        var builder2 = ClassNamesBuilder.Default("class1");
+        ClassNamesBuilder builder1 = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder2 = ClassNamesBuilder.Default("class1");
 
         // Act
         builder1 = builder1.AddClass(builder2, false);
-        var result = builder1.Build();
+        string result = builder1.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -265,12 +265,12 @@ public class ClassNamesBuilderTests
     public void AddClass_WithBuilderAndFunctionConditionTrue_ShouldAppendBuilderClasses()
     {
         // Arrange
-        var builder1 = ClassNamesBuilder.Empty();
-        var builder2 = ClassNamesBuilder.Default("class1");
+        ClassNamesBuilder builder1 = ClassNamesBuilder.Empty();
+        ClassNamesBuilder builder2 = ClassNamesBuilder.Default("class1");
 
         // Act
         builder1 = builder1.AddClass(builder2, () => true);
-        var result = builder1.Build();
+        string result = builder1.Build();
 
         // Assert
         result.ShouldBe("class1");
@@ -280,12 +280,12 @@ public class ClassNamesBuilderTests
     public void AddClass_WithBuilderAndFunctionConditionFalse_ShouldNotAppendBuilderClasses()
     {
         // Arrange
-        var builder1 = ClassNamesBuilder.Default("initial");
-        var builder2 = ClassNamesBuilder.Default("class1");
+        ClassNamesBuilder builder1 = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder2 = ClassNamesBuilder.Default("class1");
 
         // Act
         builder1 = builder1.AddClass(builder2, () => false);
-        var result = builder1.Build();
+        string result = builder1.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -295,15 +295,15 @@ public class ClassNamesBuilderTests
     public void AddClassFromAttributes_WithValidClassAttribute_ShouldAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Empty();
-        var attributes = new Dictionary<string, object>
+        ClassNamesBuilder builder = ClassNamesBuilder.Empty();
+        Dictionary<string, object> attributes = new()
         {
             ["class"] = "attr-class"
         };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("attr-class");
@@ -313,15 +313,15 @@ public class ClassNamesBuilderTests
     public void AddClassFromAttributes_WithNonStringClassAttribute_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
-        var attributes = new Dictionary<string, object>
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
+        Dictionary<string, object> attributes = new()
         {
             ["class"] = 123
         };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -331,15 +331,15 @@ public class ClassNamesBuilderTests
     public void AddClassFromAttributes_WithoutClassAttribute_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
-        var attributes = new Dictionary<string, object>
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
+        Dictionary<string, object> attributes = new()
         {
             ["other"] = "value"
         };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -349,11 +349,11 @@ public class ClassNamesBuilderTests
     public void AddClassFromAttributes_WithNullAttributes_ShouldNotAppendClass()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("initial");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
 
         // Act
         builder = builder.AddClassFromAttributes(null);
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         result.ShouldBe("initial");
@@ -363,13 +363,13 @@ public class ClassNamesBuilderTests
     public void Build_ShouldRemoveExtraSpacesAndTrim()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("  class1  ")
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("  class1  ")
             .AddRawValue("  ")
             .AddClass("class2")
             .AddRawValue("  ");
 
         // Act
-        var result = builder.Build();
+        string result = builder.Build();
 
         // Assert
         // Note: The current implementation appears to normalize multiple spaces to single spaces
@@ -382,11 +382,11 @@ public class ClassNamesBuilderTests
     public void ToString_ShouldReturnSameAsBuild()
     {
         // Arrange
-        var builder = ClassNamesBuilder.Default("class1").AddClass("class2");
+        ClassNamesBuilder builder = ClassNamesBuilder.Default("class1").AddClass("class2");
 
         // Act
-        var buildResult = builder.Build();
-        var toStringResult = builder.ToString();
+        string buildResult = builder.Build();
+        string toStringResult = builder.ToString();
 
         // Assert
         toStringResult.ShouldBe(buildResult);
@@ -396,7 +396,7 @@ public class ClassNamesBuilderTests
     public void ChainedOperations_ShouldWorkCorrectly()
     {
         // Arrange & Act
-        var result = ClassNamesBuilder.Empty()
+        string result = ClassNamesBuilder.Empty()
             .AddClass("base")
             .AddClass("conditional", true)
             .AddClass("skipped", false)
@@ -412,7 +412,7 @@ public class ClassNamesBuilderTests
     public void WithPrefixAndSuffix_ShouldApplyToAllAddedClasses()
     {
         // Arrange & Act
-        var result = new ClassNamesBuilder("", "btn-", "-lg")
+        string result = new ClassNamesBuilder("", "btn-", "-lg")
             .AddClass("primary")
             .AddClass("secondary", true)
             .AddClass("tertiary", false)

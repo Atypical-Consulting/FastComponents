@@ -1,20 +1,92 @@
 <Project>
   
+  <!-- Common build properties -->
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors Condition="'$(MSBuildProjectName)' != 'FastComponents.Generators'">true</TreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+
+  <!-- Organization metadata -->
+  <PropertyGroup>
     <Company>Atypical Consulting SRL</Company>
+    <Authors>Philippe Matray</Authors>
+    <Product>FastComponents</Product>
+    <Copyright>Copyright (c) 2020-2025 Atypical Consulting SRL</Copyright>
+  </PropertyGroup>
+
+  <!-- Repository metadata -->
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/Atypical-Consulting/FastComponents.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageProjectUrl>https://github.com/Atypical-Consulting/FastComponents</PackageProjectUrl>
   </PropertyGroup>
 
   <!-- Versioning -->
-  <!-- https://saebamini.com/how-to-version-your-net-nuget-packages-libraries-and-assemblies-azure-yaml-pipelines-example-using-net-core-cli/ -->
+  <!-- Uses MinVer for automatic versioning based on Git tags -->
   <PropertyGroup>
-    <Version>0.1.0</Version>
-    <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0</FileVersion>
-    <InformationalVersion>0.1.0</InformationalVersion>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerSkip Condition="'$(Configuration)' == 'Debug'">true</MinVerSkip>
+  </PropertyGroup>
+
+  <!-- Source Link -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Deterministic builds -->
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- Code quality -->
+  <PropertyGroup>
+    <AnalysisModeDesign>All</AnalysisModeDesign>
+    <AnalysisModeDocumentation>All</AnalysisModeDocumentation>
+    <AnalysisModeGlobalization>All</AnalysisModeGlobalization>
+    <AnalysisModeInteroperability>All</AnalysisModeInteroperability>
+    <AnalysisModeMaintainability>All</AnalysisModeMaintainability>
+    <AnalysisModeNaming>All</AnalysisModeNaming>
+    <AnalysisModePerformance>All</AnalysisModePerformance>
+    <AnalysisModeSingleFile>All</AnalysisModeSingleFile>
+    <AnalysisModeReliability>All</AnalysisModeReliability>
+    <AnalysisModeSecurity>All</AnalysisModeSecurity>
+    <AnalysisModeStyle>All</AnalysisModeStyle>
+    <AnalysisModeUsage>All</AnalysisModeUsage>
+  </PropertyGroup>
+
+  <!-- Common suppressions -->
+  <PropertyGroup>
+    <!-- IDE0073: File header -->
+    <NoWarn>$(NoWarn);IDE0073</NoWarn>
+    <!-- IL2026: Using member with RequiresUnreferencedCodeAttribute -->
+    <NoWarn>$(NoWarn);IL2026</NoWarn>
+    <!-- IL3050: Using member with RequiresDynamicCodeAttribute -->
+    <NoWarn>$(NoWarn);IL3050</NoWarn>
+    <!-- CA2263: Prefer generic overload (not applicable for dynamic scenarios) -->
+    <NoWarn>$(NoWarn);CA2263</NoWarn>
+    <!-- ASP0006: Sequence number usage (acceptable in component rendering) -->
+    <NoWarn>$(NoWarn);ASP0006</NoWarn>
+  </PropertyGroup>
+
+  <!-- Output paths -->
+  <PropertyGroup>
+    <BaseOutputPath Condition="'$(BaseOutputPath)' == ''">$(MSBuildProjectDirectory)\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">$(MSBuildProjectDirectory)\obj\</BaseIntermediateOutputPath>
+    <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(MSBuildThisFileDirectory)artifacts\</PackageOutputPath>
   </PropertyGroup>
   
 </Project>

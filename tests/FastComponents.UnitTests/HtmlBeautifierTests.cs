@@ -27,7 +27,7 @@ public class HtmlBeautifierTests
         const string html = "<div class=\"test\">Content</div>";
 
         // Act
-        var result = HtmlBeautifier.BeautifyHtml(html);
+        string result = HtmlBeautifier.BeautifyHtml(html);
 
         // Assert
         result.ShouldBe(html);
@@ -40,7 +40,7 @@ public class HtmlBeautifierTests
         const string html = "";
 
         // Act
-        var result = HtmlBeautifier.BeautifyHtml(html);
+        string result = HtmlBeautifier.BeautifyHtml(html);
 
         // Assert
         result.ShouldBe("");
@@ -62,7 +62,7 @@ public class HtmlBeautifierTests
             """;
 
         // Act
-        var result = HtmlBeautifier.BeautifyHtml(html);
+        string result = HtmlBeautifier.BeautifyHtml(html);
 
         // Assert
         result.ShouldBe(html);
@@ -76,7 +76,7 @@ public class HtmlBeautifierTests
     public void BeautifyHtml_WithVariousHtmlElements_ShouldReturnSameHtml(string html)
     {
         // Act
-        var result = HtmlBeautifier.BeautifyHtml(html);
+        string result = HtmlBeautifier.BeautifyHtml(html);
 
         // Assert
         result.ShouldBe(html);
@@ -86,7 +86,7 @@ public class HtmlBeautifierTests
     public void BeautifyHtml_WithNullInput_ShouldReturnNull()
     {
         // Act
-        var result = HtmlBeautifier.BeautifyHtml(null!);
+        string result = HtmlBeautifier.BeautifyHtml(null!);
 
         // Assert
         result.ShouldBeNull();

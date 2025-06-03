@@ -23,26 +23,6 @@
     <None Include="../../README.md" Pack="true" PackagePath="" />
   </ItemGroup>
 
-  <PropertyGroup>
-    <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <AnalysisLevel>8.0-recommended</AnalysisLevel>
-    <AnalysisModeDesign>All</AnalysisModeDesign>
-    <AnalysisModeDocumentation>All</AnalysisModeDocumentation>
-    <AnalysisModeGlobalization>All</AnalysisModeGlobalization>
-    <AnalysisModeInteroperability>All</AnalysisModeInteroperability>
-    <AnalysisModeMaintainability>All</AnalysisModeMaintainability>
-    <AnalysisModeNaming>All</AnalysisModeNaming>
-    <AnalysisModePerformance>All</AnalysisModePerformance>
-    <AnalysisModeSingleFile>All</AnalysisModeSingleFile>
-    <AnalysisModeReliability>All</AnalysisModeReliability>
-    <AnalysisModeSecurity>All</AnalysisModeSecurity>
-    <AnalysisModeStyle>All</AnalysisModeStyle>
-    <AnalysisModeUsage>All</AnalysisModeUsage>
-    <!-- Suppress specific warnings for applied license headers -->
-    <NoWarn>$(NoWarn);IDE0073</NoWarn>
-  </PropertyGroup>
-  
   <!-- Development dependencies -->
   <ItemGroup>
     <!-- Documentation -->
@@ -87,22 +67,14 @@
     <PackageIcon>Logo.png</PackageIcon>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <Authors>Philippe Matray</Authors>
-    <Company>Atypical Consulting SRL</Company>
-    <Product>FastComponents</Product>
-    <Description>
-      Code web, think .NET 8 with FastComponents for a successful MRA (Multiple Resources Application).
-    </Description>
-    <PackageTags>fastcomponents;mra architecture;core;net8</PackageTags>
-    <Copyright>Copyright (c) 2020-2024 Atypical Consulting SRL</Copyright>
-    <PackageProjectUrl>https://github.com/Atypical-Consulting/FastComponents</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/Atypical-Consulting/FastComponents.git</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <RepositoryBranch>main</RepositoryBranch>
+    <Description>Build HTMX-powered web applications using Blazor components with server-side rendering. FastComponents provides type-safe C# properties for all HTMX attributes and seamless integration with ASP.NET Core Minimal APIs.</Description>
+    <PackageTags>htmx;blazor;ssr;server-side-rendering;components;mra;fastcomponents;net9;aspnetcore;minimal-api</PackageTags>
     <PackageReleaseNotes>
-      This is the first release of FastComponents.
-      It is considered as a preview version, so it is not (yet) recommended to use it in production.
-      Discover the power of MRA (Multiple Resources Application) with FastComponents.
+      - Complete HTMX feature parity with all attributes, events, headers, and extensions
+      - Server-Sent Events (SSE) and WebSocket support
+      - Request/Response headers integration
+      - Enhanced type safety and IntelliSense support
+      - Comprehensive test coverage (78.9%)
     </PackageReleaseNotes>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <PackageLanguage>en-US</PackageLanguage>
