@@ -1,9 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
-using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Primitives;
 
 namespace FastComponents;
 
@@ -44,23 +42,23 @@ public static class HtmxComponentEndpoints
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxGet<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicConstructors)] TParameters>(
+        TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
-        where TParameters : class, new()
+        where TParameters : HtmxComponentParameters, new()
     {
         return endpoints.MapGet(pattern, async (
             ComponentHtmlResponseService service,
             HttpContext context) =>
         {
-            // Bind query parameters to the parameters type
-            TParameters parameters = new();
-            await BindQueryParameters(context.Request, parameters);
+            // Create new parameters and bind from query
+            TParameters baseParams = new();
+            HtmxComponentParameters boundParams = baseParams.BindFromQuery(context.Request.Query);
             
             Dictionary<string, object?> componentParameters = new()
             { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams 
             };
             
             return await service.RenderAsHtmlContent<TComponent>(componentParameters);
@@ -99,19 +97,23 @@ public static class HtmxComponentEndpoints
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPost<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
+        TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
-        where TParameters : class, new()
+        where TParameters : HtmxComponentParameters, new()
     {
         return endpoints.MapPost(pattern, async (
             ComponentHtmlResponseService service,
+            HttpContext context,
             TParameters parameters) =>
         {
+            // For POST, parameters come from body, but also check query
+            HtmxComponentParameters boundParams = parameters.BindFromQuery(context.Request.Query);
+            
             Dictionary<string, object?> componentParameters = new()
             { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams 
             };
             
             return await service.RenderAsHtmlContent<TComponent>(componentParameters);
@@ -130,11 +132,11 @@ public static class HtmxComponentEndpoints
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPut<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
+        TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
-        where TParameters : class, new()
+        where TParameters : HtmxComponentParameters, new()
     {
         return endpoints.MapPut(pattern, async (
             ComponentHtmlResponseService service,
@@ -161,11 +163,11 @@ public static class HtmxComponentEndpoints
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxDelete<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
+        TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
-        where TParameters : class, new()
+        where TParameters : HtmxComponentParameters, new()
     {
         return endpoints.MapDelete(pattern, async (
             ComponentHtmlResponseService service,
@@ -192,11 +194,11 @@ public static class HtmxComponentEndpoints
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPatch<
         [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
+        TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
-        where TParameters : class, new()
+        where TParameters : HtmxComponentParameters, new()
     {
         return endpoints.MapPatch(pattern, async (
             ComponentHtmlResponseService service,
@@ -209,31 +211,5 @@ public static class HtmxComponentEndpoints
             
             return await service.RenderAsHtmlContent<TComponent>(componentParameters);
         });
-    }
-
-    // Helper method to bind query parameters to an object
-    [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Properties are preserved by DynamicallyAccessedMembers attribute")]
-    private static Task BindQueryParameters<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(
-        HttpRequest request, 
-        T target) where T : class
-    {
-        PropertyInfo[] properties = typeof(T).GetProperties();
-        foreach (PropertyInfo property in properties)
-        {
-            if (request.Query.TryGetValue(property.Name, out StringValues value) && !string.IsNullOrEmpty(value))
-            {
-                try
-                {
-                    object? convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
-                    property.SetValue(target, convertedValue);
-                }
-                catch
-                {
-                    // Ignore conversion errors - property will keep its default value
-                }
-            }
-        }
-        
-        return Task.CompletedTask;
     }
 }

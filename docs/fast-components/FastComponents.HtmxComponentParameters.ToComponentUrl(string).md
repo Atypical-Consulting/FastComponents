@@ -6,7 +6,7 @@
 Converts the parameters to a component URL with query string
 
 ```csharp
-protected virtual string ToComponentUrl(string route);
+public string ToComponentUrl(string route);
 ```
 #### Parameters
 

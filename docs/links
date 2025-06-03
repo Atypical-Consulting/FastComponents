@@ -50,7 +50,10 @@ P:FastComponents.HtmxComponentBase`1.Parameters|FastComponents.HtmxComponentBase
 M:FastComponents.HtmxComponentBase`1.CreateDefaultParameters|FastComponents.HtmxComponentBase_TParameters_.CreateDefaultParameters().md|CreateDefaultParameters()
 T:FastComponents.HtmxComponentBase`1|FastComponents.HtmxComponentBase_TParameters_.md|HtmxComponentBase<TParameters>
 M:FastComponents.HtmxComponentParameters.ToComponentUrl(System.String)|FastComponents.HtmxComponentParameters.ToComponentUrl(string).md|ToComponentUrl(string)
-M:FastComponents.HtmxComponentParameters.ToQueryString|FastComponents.HtmxComponentParameters.ToQueryString().md|ToQueryString()
+M:FastComponents.HtmxComponentParameters.BuildQueryString|FastComponents.HtmxComponentParameters.BuildQueryString().md|BuildQueryString()
+M:FastComponents.HtmxComponentParameters.BindFromQuery(Microsoft.AspNetCore.Http.IQueryCollection)|FastComponents.HtmxComponentParameters.BindFromQuery(Microsoft.AspNetCore.Http.IQueryCollection).md|BindFromQuery(IQueryCollection)
+M:FastComponents.HtmxComponentParameters.GetQueryValue(Microsoft.AspNetCore.Http.IQueryCollection,System.String)|FastComponents.HtmxComponentParameters.GetQueryValue(Microsoft.AspNetCore.Http.IQueryCollection,string).md|GetQueryValue(IQueryCollection, string)
+M:FastComponents.HtmxComponentParameters.GetQueryInt(Microsoft.AspNetCore.Http.IQueryCollection,System.String)|FastComponents.HtmxComponentParameters.GetQueryInt(Microsoft.AspNetCore.Http.IQueryCollection,string).md|GetQueryInt(IQueryCollection, string)
 T:FastComponents.HtmxComponentParameters|FastComponents.HtmxComponentParameters.md|HtmxComponentParameters
 P:FastComponents.IHxAdditionalAttributes.HxConfirm|FastComponents.IHxAdditionalAttributes.HxConfirm.md|HxConfirm
 P:FastComponents.IHxAdditionalAttributes.HxDelete|FastComponents.IHxAdditionalAttributes.HxDelete.md|HxDelete

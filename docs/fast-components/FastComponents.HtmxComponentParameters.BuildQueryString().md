@@ -1,12 +1,12 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
 ### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentParameters](FastComponents.HtmxComponentParameters.md 'FastComponents\.HtmxComponentParameters')
 
-## HtmxComponentParameters\.ToQueryString\(\) Method
+## HtmxComponentParameters\.BuildQueryString\(\) Method
 
-Converts the parameters to a query string
+Builds the query string from parameters\. Override this method to provide custom query string generation\.
 
 ```csharp
-protected virtual string ToQueryString();
+protected abstract string BuildQueryString();
 ```
 
 #### Returns

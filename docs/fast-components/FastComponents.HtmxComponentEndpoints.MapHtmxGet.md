@@ -17,7 +17,7 @@ Maps a GET endpoint for an HTMX component with parameters
 ```csharp
 public static Microsoft.AspNetCore.Builder.RouteHandlerBuilder MapHtmxGet<TComponent,TParameters>(this Microsoft.AspNetCore.Routing.IEndpointRouteBuilder endpoints, string pattern)
     where TComponent : FastComponents.HtmxComponentBase<TParameters>
-    where TParameters : class, new();
+    where TParameters : FastComponents.HtmxComponentParameters, new();
 ```
 #### Type parameters
 

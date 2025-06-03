@@ -19,5 +19,18 @@ public class CounterEndpoint
             var parameters = this with { Count = Count + 1 }; 
             return parameters.ToComponentUrl(HtmxRoutes.RouteCounter);
         }
+        
+        protected override string BuildQueryString()
+        {
+            return Count != 10 ? $"Count={Count}" : "";
+        }
+        
+        public override HtmxComponentParameters BindFromQuery(IQueryCollection query)
+        {
+            return this with
+            {
+                Count = GetQueryInt(query, "Count") ?? Count
+            };
+        }
     }
 }

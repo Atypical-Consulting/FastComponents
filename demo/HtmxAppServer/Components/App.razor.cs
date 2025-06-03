@@ -20,5 +20,27 @@ public class AppEndpoint
             // return the url with the new parameters as query string
             return parameters.ToComponentUrl(HtmxRoutes.RouteApp);
         }
+        
+        protected override string BuildQueryString()
+        {
+            var parts = new List<string>();
+            
+            if (!string.IsNullOrEmpty(Theme) && Theme != "dark")
+                parts.Add($"Theme={Uri.EscapeDataString(Theme)}");
+                
+            if (!string.IsNullOrEmpty(Language) && Language != "en")
+                parts.Add($"Language={Uri.EscapeDataString(Language)}");
+                
+            return string.Join("&", parts);
+        }
+        
+        public override HtmxComponentParameters BindFromQuery(IQueryCollection query)
+        {
+            return this with
+            {
+                Theme = GetQueryValue(query, "Theme") ?? Theme,
+                Language = GetQueryValue(query, "Language") ?? Language
+            };
+        }
     }
 }
