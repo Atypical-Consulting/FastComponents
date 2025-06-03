@@ -6,7 +6,7 @@
 Builds the query string from parameters\. Override this method to provide custom query string generation\.
 
 ```csharp
-protected abstract string BuildQueryString();
+protected virtual string BuildQueryString();
 ```
 
 #### Returns

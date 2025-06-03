@@ -6,7 +6,7 @@
 Creates a new instance of parameters with values bound from the query collection
 
 ```csharp
-public abstract FastComponents.HtmxComponentParameters BindFromQuery(Microsoft.AspNetCore.Http.IQueryCollection query);
+public virtual FastComponents.HtmxComponentParameters BindFromQuery(Microsoft.AspNetCore.Http.IQueryCollection query);
 ```
 #### Parameters
 

@@ -72,6 +72,13 @@
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 
+  <!-- Source Generator -->
+  <ItemGroup>
+    <ProjectReference Include="..\FastComponents.Generators\FastComponents.Generators.csproj" 
+                      OutputItemType="Analyzer" 
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
   <!-- NuGet metadata -->
   <PropertyGroup>
     <PackageId>FastComponents</PackageId>

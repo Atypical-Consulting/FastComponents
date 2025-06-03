@@ -23,14 +23,20 @@ public abstract record HtmxComponentParameters
     /// Builds the query string from parameters. Override this method to provide custom query string generation.
     /// </summary>
     /// <returns>The query string representation</returns>
-    protected abstract string BuildQueryString();
+    protected virtual string BuildQueryString()
+    {
+        throw new NotImplementedException($"BuildQueryString must be implemented in {GetType().Name}. Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
+    }
     
     /// <summary>
     /// Creates a new instance of parameters with values bound from the query collection
     /// </summary>
     /// <param name="query">The query collection from the HTTP request</param>
     /// <returns>A new instance with bound values</returns>
-    public abstract HtmxComponentParameters BindFromQuery(IQueryCollection query);
+    public virtual HtmxComponentParameters BindFromQuery(IQueryCollection query)
+    {
+        throw new NotImplementedException($"BindFromQuery must be implemented in {GetType().Name}. Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
+    }
     
     /// <summary>
     /// Helper method to get a string value from query collection

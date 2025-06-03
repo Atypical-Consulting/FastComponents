@@ -20,11 +20,10 @@
     <ProjectReference Include="..\..\src\FastComponents\FastComponents.csproj" />
   </ItemGroup>
 
-  <!--  TODO: Add HtmxRenderer.Generator as a ProjectReference-->
-  <!--  <ItemGroup>-->
-  <!--    <ProjectReference Include="..\HtmxRenderer.Generator\HtmxRenderer.Generator\HtmxRenderer.Generator.csproj"-->
-  <!--                      OutputItemType="Analyzer"-->
-  <!--                      ReferenceOutputAssembly="false"/>-->
-  <!--  </ItemGroup>-->
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\FastComponents.Generators\FastComponents.Generators.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false"/>
+  </ItemGroup>
 
 </Project>

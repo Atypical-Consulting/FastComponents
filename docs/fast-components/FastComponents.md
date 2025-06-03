@@ -5,6 +5,7 @@
 | Classes | |
 | :--- | :--- |
 | [ComponentHtmlResponseService](FastComponents.ComponentHtmlResponseService.md 'FastComponents\.ComponentHtmlResponseService') | Service responsible for rendering components as HTML and returning them as HTTP responses\. |
+| [GenerateParameterMethodsAttribute](FastComponents.GenerateParameterMethodsAttribute.md 'FastComponents\.GenerateParameterMethodsAttribute') | Indicates that the parameter methods \(BuildQueryString and BindFromQuery\) should be automatically generated\. |
 | [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase') | Base class for all components that are rendered on the server\. |
 | [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents\.HtmxComponentBase\<TParameters\>') | Base class for all components that are rendered on the server\. |
 | [HtmxComponentEndpoints](FastComponents.HtmxComponentEndpoints.md 'FastComponents\.HtmxComponentEndpoints') | Extension methods for registering HTMX component endpoints with ASP\.NET Minimal APIs |

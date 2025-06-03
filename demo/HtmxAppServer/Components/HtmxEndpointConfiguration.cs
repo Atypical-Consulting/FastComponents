@@ -14,7 +14,7 @@ public static class HtmxEndpointConfiguration
             .AllowAnonymous();
 
         // Map the Counter component
-        app.MapHtmxGet<Counter, CounterEndpoint.CounterParameters>(RouteCounter)
+        app.MapHtmxGet<Counter, CounterParameters>(RouteCounter)
             .AllowAnonymous();
 
         // Map the MovieCharacters component (no parameters)
@@ -22,7 +22,7 @@ public static class HtmxEndpointConfiguration
             .AllowAnonymous();
 
         // Map the MovieCharactersRows component
-        app.MapHtmxGet<MovieCharactersRows, MovieCharactersRowsEndpoint.MovieCharactersRowsParameters>(RouteMovieCharactersRows)
+        app.MapHtmxGet<MovieCharactersRows, MovieCharactersRowsParameters>(RouteMovieCharactersRows)
             .AllowAnonymous();
     }
 }

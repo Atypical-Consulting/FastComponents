@@ -1,4 +1,7 @@
 
+P:FastComponents.GenerateParameterMethodsAttribute.SkipDefaults|FastComponents.GenerateParameterMethodsAttribute.SkipDefaults.md|SkipDefaults
+N:FastComponents|FastComponents.md|FastComponents
+T:FastComponents.GenerateParameterMethodsAttribute|FastComponents.GenerateParameterMethodsAttribute.md|GenerateParameterMethodsAttribute
 M:FastComponents.ClassNamesBuilder.#ctor(System.String,System.String,System.String)|FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).md|ClassNamesBuilder(string, string, string)
 M:FastComponents.ClassNamesBuilder.Default(System.String)|FastComponents.ClassNamesBuilder.Default(string).md|Default(string)
 M:FastComponents.ClassNamesBuilder.Empty|FastComponents.ClassNamesBuilder.Empty().md|Empty()
@@ -8,7 +11,6 @@ M:FastComponents.ClassNamesBuilder.AddClass(System.String,System.Boolean)|FastCo
 M:FastComponents.ClassNamesBuilder.AddClass(System.String,System.Func{System.Boolean})|FastComponents.ClassNamesBuilder.AddClass.md#FastComponents.ClassNamesBuilder.AddClass(string,System.Func_bool_)|AddClass(string, Func<bool>)
 M:FastComponents.ClassNamesBuilder.Build|FastComponents.ClassNamesBuilder.Build().md|Build()
 M:FastComponents.ClassNamesBuilder.ToString|FastComponents.ClassNamesBuilder.ToString().md|ToString()
-N:FastComponents|FastComponents.md|FastComponents
 T:FastComponents.ClassNamesBuilder|FastComponents.ClassNamesBuilder.md|ClassNamesBuilder
 P:FastComponents.HtmxComponentBase.As|FastComponents.HtmxComponentBase.As.md|As
 P:FastComponents.HtmxComponentBase.HxBoost|FastComponents.HtmxComponentBase.HxBoost.md|HxBoost
