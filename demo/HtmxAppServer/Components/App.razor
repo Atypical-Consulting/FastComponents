@@ -8,6 +8,7 @@
   <title>Demo HTMX Blazor</title>
   @* TODO: load this script from the FastComponents package *@
   <script src="lib/htmx.min.js"></script>
+  <script src="htmx-debug.js"></script>
   @* Basic styling for demo purposes *@
   <link href="lib/pico.min.css" rel="stylesheet">
   <style>
@@ -30,15 +31,20 @@
       <li><strong>FastComponents</strong></li>
     </ul>
     <ul>
+      <li><a role="button" href="#" hx-get="/ui/debug" hx-target="#main-content">🔍 Debug</a></li>
       <li><a role="button" href="https://github.com/Atypical-Consulting/FastComponents" target="_blank">View on GitHub</a></li>
     </ul>
   </nav>
 </header>
 
 <main class="container">
-  <h1>Renders Blazor components as HTMX tags</h1>
-  <Counter/>
-  <MovieCharacters/>
+  <div hx-get="/ui/examples" hx-trigger="load" hx-target="#main-content">
+    <div id="main-content">
+      <div class="loading" style="text-align: center; padding: 2rem;">
+        <p>Loading examples...</p>
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer class="container">

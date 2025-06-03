@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,16 +34,5 @@ public static class MainExtensions
         _ = services.AddScoped<HtmlRenderer>();
         _ = services.AddScoped<ComponentHtmlResponseService>();
         return services;
-    }
-    
-    /// <summary>
-    /// Use FastComponents in the application
-    /// </summary>
-    /// <param name="app">The web application</param>
-    /// <returns>The web application</returns>
-    public static WebApplication UseFastComponents(this WebApplication app)
-    {
-        // No specific middleware needed for minimal API approach
-        return app;
     }
 }

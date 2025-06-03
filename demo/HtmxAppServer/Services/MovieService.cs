@@ -5,38 +5,28 @@ namespace HtmxAppServer.Services;
 
 public class MovieService
 {
-    private readonly Dictionary<int, Character> _characters = new()
+    private readonly List<Character> _characters = new()
     {
-        [1] = new Character(1, "Anakin", "Skywalker"),
-        [2] = new Character(2, "Obi-Wan", "Kenobi"),
-        [3] = new Character(3, "Padme", "Amidala"),
-        [4] = new Character(4, "Luke", "Skywalker"),
-        [5] = new Character(5, "Leia", "Organa"),
-        [6] = new Character(6, "Han", "Solo"),
-        [7] = new Character(7, "Chewbacca", ""),
-        [8] = new Character(8, "Lando", "Calrissian"),
-        [9] = new Character(9, "Yoda", ""),
-        [10] = new Character(10, "Palpatine", ""),
-        [11] = new Character(11, "Darth", "Vader"),
-        [12] = new Character(12, "Boba", "Fett"),
-        [13] = new Character(13, "Jabba", "the Hutt"),
-        // [14] = new Character(14, "Qui-Gon", "Jinn"),
-        // [15] = new Character(15, "Mace", "Windu"),
-        // [16] = new Character(16, "Jar Jar", "Binks"),
-        // [17] = new Character(17, "Darth", "Maul"),
-        // [18] = new Character(18, "Count", "Dooku"),
-        // [19] = new Character(19, "General", "Grievous"),
-        // [20] = new Character(20, "Ahsoka", "Tano"),
-        // [21] = new Character(21, "Kylo", "Ren"),
-        // [22] = new Character(22, "Rey", ""),
-        // [23] = new Character(23, "Finn", ""),
-        // [24] = new Character(24, "Poe", "Dameron"),
-        // [25] = new Character(25, "BB-8", ""),
-        // [26] = new Character(26, "R2-D2", ""),
-        // [27] = new Character(27, "C-3PO", ""),
-        // [28] = new Character(28, "Rose", "Tico"),
-        // [29] = new Character(29, "Jyn", "Erso"),
-        // [30] = new Character(30, "Cassian", "Andor"),
+        new Character(1, "Luke", "Skywalker", "Star Wars", 1977, "Jedi Knight and hero of the Rebellion"),
+        new Character(2, "Darth", "Vader", "Star Wars", 1977, "Former Jedi turned to the dark side"),
+        new Character(3, "Princess", "Leia", "Star Wars", 1977, "Leader of the Rebel Alliance"),
+        new Character(4, "Han", "Solo", "Star Wars", 1977, "Smuggler and pilot of the Millennium Falcon"),
+        new Character(5, "Obi-Wan", "Kenobi", "Star Wars", 1977, "Jedi Master and mentor to Luke"),
+        new Character(6, "Yoda", "", "Star Wars", 1980, "Grand Jedi Master, 900 years old"),
+        new Character(7, "Chewbacca", "", "Star Wars", 1977, "Wookiee warrior and Han's co-pilot"),
+        new Character(8, "Harry", "Potter", "Harry Potter", 2001, "The Boy Who Lived, wizard student"),
+        new Character(9, "Hermione", "Granger", "Harry Potter", 2001, "Brilliant witch and Harry's best friend"),
+        new Character(10, "Ron", "Weasley", "Harry Potter", 2001, "Loyal friend and brave wizard"),
+        new Character(11, "Gandalf", "the Grey", "Lord of the Rings", 2001, "Powerful wizard and guide"),
+        new Character(12, "Frodo", "Baggins", "Lord of the Rings", 2001, "Hobbit ring-bearer"),
+        new Character(13, "Aragorn", "", "Lord of the Rings", 2001, "Ranger and rightful king of Gondor"),
+        new Character(14, "Legolas", "", "Lord of the Rings", 2001, "Elven archer and fellowship member"),
+        new Character(15, "Tony", "Stark", "Iron Man", 2008, "Genius billionaire superhero"),
+        new Character(16, "Steve", "Rogers", "Captain America", 2011, "Super soldier and team leader"),
+        new Character(17, "Black", "Widow", "Iron Man 2", 2010, "Master spy and assassin"),
+        new Character(18, "Thor", "", "Thor", 2011, "God of Thunder from Asgard"),
+        new Character(19, "Indiana", "Jones", "Raiders of the Lost Ark", 1981, "Archaeologist and adventurer"),
+        new Character(20, "James", "Bond", "Dr. No", 1962, "Secret agent 007"),
     };
     
     public ReadOnlyDictionary<int, Character> GetCharacters(int page = 1, int pageSize = 5)
@@ -44,8 +34,26 @@ public class MovieService
         var dictionary = _characters
             .Skip((page - 1) * pageSize)
             .Take(pageSize)
-            .ToDictionary();
+            .ToDictionary(c => c.Id, c => c);
         
         return new ReadOnlyDictionary<int, Character>(dictionary);
     }
+
+    public IEnumerable<Character> SearchCharacters(string query)
+    {
+        if (string.IsNullOrWhiteSpace(query))
+            return Enumerable.Empty<Character>();
+
+        query = query.Trim();
+        
+        return _characters
+            .Where(c => 
+                c.FirstName.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                c.LastName.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                c.Movie.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                c.Description.Contains(query, StringComparison.OrdinalIgnoreCase))
+            .OrderBy(c => c.Name);
+    }
+
+    public IEnumerable<Character> GetAllCharacters() => _characters;
 }

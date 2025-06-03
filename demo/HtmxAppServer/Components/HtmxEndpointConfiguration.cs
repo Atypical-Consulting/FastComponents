@@ -13,15 +13,52 @@ public static class HtmxEndpointConfiguration
         app.MapHtmxGet<App, AppParameters>(RouteApp)
             .AllowAnonymous();
 
-        // Map the Counter component
-        app.MapHtmxGet<Counter, CounterParameters>(RouteCounter)
+        // Map the examples dashboard
+        app.MapHtmxGet<ExamplesDashboard>(RouteExamples)
             .AllowAnonymous();
 
-        // Map the MovieCharacters component (no parameters)
+        // Map example components
+        app.MapHtmxGet<CounterExample, CounterParameters>(RouteCounter)
+            .AllowAnonymous();
+
+        app.MapHtmxGet<LiveSearchExample, LiveSearchParameters>(RouteSearch)
+            .AllowAnonymous();
+
+        app.MapHtmxPost<FormValidationExample, FormValidationParameters>(RouteValidation)
+            .AllowAnonymous();
+
+        app.MapHtmxGet<ModalExample, ModalParameters>(RouteModal)
+            .AllowAnonymous();
+
+        app.MapHtmxPost<ModalExample, ModalParameters>(RouteModal)
+            .AllowAnonymous();
+
+        app.MapHtmxGet<TabsExample, TabsParameters>(RouteTabs)
+            .AllowAnonymous();
+
+        app.MapHtmxPost<TabsExample, TabsParameters>(RouteTabs)
+            .AllowAnonymous();
+
+        app.MapHtmxGet<InfiniteScrollExample, InfiniteScrollParameters>(RouteInfiniteScroll)
+            .AllowAnonymous();
+
+        app.MapHtmxGet<EditInPlaceExample, EditInPlaceParameters>(RouteEditInPlace)
+            .AllowAnonymous();
+
+        app.MapHtmxPost<EditInPlaceExample, EditInPlaceParameters>(RouteEditInPlace)
+            .AllowAnonymous();
+
+        // Debug dashboard
+        app.MapHtmxGet<DebugDashboard, DebugDashboardParameters>(RouteDebug)
+            .AllowAnonymous();
+
+        // Legacy routes - keep for compatibility
+        app.MapHtmxGet<Counter, CounterParameters>("/ui/blocks/counter")
+            .AllowAnonymous();
+
         app.MapHtmxGet<MovieCharacters>(RouteMovieCharacters)
             .AllowAnonymous();
 
-        // Map the MovieCharactersRows component
         app.MapHtmxGet<MovieCharactersRows, MovieCharactersRowsParameters>(RouteMovieCharactersRows)
             .AllowAnonymous();
     }

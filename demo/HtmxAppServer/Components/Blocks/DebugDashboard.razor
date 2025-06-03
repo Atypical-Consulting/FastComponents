@@ -1,0 +1,171 @@
+@inherits HtmxComponentBase<DebugDashboardParameters>
+@using HtmxAppServer.Services
+@inject HtmxRequestTracker RequestTracker
+
+<div id="debug-dashboard">
+  <header style="margin-bottom: 1.5rem; padding: 1rem; background: var(--del-color); color: white; border-radius: 0.5rem;">
+    <h2 style="margin: 0;">🔍 HTMX Debug Dashboard</h2>
+    <p style="margin: 0.5rem 0 0 0;">Monitor requests and detect recursive issues</p>
+  </header>
+
+  <div class="grid" style="margin-bottom: 2rem;">
+    <div>
+      <HtmxTag Element="button" 
+               HxGet="/ui/debug?AutoRefresh=true" 
+               HxTarget="#debug-dashboard" 
+               HxSwap="@Hx.Swap.OuterHtml"
+               HxTrigger="every 2s"
+               class="@(Parameters.AutoRefresh ? "" : "outline")">
+        🔄 Auto-refresh (2s)
+      </HtmxTag>
+    </div>
+    <div>
+      <HtmxTag Element="button" 
+               HxGet="/ui/debug?AutoRefresh=false" 
+               HxTarget="#debug-dashboard" 
+               HxSwap="@Hx.Swap.OuterHtml"
+               class="@(!Parameters.AutoRefresh ? "" : "outline")">
+        ⏸️ Manual refresh
+      </HtmxTag>
+    </div>
+    <div>
+      <HtmxTag Element="button" 
+               HxGet="/ui/debug" 
+               HxTarget="#debug-dashboard" 
+               HxSwap="@Hx.Swap.OuterHtml"
+               class="outline">
+        🔄 Refresh now
+      </HtmxTag>
+    </div>
+  </div>
+
+  @{
+    var debugInfo = RequestTracker.GetDebugInfo();
+    var activeRequests = RequestTracker.GetActiveRequests();
+  }
+
+  <div class="grid" style="margin-bottom: 2rem;">
+    <article>
+      <header><strong>Active Requests</strong></header>
+      <h3 style="margin: 0; color: var(--primary);">@debugInfo["TotalActiveRequests"]</h3>
+    </article>
+    <article>
+      <header><strong>HTMX Requests</strong></header>
+      <h3 style="margin: 0; color: var(--secondary);">@debugInfo["HtmxRequests"]</h3>
+    </article>
+    <article>
+      <header><strong>Long Running</strong></header>
+      <h3 style="margin: 0; color: var(--del-color);">@debugInfo["LongRunningRequests"]</h3>
+    </article>
+  </div>
+
+  @if (debugInfo["RequestsByTarget"] is Dictionary<string, int> targetCounts && targetCounts.Any())
+  {
+    <details style="margin-bottom: 1.5rem;">
+      <summary><strong>🎯 Requests by Target (Potential Recursion)</strong></summary>
+      <div style="margin-top: 1rem;">
+        @foreach (var target in targetCounts.OrderByDescending(t => t.Value))
+        {
+          <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: @(target.Value > 1 ? "var(--del-color)" : "var(--muted-background-color)"); margin-bottom: 0.25rem; border-radius: 0.25rem; color: @(target.Value > 1 ? "white" : "inherit");">
+            <code>@target.Key</code>
+            <strong>@target.Value requests</strong>
+          </div>
+        }
+      </div>
+    </details>
+  }
+
+  @if (debugInfo["RequestsByPath"] is Dictionary<string, int> pathCounts && pathCounts.Any())
+  {
+    <details style="margin-bottom: 1.5rem;">
+      <summary><strong>🛤️ Requests by Path</strong></summary>
+      <div style="margin-top: 1rem;">
+        @foreach (var path in pathCounts.OrderByDescending(p => p.Value))
+        {
+          <div style="display: flex; justify-content: space-between; padding: 0.5rem; background: var(--card-background-color); margin-bottom: 0.25rem; border-radius: 0.25rem;">
+            <code>@path.Key</code>
+            <strong>@path.Value requests</strong>
+          </div>
+        }
+      </div>
+    </details>
+  }
+
+  <details style="margin-bottom: 1.5rem;">
+    <summary><strong>📊 Active Request Details</strong></summary>
+    <div style="margin-top: 1rem;">
+      @if (activeRequests.Any())
+      {
+        <table>
+          <thead>
+            <tr>
+              <th>Request ID</th>
+              <th>Path</th>
+              <th>Target</th>
+              <th>Trigger</th>
+              <th>Duration</th>
+              <th>Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var request in activeRequests.OrderBy(r => r.StartTime))
+            {
+              var duration = DateTime.UtcNow - request.StartTime;
+              <tr style="background: @(duration.TotalSeconds > 5 ? "var(--del-color)" : duration.TotalSeconds > 2 ? "var(--accent-color)" : "inherit"); color: @(duration.TotalSeconds > 2 ? "white" : "inherit");">
+                <td><code style="font-size: 0.8rem;">@request.RequestId[..8]...</code></td>
+                <td><code>@request.Path</code></td>
+                <td><code>@(request.Target ?? "N/A")</code></td>
+                <td><code>@(request.Trigger ?? "N/A")</code></td>
+                <td><strong>@($"{duration.TotalSeconds:F1}s")</strong></td>
+                <td>@(request.IsHtmxRequest ? "HTMX" : "HTTP")</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+      else
+      {
+        <p style="text-align: center; color: var(--muted-color);">No active requests</p>
+      }
+    </div>
+  </details>
+
+  <details>
+    <summary><strong>🛠️ Debug Tips</strong></summary>
+    <div style="margin-top: 1rem;">
+      <h5>Watch for these warning signs:</h5>
+      <ul>
+        <li><strong style="color: var(--del-color);">Red targets</strong> - Multiple requests to same target (potential recursion)</li>
+        <li><strong style="color: var(--del-color);">Red request rows</strong> - Long-running requests (>5s)</li>
+        <li><strong style="color: var(--accent-color);">Orange request rows</strong> - Slow requests (>2s)</li>
+        <li><strong>High path counts</strong> - Same endpoint being hit repeatedly</li>
+      </ul>
+      
+      <h5>Common recursive issues:</h5>
+      <ul>
+        <li><code>hx-trigger="load"</code> on elements that replace themselves</li>
+        <li>Event handlers that trigger the same HTMX request</li>
+        <li>Server responses that include the triggering element</li>
+        <li>Incorrect <code>hx-target</code> pointing to parent of trigger</li>
+      </ul>
+      
+      <h5>Quick fixes:</h5>
+      <ul>
+        <li>Use <code>hx-trigger="load once"</code> for initialization</li>
+        <li>Ensure <code>hx-target</code> doesn't include the trigger element</li>
+        <li>Use <code>hx-swap="outerHTML"</code> carefully with self-replacing elements</li>
+        <li>Add <code>hx-disable</code> during request processing</li>
+      </ul>
+    </div>
+  </details>
+
+  <div style="margin-top: 2rem; padding: 1rem; background: var(--muted-background-color); border-radius: 0.25rem; text-align: center;">
+    <small style="color: var(--muted-color);">
+      Last updated: @DateTime.UtcNow.ToString("HH:mm:ss") UTC
+      @if (Parameters.AutoRefresh)
+      {
+        <span> | Auto-refreshing every 2 seconds</span>
+      }
+    </small>
+  </div>
+</div>

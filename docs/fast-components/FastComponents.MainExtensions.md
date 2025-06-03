@@ -14,4 +14,3 @@ Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.
 | Methods | |
 | :--- | :--- |
 | [AddFastComponents\(this IServiceCollection\)](FastComponents.MainExtensions.AddFastComponents(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).md 'FastComponents\.MainExtensions\.AddFastComponents\(this Microsoft\.Extensions\.DependencyInjection\.IServiceCollection\)') | Add FastComponents to the service collection |
-| [UseFastComponents\(this WebApplication\)](FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.WebApplication).md 'FastComponents\.MainExtensions\.UseFastComponents\(this Microsoft\.AspNetCore\.Builder\.WebApplication\)') | Use FastComponents in the application |

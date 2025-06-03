@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet build)",
+      "Bash(dotnet run)",
+      "Bash(curl:*)",
+      "Bash(dotnet publish:*)",
+      "Bash(dotnet run:*)",
+      "Bash(ls:*)",
+      "Bash(dotnet build:*)",
+      "Bash(find:*)",
+      "Bash(dotnet clean:*)",
+      "Bash(cp:*)",
+      "Bash(dotnet test)",
+      "Bash(dotnet test:*)",
+      "WebFetch(domain:htmx.org)",
+      "WebFetch(domain:xunit.net)",
+      "Bash(dotnet add:*)",
+      "Bash(./coverage.sh)",
+      "Bash(grep:*)"
+    ],
+    "deny": []
+  }
+}

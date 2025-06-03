@@ -1,0 +1,261 @@
+@inherits HtmxComponentBase<EditInPlaceParameters>
+@using HtmxAppServer.Services
+@using HtmxAppServer.Models
+
+<div id="edit-in-place-container">
+  <header style="margin-bottom: 1.5rem;">
+    <h2>✏️ Edit In Place Example</h2>
+    <p>Inline editing of data with server-side validation and persistence</p>
+  </header>
+
+  <div style="border: 1px solid var(--muted-border-color); border-radius: 0.5rem; padding: 1.5rem;">
+    <h4 style="margin-top: 0;">🎬 Character Profile Editor</h4>
+    
+    @{
+      var character = GetCharacterToEdit();
+    }
+    
+    @if (character != null)
+    {
+      <div style="display: grid; gap: 1.5rem; max-width: 600px;">
+        
+        <!-- Name Field -->
+        <div class="edit-field" id="name-field">
+          @if (Parameters.EditingField == "name")
+          {
+            <label for="name-input" style="font-weight: bold;">Name:</label>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <input id="name-input" 
+                     name="name" 
+                     type="text" 
+                     value="@Parameters.TempValue"
+                     style="flex: 1;"
+                     hx-post="@($"/ui/examples/edit-in-place?Action=save&Field=name&CharacterId={Parameters.CharacterId}")"
+                     hx-include="[name='name']"
+                     hx-target="#name-field"
+                     hx-trigger="keyup[key=='Enter']" />
+              <HtmxTag Element="button"
+                       HxPost="@($"/ui/examples/edit-in-place?Action=save&Field=name&CharacterId={Parameters.CharacterId}")"
+                       HxInclude="[name='name']"
+                       HxTarget="#name-field"
+                       style="padding: 0.25rem 0.5rem;">
+                ✅
+              </HtmxTag>
+              <HtmxTag Element="button"
+                       HxGet="@($"/ui/examples/edit-in-place?CharacterId={Parameters.CharacterId}")"
+                       HxTarget="#name-field"
+                       class="secondary"
+                       style="padding: 0.25rem 0.5rem;">
+                ❌
+              </HtmxTag>
+            </div>
+            @if (!string.IsNullOrEmpty(Parameters.ValidationError) && Parameters.EditingField == "name")
+            {
+              <small style="color: var(--del-color); display: block; margin-top: 0.25rem;">
+                @Parameters.ValidationError
+              </small>
+            }
+          }
+          else
+          {
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>Name:</strong> 
+                <span style="margin-left: 0.5rem;">@character.Name</span>
+              </div>
+              <HtmxTag Element="button"
+                       HxGet="@($"/ui/examples/edit-in-place?Action=edit&Field=name&CharacterId={Parameters.CharacterId}&TempValue={character.Name}")"
+                       HxTarget="#name-field"
+                       class="outline"
+                       style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">
+                ✏️ Edit
+              </HtmxTag>
+            </div>
+          }
+        </div>
+
+        <!-- Movie Field -->
+        <div class="edit-field" id="movie-field">
+          @if (Parameters.EditingField == "movie")
+          {
+            <label for="movie-input" style="font-weight: bold;">Movie:</label>
+            <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+              <input id="movie-input" 
+                     name="movie" 
+                     type="text" 
+                     value="@Parameters.TempValue"
+                     style="flex: 1;"
+                     hx-post="@($"/ui/examples/edit-in-place?Action=save&Field=movie&CharacterId={Parameters.CharacterId}")"
+                     hx-include="[name='movie']"
+                     hx-target="#movie-field"
+                     hx-trigger="keyup[key=='Enter']" />
+              <HtmxTag Element="button"
+                       HxPost="@($"/ui/examples/edit-in-place?Action=save&Field=movie&CharacterId={Parameters.CharacterId}")"
+                       HxInclude="[name='movie']"
+                       HxTarget="#movie-field"
+                       style="padding: 0.25rem 0.5rem;">
+                ✅
+              </HtmxTag>
+              <HtmxTag Element="button"
+                       HxGet="@($"/ui/examples/edit-in-place?CharacterId={Parameters.CharacterId}")"
+                       HxTarget="#movie-field"
+                       class="secondary"
+                       style="padding: 0.25rem 0.5rem;">
+                ❌
+              </HtmxTag>
+            </div>
+            @if (!string.IsNullOrEmpty(Parameters.ValidationError) && Parameters.EditingField == "movie")
+            {
+              <small style="color: var(--del-color); display: block; margin-top: 0.25rem;">
+                @Parameters.ValidationError
+              </small>
+            }
+          }
+          else
+          {
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <strong>Movie:</strong> 
+                <span style="margin-left: 0.5rem;">@character.Movie (@character.Year)</span>
+              </div>
+              <HtmxTag Element="button"
+                       HxGet="@($"/ui/examples/edit-in-place?Action=edit&Field=movie&CharacterId={Parameters.CharacterId}&TempValue={character.Movie}")"
+                       HxTarget="#movie-field"
+                       class="outline"
+                       style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">
+                ✏️ Edit
+              </HtmxTag>
+            </div>
+          }
+        </div>
+
+        <!-- Description Field -->
+        <div class="edit-field" id="description-field">
+          @if (Parameters.EditingField == "description")
+          {
+            <label for="description-input" style="font-weight: bold;">Description:</label>
+            <div style="display: flex; flex-direction: column; gap: 0.5rem; margin-top: 0.5rem;">
+              <textarea id="description-input" 
+                        name="description" 
+                        rows="3"
+                        style="resize: vertical;">@Parameters.TempValue</textarea>
+              <div style="display: flex; gap: 0.5rem;">
+                <HtmxTag Element="button"
+                         HxPost="@($"/ui/examples/edit-in-place?Action=save&Field=description&CharacterId={Parameters.CharacterId}")"
+                         HxInclude="[name='description']"
+                         HxTarget="#description-field">
+                  ✅ Save
+                </HtmxTag>
+                <HtmxTag Element="button"
+                         HxGet="@($"/ui/examples/edit-in-place?CharacterId={Parameters.CharacterId}")"
+                         HxTarget="#description-field"
+                         class="secondary">
+                  ❌ Cancel
+                </HtmxTag>
+              </div>
+            </div>
+            @if (!string.IsNullOrEmpty(Parameters.ValidationError) && Parameters.EditingField == "description")
+            {
+              <small style="color: var(--del-color); display: block; margin-top: 0.25rem;">
+                @Parameters.ValidationError
+              </small>
+            }
+          }
+          else
+          {
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+                <strong>Description:</strong>
+                <HtmxTag Element="button"
+                         HxGet="@($"/ui/examples/edit-in-place?Action=edit&Field=description&CharacterId={Parameters.CharacterId}&TempValue={character.Description}")"
+                         HxTarget="#description-field"
+                         class="outline"
+                         style="padding: 0.25rem 0.5rem; font-size: 0.8rem;">
+                  ✏️ Edit
+                </HtmxTag>
+              </div>
+              <p style="margin: 0; padding: 0.5rem; background: var(--card-background-color); border-radius: 0.25rem; font-style: italic;">
+                @character.Description
+              </p>
+            </div>
+          }
+        </div>
+
+      </div>
+
+      <!-- Character Selector -->
+      <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--muted-border-color);">
+        <h5>Select Character to Edit:</h5>
+        <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+          @foreach (var c in AllCharacters.Take(6))
+          {
+            <HtmxTag Element="button"
+                     HxGet="@($"/ui/examples/edit-in-place?CharacterId={c.Id}")"
+                     HxTarget="#edit-in-place-container"
+                     HxSwap="@Hx.Swap.OuterHtml"
+                     class="@(c.Id == Parameters.CharacterId ? "" : "outline")"
+                     style="font-size: 0.8rem; padding: 0.25rem 0.5rem;">
+              @c.Name
+            </HtmxTag>
+          }
+        </div>
+      </div>
+
+      @if (!string.IsNullOrEmpty(Parameters.Action) && Parameters.Action == "save" && string.IsNullOrEmpty(Parameters.ValidationError))
+      {
+        <div style="margin-top: 1rem; padding: 1rem; background: var(--ins-color); color: white; border-radius: 0.25rem;">
+          ✅ Successfully updated @Parameters.Field for @character.Name!
+        </div>
+      }
+    }
+    else
+    {
+      <p style="text-align: center; color: var(--muted-color);">Select a character above to start editing.</p>
+    }
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Edit In Place Features:</h5>
+      <ul>
+        <li><strong>Inline editing</strong> - Edit fields without navigating away from the page</li>
+        <li><strong>Keyboard shortcuts</strong> - Press Enter to save, Escape to cancel (Enter implemented)</li>
+        <li><strong>Server validation</strong> - Real-time validation with error messages</li>
+        <li><strong>Optimistic updates</strong> - Immediate visual feedback on successful saves</li>
+        <li><strong>Field-specific targeting</strong> - Only the edited field updates, preserving other content</li>
+      </ul>
+
+      <h5>HTMX Patterns:</h5>
+      <ul>
+        <li>✅ **State management** - Edit state managed through URL parameters</li>
+        <li>✅ **Partial updates** - Only specific fields refresh during editing</li>
+        <li>✅ **Form integration** - hx-include for form data submission</li>
+        <li>✅ **User experience** - Seamless editing without page reloads</li>
+        <li>✅ **Validation feedback** - Server-side validation with immediate error display</li>
+      </ul>
+
+      <h5>Implementation Benefits:</h5>
+      <ul>
+        <li>🎯 **User-friendly** - Edit exactly what you see, where you see it</li>
+        <li>⚡ **Performance** - Minimal data transfer, only changed fields update</li>
+        <li>🛡️ **Secure** - All validation and persistence happens server-side</li>
+        <li>♿ **Accessible** - Works with keyboard navigation and screen readers</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+@code {
+  [Inject] public MovieService MovieService { get; set; } = default!;
+  
+  private IEnumerable<Character> AllCharacters => MovieService.GetAllCharacters();
+  
+  private Character? GetCharacterToEdit()
+  {
+    if (Parameters.CharacterId == 0)
+      return AllCharacters.FirstOrDefault();
+      
+    return AllCharacters.FirstOrDefault(c => c.Id == Parameters.CharacterId);
+  }
+}

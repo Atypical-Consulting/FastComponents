@@ -1,0 +1,141 @@
+@inherits HtmxComponentBase<InfiniteScrollParameters>
+@using HtmxAppServer.Services
+@using HtmxAppServer.Models
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>📜 Infinite Scroll Example</h2>
+    <p>Load more content automatically as you scroll or click to load manually</p>
+  </header>
+
+  <div style="border: 1px solid var(--muted-border-color); border-radius: 0.5rem; padding: 1rem; max-height: 500px; overflow-y: auto;" id="scroll-container">
+    <h4 style="margin-top: 0;">📚 Movie Characters Library</h4>
+    
+    <div id="characters-list">
+      @foreach (var character in CurrentCharacters)
+      {
+        <article style="margin-bottom: 1rem; padding: 1rem; background: var(--card-background-color); border-radius: 0.25rem; border: 1px solid var(--muted-border-color);">
+          <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h5 style="margin: 0;">@character.Name</h5>
+            <small style="color: var(--muted-color);">#@character.Id</small>
+          </header>
+          <div style="display: grid; gap: 0.5rem;">
+            <div>
+              <strong>Movie:</strong> @character.Movie (@character.Year)
+            </div>
+            <div style="font-size: 0.9rem; color: var(--muted-color);">
+              @character.Description
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+
+    @if (HasMoreContent)
+    {
+      @if (Parameters.LoadType == "auto")
+      {
+        <!-- Auto-loading trigger when scrolled into view -->
+        <div id="load-more-trigger"
+             hx-get="/ui/examples/infinite-scroll?Page=@(Parameters.Page + 1)&LoadType=auto"
+             hx-trigger="intersect once"
+             hx-target="#characters-list"
+             hx-swap="beforeend"
+             hx-indicator="#loading-spinner"
+             style="padding: 1rem; text-align: center;">
+          <div id="loading-spinner" class="htmx-indicator" style="display: none;">
+            <p style="color: var(--muted-color);">🔄 Loading more characters...</p>
+          </div>
+          <p style="color: var(--muted-color); font-size: 0.9rem;">Scroll down to load more content automatically</p>
+        </div>
+      }
+      else
+      {
+        <!-- Manual "Load More" button -->
+        <div style="padding: 1rem; text-align: center;">
+          <HtmxTag Element="button"
+                   HxGet="@($"/ui/examples/infinite-scroll?Page={Parameters.Page + 1}&LoadType=manual")"
+                   HxTarget="#characters-list" 
+                   HxSwap="beforeend"
+                   HxIndicator="#manual-loading-spinner"
+                   class="outline">
+            📥 Load More Characters
+          </HtmxTag>
+          <div id="manual-loading-spinner" class="htmx-indicator" style="display: none; margin-top: 0.5rem;">
+            <small style="color: var(--muted-color);">Loading...</small>
+          </div>
+        </div>
+      }
+    }
+    else
+    {
+      <div style="padding: 1rem; text-align: center; color: var(--muted-color);">
+        <p>🎉 You've reached the end! All @AllCharacters.Count() characters loaded.</p>
+      </div>
+    }
+  </div>
+
+  <div style="margin-top: 1.5rem;">
+    <h5>Loading Mode:</h5>
+    <div class="grid" style="grid-template-columns: 1fr 1fr;">
+      <HtmxTag Element="button"
+               HxGet="/ui/examples/infinite-scroll?Page=1&LoadType=auto"
+               HxTarget="#scroll-container"
+               HxSwap="@Hx.Swap.OuterHtml"
+               class="@(Parameters.LoadType == "auto" ? "" : "outline")">
+        🔄 Auto Scroll
+      </HtmxTag>
+      <HtmxTag Element="button"
+               HxGet="/ui/examples/infinite-scroll?Page=1&LoadType=manual"
+               HxTarget="#scroll-container"
+               HxSwap="@Hx.Swap.OuterHtml"
+               class="@(Parameters.LoadType == "manual" ? "" : "outline")">
+        👆 Manual Load
+      </HtmxTag>
+    </div>
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Infinite Scroll Features:</h5>
+      <ul>
+        <li><strong>Intersection Observer</strong> - Uses `hx-trigger="intersect once"` for auto-loading</li>
+        <li><strong>Append mode</strong> - New content appends with `hx-swap="beforeend"`</li>
+        <li><strong>Pagination logic</strong> - Server-side paging with load detection</li>
+        <li><strong>Loading states</strong> - Visual feedback during content loading</li>
+        <li><strong>Manual fallback</strong> - Button-based loading as alternative</li>
+      </ul>
+
+      <h5>HTMX Patterns:</h5>
+      <ul>
+        <li>✅ **Progressive loading** - Content loads as needed</li>
+        <li>✅ **Performance** - Only visible content triggers loading</li>
+        <li>✅ **Accessibility** - Manual mode works without JavaScript</li>
+        <li>✅ **State preservation** - Existing content remains while adding new</li>
+      </ul>
+
+      <h5>Key Statistics:</h5>
+      <ul>
+        <li>📊 Page @Parameters.Page of @TotalPages</li>
+        <li>📈 @CurrentCharacters.Count() of @AllCharacters.Count() characters loaded</li>
+        <li>⚙️ Mode: @(Parameters.LoadType == "auto" ? "Automatic scrolling" : "Manual loading")</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+@code {
+  [Inject] public MovieService MovieService { get; set; } = default!;
+  
+  private const int PageSize = 3;
+  
+  private IEnumerable<Character> AllCharacters => MovieService.GetAllCharacters();
+  
+  private IEnumerable<Character> CurrentCharacters => AllCharacters
+    .Take(Parameters.Page * PageSize);
+  
+  private bool HasMoreContent => CurrentCharacters.Count() < AllCharacters.Count();
+  
+  private int TotalPages => (int)Math.Ceiling((double)AllCharacters.Count() / PageSize);
+}

@@ -1,0 +1,28 @@
+@inherits SimpleHtmxComponent<CounterState>
+
+<div id="simple-counter">
+  <h3>📊 Simplified Counter</h3>
+  <div class="grid">
+    @HtmxBuilderExtensions.Button("−", Url(s => s with { Count = s.Count - 1 }), "simple-counter")
+    <span style="text-align: center; font-weight: bold;">@State.Count</span>
+    @HtmxBuilderExtensions.Button("+", Url(s => s with { Count = s.Count + 1 }), "simple-counter")
+  </div>
+</div>
+
+@code {
+  protected override void OnInitialized()
+  {
+    // Auto-bind from query parameters
+    var query = Context.Request.Query;
+    if (int.TryParse(query["Count"], out var count))
+    {
+      State = State with { Count = count };
+    }
+  }
+}
+
+// State record - no boilerplate needed
+public record CounterState
+{
+  public int Count { get; init; } = 0;
+}

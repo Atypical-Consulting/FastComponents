@@ -1,0 +1,101 @@
+@inherits HtmxComponentBase<LiveSearchParameters>
+@using HtmxAppServer.Services
+@using HtmxAppServer.Models
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>🔍 Live Search Example</h2>
+    <p>Real-time search through movie characters as you type</p>
+  </header>
+
+  <div style="margin-bottom: 2rem;">
+    <label for="search-input">Search Characters:</label>
+    <input 
+      id="search-input"
+      type="text" 
+      name="query"
+      value="@Parameters.Query"
+      placeholder="Type to search characters..."
+      hx-get="/ui/examples/search"
+      hx-trigger="input changed delay:300ms, search"
+      hx-target="#search-results"
+      hx-indicator="#search-spinner"
+      autocomplete="off" />
+    
+    <div id="search-spinner" class="htmx-indicator" style="display: none; margin-top: 0.5rem;">
+      <small style="color: var(--muted-color);">🔍 Searching...</small>
+    </div>
+  </div>
+
+  <div id="search-results" style="min-height: 200px;">
+    @if (string.IsNullOrEmpty(Parameters.Query))
+    {
+      <div style="text-align: center; padding: 2rem; color: var(--muted-color);">
+        <p>Start typing to search through movie characters...</p>
+      </div>
+    }
+    else
+    {
+      @if (SearchResults.Any())
+      {
+        <div style="margin-bottom: 1rem;">
+          <small style="color: var(--muted-color);">Found @SearchResults.Count() results for "@Parameters.Query"</small>
+        </div>
+        
+        <div class="grid" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+          @foreach (var character in SearchResults)
+          {
+            <article style="margin: 0; padding: 1rem;">
+              <header>
+                <h5 style="margin: 0 0 0.5rem 0;">@character.Name</h5>
+              </header>
+              <p style="margin: 0; font-size: 0.9rem; color: var(--muted-color);">
+                @character.Movie (@character.Year)
+              </p>
+              @if (!string.IsNullOrEmpty(character.Description))
+              {
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.8rem;">
+                  @character.Description
+                </p>
+              }
+            </article>
+          }
+        </div>
+      }
+      else
+      {
+        <div style="text-align: center; padding: 2rem; color: var(--muted-color);">
+          <p>No characters found for "@Parameters.Query"</p>
+          <small>Try searching for "Luke", "Darth", "Harry", or "Gandalf"</small>
+        </div>
+      }
+    }
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Key HTMX Features:</h5>
+      <ul>
+        <li><strong>hx-trigger="input changed delay:300ms"</strong> - Triggers search after 300ms of no typing</li>
+        <li><strong>hx-indicator</strong> - Shows loading state while request is in progress</li>
+        <li><strong>hx-target</strong> - Updates only the results section, not the entire page</li>
+        <li><strong>Server-side filtering</strong> - Search logic runs on the server</li>
+      </ul>
+
+      <h5>Performance Benefits:</h5>
+      <ul>
+        <li>✅ Debounced requests (300ms delay)</li>
+        <li>✅ Partial page updates</li>
+        <li>✅ Server-side search logic</li>
+        <li>✅ No JavaScript frameworks needed</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+@code {
+  [Inject] public MovieService MovieService { get; set; } = default!;
+  
+  private IEnumerable<Character> SearchResults => MovieService.SearchCharacters(Parameters.Query);
+}

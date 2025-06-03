@@ -1,0 +1,169 @@
+@inherits HtmxComponentBase<FormValidationParameters>
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>✅ Form Validation Example</h2>
+    <p>Real-time validation with server-side logic and user feedback</p>
+  </header>
+
+  <form style="max-width: 500px;">
+    <div style="margin-bottom: 1rem;">
+      <label for="username">Username:</label>
+      <input 
+        id="username"
+        type="text" 
+        name="username"
+        value="@Parameters.Username"
+        placeholder="Enter username (min 3 chars)"
+        hx-post="/ui/examples/validation"
+        hx-trigger="blur, input changed delay:500ms"
+        hx-target="#username-validation"
+        hx-include="[name='username']"
+        style="@GetInputStyle("username")" />
+      <div id="username-validation">
+        @GetValidationMessage("username")
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="email">Email:</label>
+      <input 
+        id="email"
+        type="email" 
+        name="email"
+        value="@Parameters.Email"
+        placeholder="Enter valid email address"
+        hx-post="/ui/examples/validation"
+        hx-trigger="blur, input changed delay:500ms"
+        hx-target="#email-validation"
+        hx-include="[name='email']"
+        style="@GetInputStyle("email")" />
+      <div id="email-validation">
+        @GetValidationMessage("email")
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="password">Password:</label>
+      <input 
+        id="password"
+        type="password" 
+        name="password"
+        value="@Parameters.Password"
+        placeholder="Password (min 8 chars, 1 uppercase, 1 number)"
+        hx-post="/ui/examples/validation"
+        hx-trigger="blur, input changed delay:500ms"
+        hx-target="#password-validation"
+        hx-include="[name='password']"
+        style="@GetInputStyle("password")" />
+      <div id="password-validation">
+        @GetValidationMessage("password")
+      </div>
+    </div>
+
+    <div style="margin-bottom: 1rem;">
+      <label for="confirm-password">Confirm Password:</label>
+      <input 
+        id="confirm-password"
+        type="password" 
+        name="confirmPassword"
+        value="@Parameters.ConfirmPassword"
+        placeholder="Confirm your password"
+        hx-post="/ui/examples/validation"
+        hx-trigger="blur, input changed delay:500ms"
+        hx-target="#confirm-password-validation"
+        hx-include="[name='password'], [name='confirmPassword']"
+        style="@GetInputStyle("confirmPassword")" />
+      <div id="confirm-password-validation">
+        @GetValidationMessage("confirmPassword")
+      </div>
+    </div>
+
+    @{
+      var allValid = Parameters.ValidationErrors.Count == 0 && 
+                     !string.IsNullOrEmpty(Parameters.Username) && 
+                     !string.IsNullOrEmpty(Parameters.Email) && 
+                     !string.IsNullOrEmpty(Parameters.Password);
+    }
+
+    <button 
+      type="button"
+      disabled="@(!allValid)"
+      style="@(allValid ? "" : "opacity: 0.6; cursor: not-allowed;")">
+      @(allValid ? "✅ Create Account" : "Please complete all fields")
+    </button>
+  </form>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Validation Features:</h5>
+      <ul>
+        <li><strong>Real-time validation</strong> - Validates on blur and after 500ms of no typing</li>
+        <li><strong>Server-side logic</strong> - All validation rules run on the server</li>
+        <li><strong>Visual feedback</strong> - Input borders change color based on validation state</li>
+        <li><strong>Cross-field validation</strong> - Password confirmation checks both fields</li>
+        <li><strong>hx-include</strong> - Sends multiple form fields in a single request</li>
+      </ul>
+
+      <h5>Validation Rules:</h5>
+      <ul>
+        <li>Username: At least 3 characters, alphanumeric only</li>
+        <li>Email: Valid email format</li>
+        <li>Password: At least 8 characters, 1 uppercase, 1 number</li>
+        <li>Confirm Password: Must match password</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+@code {
+  private string GetValidationMessage(string field)
+  {
+    if (Parameters.ValidationErrors.TryGetValue(field, out var error))
+    {
+      return $"<small style='color: var(--del-color); margin-top: 0.25rem; display: block;'>❌ {error}</small>";
+    }
+    
+    // Show success message for valid fields that have been filled
+    var fieldValue = field switch
+    {
+      "username" => Parameters.Username,
+      "email" => Parameters.Email,
+      "password" => Parameters.Password,
+      "confirmPassword" => Parameters.ConfirmPassword,
+      _ => ""
+    };
+
+    if (!string.IsNullOrEmpty(fieldValue))
+    {
+      return "<small style='color: var(--ins-color); margin-top: 0.25rem; display: block;'>✅ Looks good!</small>";
+    }
+
+    return "";
+  }
+
+  private string GetInputStyle(string field)
+  {
+    if (Parameters.ValidationErrors.ContainsKey(field))
+    {
+      return "border-color: var(--del-color);";
+    }
+    
+    var fieldValue = field switch
+    {
+      "username" => Parameters.Username,
+      "email" => Parameters.Email,
+      "password" => Parameters.Password,
+      "confirmPassword" => Parameters.ConfirmPassword,
+      _ => ""
+    };
+
+    if (!string.IsNullOrEmpty(fieldValue))
+    {
+      return "border-color: var(--ins-color);";
+    }
+
+    return "";
+  }
+}
