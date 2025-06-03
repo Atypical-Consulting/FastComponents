@@ -21,7 +21,7 @@ public static class SimplifiedExtensions
     public static IServiceCollection AddFastComponentsAuto(this IServiceCollection services)
     {
         // Add core FastComponents services
-        services.AddFastComponents();
+        _ = services.AddFastComponents();
         
         // TODO: Add automatic JSON context generation for discovered component states
         
@@ -37,7 +37,7 @@ public static class SimplifiedExtensions
     public static WebApplication UseFastComponentsAuto(this WebApplication app)
     {
         // Auto-discover and register all HTMX components
-        app.MapHtmxComponentsByConvention();
+        _ = app.MapHtmxComponentsByConvention();
         
         return app;
     }

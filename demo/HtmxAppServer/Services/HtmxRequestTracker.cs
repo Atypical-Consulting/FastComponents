@@ -77,10 +77,9 @@ public class HtmxRequestTracker
 
         // Check for rapid-fire requests to same target
         var recentSimilarRequests = _activeRequests.Values
-            .Where(r => r.IsHtmxRequest && 
-                       r.Target == newRequest.Target &&
-                       DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(2))
-            .Count();
+            .Count(r => r.IsHtmxRequest && 
+                        r.Target == newRequest.Target &&
+                        DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(2));
 
         if (recentSimilarRequests >= 5)
         {

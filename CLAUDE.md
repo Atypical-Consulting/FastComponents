@@ -15,6 +15,16 @@ dotnet build
 # Build in Release mode
 dotnet build --configuration Release
 
+# Run all tests
+dotnet test
+
+# Run tests with coverage and generate HTML report
+./coverage.sh
+
+# Run specific test project
+dotnet test tests/FastComponents.UnitTests/FastComponents.UnitTests.csproj
+dotnet test tests/FastComponents.Generators.UnitTests/FastComponents.Generators.UnitTests.csproj
+
 # Pack NuGet package
 dotnet pack --configuration Release
 
@@ -33,6 +43,7 @@ dotnet clean
 - **ComponentHtmlResponseService** (`src/FastComponents/Services/ComponentHtmlResponseService.cs`) - Renders Blazor components as HTML responses for HTMX requests
 - **HtmxComponentEndpoints** (`src/FastComponents/Endpoints/HtmxComponentEndpoints.cs`) - ASP.NET Minimal API integration for component routing
 - **ClassNamesBuilder** (`src/FastComponents/Components/Base/ClassNamesBuilder.cs`) - Fluent API for building CSS class names
+- **FastComponents.Generators** (`src/FastComponents.Generators/`) - Source generators for parameter method generation
 
 ### HTMX Integration Pattern
 
@@ -64,10 +75,13 @@ The project enforces strict code analysis:
 
 ## Testing
 
-Currently no test projects exist. When adding tests, follow the .NET testing conventions and consider:
-- Unit tests for ClassNamesBuilder and utility classes
-- Integration tests for ComponentHtmlResponseService
-- Component rendering tests using bUnit
+The project uses xUnit for testing with comprehensive coverage:
+
+- **FastComponents.UnitTests** - Main library unit tests covering all core components
+- **FastComponents.Generators.UnitTests** - Source generator tests  
+- **coverage.sh** - Automated coverage script that generates HTML reports using ReportGenerator
+
+Test files are organized by component and follow the pattern `{ComponentName}Tests.cs`. All public APIs have corresponding test coverage.
 
 ## Demo Application
 

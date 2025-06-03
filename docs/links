@@ -2,6 +2,30 @@
 P:FastComponents.GenerateParameterMethodsAttribute.SkipDefaults|FastComponents.GenerateParameterMethodsAttribute.SkipDefaults.md|SkipDefaults
 N:FastComponents|FastComponents.md|FastComponents
 T:FastComponents.GenerateParameterMethodsAttribute|FastComponents.GenerateParameterMethodsAttribute.md|GenerateParameterMethodsAttribute
+M:FastComponents.HtmxBuilder.Create|FastComponents.HtmxBuilder.Create().md|Create()
+M:FastComponents.HtmxBuilder.Button|FastComponents.HtmxBuilder.Button().md|Button()
+M:FastComponents.HtmxBuilder.Form|FastComponents.HtmxBuilder.Form().md|Form()
+M:FastComponents.HtmxBuilder.Div|FastComponents.HtmxBuilder.Div().md|Div()
+M:FastComponents.HtmxBuilder.Element(System.String)|FastComponents.HtmxBuilder.Element(string).md|Element(string)
+M:FastComponents.HtmxBuilder.Get(System.String)|FastComponents.HtmxBuilder.Get(string).md|Get(string)
+M:FastComponents.HtmxBuilder.Post(System.String)|FastComponents.HtmxBuilder.Post(string).md|Post(string)
+M:FastComponents.HtmxBuilder.Target(System.String)|FastComponents.HtmxBuilder.Target(string).md|Target(string)
+M:FastComponents.HtmxBuilder.Swap(System.String)|FastComponents.HtmxBuilder.Swap(string).md|Swap(string)
+M:FastComponents.HtmxBuilder.Trigger(System.String)|FastComponents.HtmxBuilder.Trigger(string).md|Trigger(string)
+M:FastComponents.HtmxBuilder.Class(System.String)|FastComponents.HtmxBuilder.Class(string).md|Class(string)
+M:FastComponents.HtmxBuilder.Attr(System.String,System.Object)|FastComponents.HtmxBuilder.Attr(string,object).md|Attr(string, object)
+M:FastComponents.HtmxBuilder.Text(System.String)|FastComponents.HtmxBuilder.Text(string).md|Text(string)
+M:FastComponents.HtmxBuilder.Content(Microsoft.AspNetCore.Components.RenderFragment)|FastComponents.HtmxBuilder.Content(Microsoft.AspNetCore.Components.RenderFragment).md|Content(RenderFragment)
+M:FastComponents.HtmxBuilder.GetSelf(System.String,System.String)|FastComponents.HtmxBuilder.GetSelf(string,string).md|GetSelf(string, string)
+M:FastComponents.HtmxBuilder.PostTo(System.String,System.String)|FastComponents.HtmxBuilder.PostTo(string,string).md|PostTo(string, string)
+M:FastComponents.HtmxBuilder.LoadOnce(System.String)|FastComponents.HtmxBuilder.LoadOnce(string).md|LoadOnce(string)
+M:FastComponents.HtmxBuilder.Search(System.String,System.String,System.Int32)|FastComponents.HtmxBuilder.Search(string,string,int).md|Search(string, string, int)
+M:FastComponents.HtmxBuilder.Render(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder)|FastComponents.HtmxBuilder.Render(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder).md|Render(RenderTreeBuilder)
+T:FastComponents.HtmxBuilder|FastComponents.HtmxBuilder.md|HtmxBuilder
+M:FastComponents.HtmxBuilderExtensions.Button(System.String,System.String,System.String)|FastComponents.HtmxBuilderExtensions.Button(string,string,string).md|Button(string, string, string)
+M:FastComponents.HtmxBuilderExtensions.SearchInput(System.String,System.String,System.String)|FastComponents.HtmxBuilderExtensions.SearchInput(string,string,string).md|SearchInput(string, string, string)
+M:FastComponents.HtmxBuilderExtensions.LoadContainer(System.String,System.String)|FastComponents.HtmxBuilderExtensions.LoadContainer(string,string).md|LoadContainer(string, string)
+T:FastComponents.HtmxBuilderExtensions|FastComponents.HtmxBuilderExtensions.md|HtmxBuilderExtensions
 M:FastComponents.ClassNamesBuilder.#ctor(System.String,System.String,System.String)|FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).md|ClassNamesBuilder(string, string, string)
 M:FastComponents.ClassNamesBuilder.Default(System.String)|FastComponents.ClassNamesBuilder.Default(string).md|Default(string)
 M:FastComponents.ClassNamesBuilder.Empty|FastComponents.ClassNamesBuilder.Empty().md|Empty()
@@ -115,6 +139,13 @@ P:FastComponents.IHxCssClasses.HxCssRequest|FastComponents.IHxCssClasses.HxCssRe
 P:FastComponents.IHxCssClasses.HxCssSettling|FastComponents.IHxCssClasses.HxCssSettling.md|HxCssSettling
 P:FastComponents.IHxCssClasses.HxCssSwapping|FastComponents.IHxCssClasses.HxCssSwapping.md|HxCssSwapping
 T:FastComponents.IHxCssClasses|FastComponents.IHxCssClasses.md|IHxCssClasses
+P:FastComponents.SimpleHtmxComponent`1.State|FastComponents.SimpleHtmxComponent_TState_.State.md|State
+M:FastComponents.SimpleHtmxComponent`1.Url(`0)|FastComponents.SimpleHtmxComponent_TState_.Url.md#FastComponents.SimpleHtmxComponent_TState_.Url(TState)|Url(TState)
+M:FastComponents.SimpleHtmxComponent`1.Url(System.Func{`0,`0})|FastComponents.SimpleHtmxComponent_TState_.Url.md#FastComponents.SimpleHtmxComponent_TState_.Url(System.Func_TState,TState_)|Url(Func<TState,TState>)
+M:FastComponents.SimpleHtmxComponent`1.GetRoute|FastComponents.SimpleHtmxComponent_TState_.GetRoute().md|GetRoute()
+T:FastComponents.SimpleHtmxComponent`1|FastComponents.SimpleHtmxComponent_TState_.md|SimpleHtmxComponent<TState>
+M:FastComponents.SimpleHtmxComponent.GetRoute``1|FastComponents.SimpleHtmxComponent.GetRoute_T_().md|GetRoute<T>()
+T:FastComponents.SimpleHtmxComponent|FastComponents.SimpleHtmxComponent.md|SimpleHtmxComponent
 P:FastComponents.HtmxSseTag.SseConnect|FastComponents.HtmxSseTag.SseConnect.md|SseConnect
 P:FastComponents.HtmxSseTag.SseSwap|FastComponents.HtmxSseTag.SseSwap.md|SseSwap
 P:FastComponents.HtmxSseTag.ChildContent|FastComponents.HtmxSseTag.ChildContent.md|ChildContent
@@ -137,7 +168,21 @@ M:FastComponents.HtmxComponentEndpoints.MapHtmxPut``2(Microsoft.AspNetCore.Routi
 M:FastComponents.HtmxComponentEndpoints.MapHtmxDelete``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)|FastComponents.HtmxComponentEndpoints.MapHtmxDelete_TComponent,TParameters_(thisMicrosoft.AspNetCore.Routing.IEndpointRouteBuilder,string).md|MapHtmxDelete<TComponent,TParameters>(this IEndpointRouteBuilder, string)
 M:FastComponents.HtmxComponentEndpoints.MapHtmxPatch``2(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.String)|FastComponents.HtmxComponentEndpoints.MapHtmxPatch_TComponent,TParameters_(thisMicrosoft.AspNetCore.Routing.IEndpointRouteBuilder,string).md|MapHtmxPatch<TComponent,TParameters>(this IEndpointRouteBuilder, string)
 T:FastComponents.HtmxComponentEndpoints|FastComponents.HtmxComponentEndpoints.md|HtmxComponentEndpoints
+M:FastComponents.ConventionBasedRegistration.MapHtmxComponentsByConvention(Microsoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Reflection.Assembly[])|FastComponents.ConventionBasedRegistration.MapHtmxComponentsByConvention(thisMicrosoft.AspNetCore.Routing.IEndpointRouteBuilder,System.Reflection.Assembly[]).md|MapHtmxComponentsByConvention(this IEndpointRouteBuilder, Assembly[])
+T:FastComponents.ConventionBasedRegistration|FastComponents.ConventionBasedRegistration.md|ConventionBasedRegistration
+M:FastComponents.SimplifiedExtensions.AddFastComponentsAuto(Microsoft.Extensions.DependencyInjection.IServiceCollection)|FastComponents.SimplifiedExtensions.AddFastComponentsAuto(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).md|AddFastComponentsAuto(this IServiceCollection)
+M:FastComponents.SimplifiedExtensions.UseFastComponentsAuto(Microsoft.AspNetCore.Builder.WebApplication)|FastComponents.SimplifiedExtensions.UseFastComponentsAuto(thisMicrosoft.AspNetCore.Builder.WebApplication).md|UseFastComponentsAuto(this WebApplication)
+T:FastComponents.SimplifiedExtensions|FastComponents.SimplifiedExtensions.md|SimplifiedExtensions
+P:FastComponents.HtmxDefaults.Swap|FastComponents.HtmxDefaults.Swap.md|Swap
+P:FastComponents.HtmxDefaults.SearchTrigger|FastComponents.HtmxDefaults.SearchTrigger.md|SearchTrigger
+P:FastComponents.HtmxDefaults.LoadOnceTrigger|FastComponents.HtmxDefaults.LoadOnceTrigger.md|LoadOnceTrigger
+T:FastComponents.HtmxDefaults|FastComponents.HtmxDefaults.md|HtmxDefaults
+M:FastComponents.HtmxPatterns.SelfUpdatingButton(System.String,System.String)|FastComponents.HtmxPatterns.SelfUpdatingButton(string,string).md|SelfUpdatingButton(string, string)
+M:FastComponents.HtmxPatterns.SearchInput(System.String,System.String)|FastComponents.HtmxPatterns.SearchInput(string,string).md|SearchInput(string, string)
+M:FastComponents.HtmxPatterns.LoadOnce(System.String)|FastComponents.HtmxPatterns.LoadOnce(string).md|LoadOnce(string)
+T:FastComponents.HtmxPatterns|FastComponents.HtmxPatterns.md|HtmxPatterns
 M:FastComponents.MainExtensions.AddFastComponents(Microsoft.Extensions.DependencyInjection.IServiceCollection)|FastComponents.MainExtensions.AddFastComponents(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).md|AddFastComponents(this IServiceCollection)
+M:FastComponents.MainExtensions.UseFastComponents(Microsoft.AspNetCore.Builder.WebApplication)|FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.WebApplication).md|UseFastComponents(this WebApplication)
 T:FastComponents.MainExtensions|FastComponents.MainExtensions.md|MainExtensions
 M:FastComponents.ComponentHtmlResponseService.#ctor(Microsoft.AspNetCore.Components.Web.HtmlRenderer)|FastComponents.ComponentHtmlResponseService.ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRenderer).md|ComponentHtmlResponseService(HtmlRenderer)
 M:FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent``1(System.Collections.Generic.Dictionary{System.String,System.Object})|FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent_TComponent_(System.Collections.Generic.Dictionary_string,object_).md|RenderAsHtmlContent<TComponent>(Dictionary<string,object>)
@@ -266,6 +311,7 @@ T:FastComponents.Http.HtmxResponseHeaders.Names|FastComponents.Http.HtmxResponse
 ?:FastComponents.Http.HtmxRequestHeaders.#ctor|FastComponents.Http.HtmxRequestHeaders.#ctor.md|HtmxRequestHeaders
 ?:FastComponents.Http.HtmxResponseHeaders.#ctor|FastComponents.Http.HtmxResponseHeaders.#ctor.md|HtmxResponseHeaders
 ?:FastComponents.ClassNamesBuilder.AddClass|FastComponents.ClassNamesBuilder.AddClass.md|AddClass
+?:FastComponents.SimpleHtmxComponent`1.Url|FastComponents.SimpleHtmxComponent_TState_.Url.md|Url
 ?:FastComponents.HtmxComponentEndpoints.MapHtmxGet|FastComponents.HtmxComponentEndpoints.MapHtmxGet.md|MapHtmxGet
 ?:FastComponents.HtmxComponentEndpoints.MapHtmxPost|FastComponents.HtmxComponentEndpoints.MapHtmxPost.md|MapHtmxPost
 ?:FastComponents.ComponentHtmlResponseService.RenderComponent|FastComponents.ComponentHtmlResponseService.RenderComponent.md|RenderComponent

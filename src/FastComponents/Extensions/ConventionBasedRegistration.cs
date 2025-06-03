@@ -3,6 +3,7 @@
  * Licensed under the Apache License, Version 2.0
  */
 
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.AspNetCore.Routing;
 
@@ -19,6 +20,7 @@ public static class ConventionBasedRegistration
     /// <param name="app">The endpoint route builder</param>
     /// <param name="assemblies">Assemblies to scan for components (defaults to calling assembly)</param>
     /// <returns>The endpoint route builder for chaining</returns>
+    [UnconditionalSuppressMessage("Trimming", "IL2072:UnrecognizedReflectionPattern", Justification = "Convention-based registration requires reflection")]
     public static IEndpointRouteBuilder MapHtmxComponentsByConvention(
         this IEndpointRouteBuilder app, 
         params Assembly[] assemblies)
@@ -30,9 +32,8 @@ public static class ConventionBasedRegistration
 
         foreach (Assembly assembly in assemblies)
         {
-            List<Type> componentTypes = assembly.GetTypes()
-                .Where(t => t.IsClass && !t.IsAbstract && IsHtmxComponent(t))
-                .ToList();
+            Type[] componentTypes = [.. assembly.GetTypes()
+                .Where(t => t.IsClass && !t.IsAbstract && IsHtmxComponent(t))];
 
             foreach (Type componentType in componentTypes)
             {
@@ -51,7 +52,9 @@ public static class ConventionBasedRegistration
                type.IsSubclassOf(typeof(HtmxComponentBase));
     }
 
-    private static void RegisterComponent(IEndpointRouteBuilder app, Type componentType)
+    [UnconditionalSuppressMessage("Trimming", "IL2060:MakeGenericMethod", Justification = "Convention-based registration requires reflection")]
+    [UnconditionalSuppressMessage("Trimming", "IL2075:UnrecognizedReflectionPattern", Justification = "Convention-based registration requires reflection")]
+    private static void RegisterComponent(IEndpointRouteBuilder app, [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType)
     {
         string route = GetConventionalRoute(componentType);
         
@@ -73,16 +76,22 @@ public static class ConventionBasedRegistration
                 object? getEndpoint = genericGetMethod.Invoke(null, [app, route]);
                 
                 // Add AllowAnonymous if available
-                MethodInfo? allowAnonymousMethod = getEndpoint?.GetType().GetMethod("AllowAnonymous");
-                allowAnonymousMethod?.Invoke(getEndpoint, null);
+                if (getEndpoint is not null)
+                {
+                    MethodInfo? allowAnonymousMethod = getEndpoint.GetType().GetMethod("AllowAnonymous");
+                    _ = allowAnonymousMethod?.Invoke(getEndpoint, null);
+                }
 
                 // Also register POST if component has actions
                 if (HasActions(componentType))
                 {
                     MethodInfo? genericPostMethod = postMethod?.MakeGenericMethod(componentType, stateType);
                     object? postEndpoint = genericPostMethod?.Invoke(null, [app, route]);
-                    allowAnonymousMethod = postEndpoint?.GetType().GetMethod("AllowAnonymous");
-                    allowAnonymousMethod?.Invoke(postEndpoint, null);
+                    if (postEndpoint is not null)
+                    {
+                        MethodInfo? allowAnonymousMethod = postEndpoint.GetType().GetMethod("AllowAnonymous");
+                        _ = allowAnonymousMethod?.Invoke(postEndpoint, null);
+                    }
                 }
             }
         }
@@ -93,10 +102,14 @@ public static class ConventionBasedRegistration
         string name = componentType.Name;
         
         // Remove common suffixes
-        if (name.EndsWith("Component"))
+        if (name.EndsWith("Component", StringComparison.Ordinal))
+        {
             name = name[..^9]; // Remove "Component"
-        if (name.EndsWith("Example"))
+        }
+        if (name.EndsWith("Example", StringComparison.Ordinal))
+        {
             name = name[..^7]; // Remove "Example"
+        }
             
         // Convert to kebab-case
         string kebabCase = string.Concat(name.Select((x, i) => i > 0 && char.IsUpper(x) ? "-" + x : x.ToString()))
@@ -126,44 +139,60 @@ public static class ConventionBasedRegistration
         return null;
     }
 
-    private static bool HasActions(Type componentType)
+    private static bool HasActions([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicMethods)] Type componentType)
     {
         // Check if the component has methods that look like actions
         return componentType.GetMethods(BindingFlags.Public | BindingFlags.Instance)
-            .Any(m => m.Name.StartsWith("On") || m.Name.EndsWith("Action") || m.ReturnType == typeof(string));
+            .Any(m => m.Name.StartsWith("On", StringComparison.Ordinal) || m.Name.EndsWith("Action", StringComparison.Ordinal) || m.ReturnType == typeof(string));
     }
 
+    [UnconditionalSuppressMessage("Trimming", "IL2075:UnrecognizedReflectionPattern", Justification = "Convention-based registration requires reflection")]
+    [UnconditionalSuppressMessage("Trimming", "IL2067:UnrecognizedReflectionPattern", Justification = "Convention-based registration requires reflection")]
+    [UnconditionalSuppressMessage("Trimming", "IL2111:RequiresDynamicCode", Justification = "Convention-based registration requires reflection")]
     private static bool IsSubclassOfGeneric(this Type child, Type parent)
     {
         if (child == parent)
+        {
             return false;
+        }
 
         if (child.IsSubclassOf(parent))
+        {
             return true;
+        }
 
         Type[] parameters = parent.GetGenericArguments();
         bool isParameterLessGeneric = !(parameters.Length > 0 &&
                                         ((parameters[0].Attributes & TypeAttributes.BeforeFieldInit) == TypeAttributes.BeforeFieldInit));
 
-        while (child != null && child != typeof(object))
+        while (child is not null && child != typeof(object))
         {
             Type cur = GetFullTypeDefinition(child);
             if (parent == cur || (isParameterLessGeneric && cur.GetInterfaces().Select(GetFullTypeDefinition).Contains(GetFullTypeDefinition(parent))))
+            {
                 return true;
+            }
             else if (!isParameterLessGeneric)
+            {
                 if (GetFullTypeDefinition(parent) == cur && !cur.IsInterface)
                 {
                     if (VerifyGenericArguments(GetFullTypeDefinition(parent), cur))
+                    {
                         if (VerifyGenericArguments(parent, child))
+                        {
                             return true;
+                        }
+                    }
                 }
-            child = child.BaseType;
+            }
+            child = child.BaseType!;
         }
 
         return false;
     }
 
-    private static Type GetFullTypeDefinition(Type type)
+    [UnconditionalSuppressMessage("Trimming", "IL2075:UnrecognizedReflectionPattern", Justification = "Convention-based registration requires reflection")]
+    private static Type GetFullTypeDefinition([DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type type)
     {
         return type.IsGenericType ? type.GetGenericTypeDefinition() : type;
     }
@@ -173,13 +202,19 @@ public static class ConventionBasedRegistration
         Type[] childArguments = child.GetGenericArguments();
         Type[] parentArguments = parent.GetGenericArguments();
         if (childArguments.Length != parentArguments.Length)
+        {
             return true;
+        }
 
         for (int i = 0; i < childArguments.Length; i++)
         {
             if (childArguments[i].Assembly != parentArguments[i].Assembly || childArguments[i].Name != parentArguments[i].Name || childArguments[i].Namespace != parentArguments[i].Namespace)
+            {
                 if (!childArguments[i].IsSubclassOf(parentArguments[i]))
+                {
                     return false;
+                }
+            }
         }
 
         return true;

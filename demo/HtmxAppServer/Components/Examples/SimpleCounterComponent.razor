@@ -1,3 +1,4 @@
+@using HtmxAppServer.Models
 @inherits SimpleHtmxComponent<CounterState>
 
 <div id="simple-counter">
@@ -9,20 +10,16 @@
   </div>
 </div>
 
+@inject IHttpContextAccessor HttpContextAccessor
+
 @code {
   protected override void OnInitialized()
   {
     // Auto-bind from query parameters
-    var query = Context.Request.Query;
-    if (int.TryParse(query["Count"], out var count))
+    var query = HttpContextAccessor.HttpContext?.Request.Query;
+    if (query is not null && int.TryParse(query["Count"], out var count))
     {
       State = State with { Count = count };
     }
   }
-}
-
-// State record - no boilerplate needed
-public record CounterState
-{
-  public int Count { get; init; } = 0;
 }

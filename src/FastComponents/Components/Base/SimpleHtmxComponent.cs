@@ -3,6 +3,7 @@
  * Licensed under the Apache License, Version 2.0
  */
 
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components;
 
 namespace FastComponents;
@@ -22,17 +23,17 @@ public abstract class SimpleHtmxComponent<TState> : ComponentBase
     /// <summary>
     /// Creates a URL for this component with updated state
     /// </summary>
-    protected string Url(TState? newState = null) 
+    public string Url(TState? newState = null) 
     {
-        var state = newState ?? State;
-        var componentName = GetType().Name.Replace("Component", "").ToLowerInvariant();
+        TState state = newState ?? State;
+        string componentName = GetType().Name.Replace("Component", "").ToLowerInvariant();
         return $"/htmx/{componentName}?" + ToQueryString(state);
     }
 
     /// <summary>
     /// Creates a URL for this component with a state update function
     /// </summary>
-    protected string Url(Func<TState, TState> updateState)
+    public string Url(Func<TState, TState> updateState)
     {
         return Url(updateState(State));
     }
@@ -40,13 +41,14 @@ public abstract class SimpleHtmxComponent<TState> : ComponentBase
     /// <summary>
     /// Gets the route for this component based on convention
     /// </summary>
-    public static string Route => $"/htmx/{typeof(SimpleHtmxComponent<TState>).Name.Replace("Component", "").ToLowerInvariant()}";
+    public string GetRoute() => $"/htmx/{GetType().Name.Replace("Component", "").ToLowerInvariant()}";
 
+    [RequiresUnreferencedCode("Uses reflection to access object properties")]
     private static string ToQueryString(object obj)
     {
-        var properties = obj.GetType().GetProperties()
+        string[] properties = [.. obj.GetType().GetProperties()
             .Where(p => p.CanRead && p.GetValue(obj) != null)
-            .Select(p => $"{p.Name}={Uri.EscapeDataString(p.GetValue(obj)?.ToString() ?? "")}");
+            .Select(p => $"{p.Name}={Uri.EscapeDataString(p.GetValue(obj)?.ToString() ?? "")}")];
         return string.Join("&", properties);
     }
 }
@@ -59,5 +61,5 @@ public abstract class SimpleHtmxComponent : ComponentBase
     /// <summary>
     /// Gets the route for this component based on convention
     /// </summary>
-    public static string Route => $"/htmx/{typeof(SimpleHtmxComponent).Name.Replace("Component", "").ToLowerInvariant()}";
+    public static string GetRoute<T>() where T : SimpleHtmxComponent => $"/htmx/{nameof(T).Replace("Component", "").ToLowerInvariant()}";
 }
