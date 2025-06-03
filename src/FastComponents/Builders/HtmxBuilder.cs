@@ -18,7 +18,9 @@ public class HtmxBuilder
     private string? _content;
     private RenderFragment? _childContent;
 
-    private HtmxBuilder() { }
+    private HtmxBuilder()
+    {
+    }
 
     /// <summary>
     /// Creates a new HTMX element builder
@@ -102,7 +104,7 @@ public class HtmxBuilder
         _attributes["class"] = _attributes.TryGetValue("class", out object? existing)
             ? $"{existing} {cssClass}"
             : cssClass;
-        
+
         return this;
     }
 
@@ -174,17 +176,17 @@ public class HtmxBuilder
     public void Render(RenderTreeBuilder builder)
     {
         builder.OpenElement(0, _element);
-        
+
         foreach ((string key, object? value) in _attributes)
         {
             builder.AddAttribute(1, key, value);
         }
 
-        if (_content != null)
+        if (_content is not null)
         {
             builder.AddContent(2, _content);
         }
-        else if (_childContent != null)
+        else if (_childContent is not null)
         {
             builder.AddContent(2, _childContent);
         }

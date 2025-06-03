@@ -27,11 +27,11 @@ public class HtmxSseTag : HtmxComponentBase, IHxSseAttributes
     /// <inheritdoc />
     [Parameter]
     public string? SseConnect { get; set; }
-    
+
     /// <inheritdoc />
     [Parameter]
     public string? SseSwap { get; set; }
-    
+
     /// <summary>
     /// Gets or sets the child content to be rendered inside the tag.
     /// </summary>
@@ -42,38 +42,38 @@ public class HtmxSseTag : HtmxComponentBase, IHxSseAttributes
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         builder.OpenElement(0, Element);
-        
+
         // Add class attribute if present
         if (!string.IsNullOrWhiteSpace(ClassName))
         {
             builder.AddAttribute(1, "class", ClassName);
         }
-        
+
         // Add all HTMX core attributes
         AddHtmxCoreAttributes(builder, 100);
-        
+
         // Add all HTMX additional attributes
         AddHtmxAdditionalAttributes(builder, 200);
-        
+
         // Add SSE-specific attributes
         AddAttribute(builder, 300, "sse-connect", SseConnect);
         AddAttribute(builder, 301, "sse-swap", SseSwap);
-        
+
         // Add custom attributes
-        if (CustomAttributes != null)
+        if (CustomAttributes is not null)
         {
             builder.AddMultipleAttributes(400, CustomAttributes);
         }
-        
+
         // Add child content
-        if (ChildContent != null)
+        if (ChildContent is not null)
         {
             builder.AddContent(500, ChildContent);
         }
-        
+
         builder.CloseElement();
     }
-    
+
     private void AddHtmxCoreAttributes(RenderTreeBuilder builder, int sequence)
     {
         AddAttribute(builder, sequence++, "hx-boost", HxBoost);
@@ -88,9 +88,9 @@ public class HtmxSseTag : HtmxComponentBase, IHxSseAttributes
         AddAttribute(builder, sequence++, "hx-target", HxTarget);
         AddAttribute(builder, sequence++, "hx-trigger", HxTrigger);
         AddAttribute(builder, sequence++, "hx-vals", HxVals);
-        AddAttribute(builder, sequence++, "hx-vars", HxVars);
+        AddAttribute(builder, sequence, "hx-vars", HxVars);
     }
-    
+
     private void AddHtmxAdditionalAttributes(RenderTreeBuilder builder, int sequence)
     {
         AddAttribute(builder, sequence++, "hx-confirm", HxConfirm);
@@ -113,14 +113,16 @@ public class HtmxSseTag : HtmxComponentBase, IHxSseAttributes
         AddAttribute(builder, sequence++, "hx-replace-url", HxReplaceUrl);
         AddAttribute(builder, sequence++, "hx-request", HxRequest);
         AddAttribute(builder, sequence++, "hx-sync", HxSync);
-        AddAttribute(builder, sequence++, "hx-validate", HxValidate);
+        AddAttribute(builder, sequence, "hx-validate", HxValidate);
     }
-    
+
     private static void AddAttribute(RenderTreeBuilder builder, int sequence, string name, string? value)
     {
-        if (!string.IsNullOrWhiteSpace(value))
+        if (string.IsNullOrWhiteSpace(value))
         {
-            builder.AddAttribute(sequence, name, value);
+            return;
         }
+
+        builder.AddAttribute(sequence, name, value);
     }
 }

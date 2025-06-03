@@ -37,9 +37,7 @@ public class HtmxComponentParametersTests
         }
     }
 
-    private record UnimplementedParameters : HtmxComponentParameters
-    {
-    }
+    private record UnimplementedParameters : HtmxComponentParameters;
 
     [Fact]
     public void ToComponentUrl_WithEmptyParameters_ReturnsRouteOnly()
@@ -68,14 +66,15 @@ public class HtmxComponentParametersTests
     }
 
     [Fact]
-    public void BuildQueryString_WhenNotImplemented_ThrowsNotImplementedException()
+    public void BuildQueryString_WhenNotImplemented_ThrowsInvalidOperationException()
     {
         // Arrange
         UnimplementedParameters parameters = new();
 
         // Act & Assert
-        Should.Throw<NotImplementedException>(() => parameters.ToComponentUrl("/api/test"))
-            .Message.ShouldContain("BuildQueryString must be implemented in UnimplementedParameters");
+        Should.Throw<InvalidOperationException>(() => parameters.ToComponentUrl("/api/test"))
+            .Message
+            .ShouldContain("BuildQueryString must be implemented in UnimplementedParameters");
     }
 
     [Fact]
@@ -90,7 +89,7 @@ public class HtmxComponentParametersTests
         TestParameters parameters = new();
 
         // Act
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
 
         // Assert
         result.ShouldNotBeNull();
@@ -102,11 +101,11 @@ public class HtmxComponentParametersTests
     public void BindFromQuery_WithMissingValues_ReturnsNulls()
     {
         // Arrange
-        QueryCollection queryCollection = new();
+        QueryCollection queryCollection = [];
         TestParameters parameters = new();
 
         // Act
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
 
         // Assert
         result.ShouldNotBeNull();
@@ -118,14 +117,11 @@ public class HtmxComponentParametersTests
     public void BindFromQuery_WithInvalidInt_ReturnsNull()
     {
         // Arrange
-        QueryCollection queryCollection = new(new Dictionary<string, StringValues>
-        {
-            ["count"] = "not-a-number"
-        });
+        QueryCollection queryCollection = new(new Dictionary<string, StringValues> { ["count"] = "not-a-number" });
         TestParameters parameters = new();
 
         // Act
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
 
         // Assert
         result.ShouldNotBeNull();
@@ -133,30 +129,28 @@ public class HtmxComponentParametersTests
     }
 
     [Fact]
-    public void BindFromQuery_WhenNotImplemented_ThrowsNotImplementedException()
+    public void BindFromQuery_WhenNotImplemented_ThrowsInvalidOperationException()
     {
         // Arrange
-        QueryCollection queryCollection = new();
+        QueryCollection queryCollection = [];
         UnimplementedParameters parameters = new();
 
         // Act & Assert
-        Should.Throw<NotImplementedException>(() => parameters.BindFromQuery(queryCollection))
-            .Message.ShouldContain("BindFromQuery must be implemented in UnimplementedParameters");
+        Should.Throw<InvalidOperationException>(() => parameters.BindFromQuery(queryCollection))
+            .Message
+            .ShouldContain("BindFromQuery must be implemented in UnimplementedParameters");
     }
 
     [Fact]
     public void GetQueryValue_WithExistingKey_ReturnsValue()
     {
         // Arrange
-        QueryCollection queryCollection = new(new Dictionary<string, StringValues>
-        {
-            ["key"] = "value"
-        });
+        QueryCollection queryCollection = new(new Dictionary<string, StringValues> { ["key"] = "value" });
 
         // Act & Assert
         // GetQueryValue is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var _ = parameters.BindFromQuery(queryCollection) as TestParameters;
         // This test proves GetQueryValue works by the fact that BindFromQuery uses it
     }
 
@@ -164,12 +158,12 @@ public class HtmxComponentParametersTests
     public void GetQueryValue_WithMissingKey_ReturnsNull()
     {
         // Arrange
-        QueryCollection queryCollection = new();
+        QueryCollection queryCollection = [];
 
         // Act & Assert
         // GetQueryValue is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
         result!.Name.ShouldBeNull(); // This proves GetQueryValue returns null for missing keys
     }
 
@@ -177,15 +171,12 @@ public class HtmxComponentParametersTests
     public void GetQueryValue_WithEmptyValue_ReturnsNull()
     {
         // Arrange
-        QueryCollection queryCollection = new(new Dictionary<string, StringValues>
-        {
-            ["name"] = string.Empty
-        });
+        QueryCollection queryCollection = new(new Dictionary<string, StringValues> { ["name"] = string.Empty });
 
         // Act & Assert
         // GetQueryValue is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
         result!.Name.ShouldBeNull(); // The fact that BindFromQuery works correctly proves GetQueryValue handles empty values
     }
 
@@ -195,7 +186,8 @@ public class HtmxComponentParametersTests
         // Arrange & Act & Assert
         // GetQueryInt is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(new QueryCollection(new Dictionary<string, StringValues> { ["count"] = "42" })) as TestParameters;
+        var result = parameters.BindFromQuery(
+            new QueryCollection(new Dictionary<string, StringValues> { ["count"] = "42" })) as TestParameters;
         result!.Count.ShouldBe(42); // This proves GetQueryInt works correctly
     }
 
@@ -205,7 +197,8 @@ public class HtmxComponentParametersTests
         // Arrange & Act & Assert
         // GetQueryInt is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(new QueryCollection(new Dictionary<string, StringValues> { ["count"] = "not-a-number" })) as TestParameters;
+        var result = parameters.BindFromQuery(
+            new QueryCollection(new Dictionary<string, StringValues> { ["count"] = "not-a-number" })) as TestParameters;
         result!.Count.ShouldBeNull(); // This proves GetQueryInt handles invalid numbers
     }
 
@@ -213,12 +206,12 @@ public class HtmxComponentParametersTests
     public void GetQueryInt_WithMissingKey_ReturnsNull()
     {
         // Arrange
-        QueryCollection queryCollection = new();
+        QueryCollection queryCollection = [];
 
         // Act & Assert
         // GetQueryInt is protected, so we test it indirectly through BindFromQuery
         TestParameters parameters = new();
-        TestParameters? result = parameters.BindFromQuery(queryCollection) as TestParameters;
+        var result = parameters.BindFromQuery(queryCollection) as TestParameters;
         result!.Count.ShouldBeNull(); // This proves GetQueryInt returns null for missing keys
     }
 }

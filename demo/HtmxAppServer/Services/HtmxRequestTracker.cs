@@ -1,26 +1,22 @@
 using System.Collections.Concurrent;
+using HtmxAppServer.Logging;
 
 namespace HtmxAppServer.Services;
 
-public class HtmxRequestTracker
+public class HtmxRequestTracker(ILogger<HtmxRequestTracker> logger)
 {
-    private readonly ConcurrentDictionary<string, RequestInfo> _activeRequests = new();
-    private readonly ILogger<HtmxRequestTracker> _logger;
-
-    public HtmxRequestTracker(ILogger<HtmxRequestTracker> logger)
-    {
-        _logger = logger;
-    }
+    private readonly ConcurrentDictionary<string, RequestInfo> _activeRequests = [];
+    private readonly ILogger<HtmxRequestTracker> _logger = logger;
 
     public void TrackRequest(HttpContext context)
     {
-        var requestId = context.TraceIdentifier;
-        var path = context.Request.Path;
-        var isHtmxRequest = context.Request.Headers.ContainsKey("HX-Request");
-        var htmxTarget = context.Request.Headers["HX-Target"].FirstOrDefault();
-        var htmxTrigger = context.Request.Headers["HX-Trigger"].FirstOrDefault();
+        string requestId = context.TraceIdentifier;
+        PathString path = context.Request.Path;
+        bool isHtmxRequest = context.Request.Headers.ContainsKey("HX-Request");
+        string? htmxTarget = context.Request.Headers["HX-Target"].FirstOrDefault();
+        string? htmxTrigger = context.Request.Headers["HX-Trigger"].FirstOrDefault();
 
-        var requestInfo = new RequestInfo
+        RequestInfo requestInfo = new()
         {
             RequestId = requestId,
             Path = path,
@@ -36,66 +32,65 @@ public class HtmxRequestTracker
         // Check for potential recursive calls
         CheckForRecursiveRequests(requestInfo);
 
-        _logger.LogInformation("HTMX Request: {RequestId} | Path: {Path} | Target: {Target} | Trigger: {Trigger}",
-            requestId, path, htmxTarget, htmxTrigger);
+        _logger.HtmxRequestStarted(requestId, path.ToString(), htmxTarget, htmxTrigger);
     }
 
     public void CompleteRequest(string requestId)
     {
-        if (_activeRequests.TryRemove(requestId, out var requestInfo))
+        if (!_activeRequests.TryRemove(requestId, out RequestInfo? requestInfo))
         {
-            var duration = DateTime.UtcNow - requestInfo.StartTime;
-            _logger.LogInformation("HTMX Request Completed: {RequestId} | Duration: {Duration}ms",
-                requestId, duration.TotalMilliseconds);
+            return;
         }
+
+        TimeSpan duration = DateTime.UtcNow - requestInfo.StartTime;
+        _logger.HtmxRequestCompleted(requestId, duration.TotalMilliseconds);
     }
 
     private void CheckForRecursiveRequests(RequestInfo newRequest)
     {
-        if (!newRequest.IsHtmxRequest) return;
+        if (!newRequest.IsHtmxRequest)
+        {
+            return;
+        }
 
-        var similarRequests = _activeRequests.Values
-            .Where(r => r.IsHtmxRequest && 
-                       r.Path == newRequest.Path && 
-                       r.Target == newRequest.Target &&
-                       r.RequestId != newRequest.RequestId &&
-                       DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(10))
+        List<RequestInfo> similarRequests = _activeRequests.Values
+            .Where(r => r.IsHtmxRequest
+                && r.Path == newRequest.Path
+                && r.Target == newRequest.Target
+                && r.RequestId != newRequest.RequestId
+                && DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(10))
             .ToList();
 
         if (similarRequests.Count >= 2)
         {
-            _logger.LogWarning("🔄 POTENTIAL RECURSIVE REQUESTS DETECTED!");
-            _logger.LogWarning("Path: {Path} | Target: {Target} | Active Count: {Count}",
-                newRequest.Path, newRequest.Target, similarRequests.Count + 1);
-            
-            foreach (var req in similarRequests.Take(3))
+            _logger.RecursiveRequestsDetected();
+            _logger.RecursiveRequestDetails(newRequest.Path.ToString(), newRequest.Target, similarRequests.Count + 1);
+
+            foreach (RequestInfo req in similarRequests.Take(3))
             {
-                _logger.LogWarning("  - Active Request: {RequestId} (Started: {StartTime})",
-                    req.RequestId, req.StartTime);
+                _logger.ActiveRequestInfo(req.RequestId, req.StartTime);
             }
         }
 
         // Check for rapid-fire requests to same target
-        var recentSimilarRequests = _activeRequests.Values
-            .Count(r => r.IsHtmxRequest && 
-                        r.Target == newRequest.Target &&
-                        DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(2));
+        int recentSimilarRequestsCount = _activeRequests.Values
+            .Count(r => r.IsHtmxRequest
+                && r.Target == newRequest.Target
+                && DateTime.UtcNow - r.StartTime < TimeSpan.FromSeconds(2));
 
-        if (recentSimilarRequests >= 5)
+        if (recentSimilarRequestsCount < 5)
         {
-            _logger.LogError("⚡ RAPID-FIRE REQUESTS DETECTED for target: {Target} | Count: {Count}",
-                newRequest.Target, recentSimilarRequests);
+            return;
         }
+
+        _logger.RapidFireRequestsDetected(newRequest.Target, recentSimilarRequestsCount);
     }
 
-    public List<RequestInfo> GetActiveRequests()
-    {
-        return _activeRequests.Values.ToList();
-    }
+    public List<RequestInfo> GetActiveRequests() => [.. _activeRequests.Values];
 
     public Dictionary<string, object> GetDebugInfo()
     {
-        var activeRequests = _activeRequests.Values.ToList();
+        List<RequestInfo> activeRequests = _activeRequests.Values.ToList();
         
         return new Dictionary<string, object>
         {
@@ -104,22 +99,22 @@ public class HtmxRequestTracker
             ["LongRunningRequests"] = activeRequests.Count(r => DateTime.UtcNow - r.StartTime > TimeSpan.FromSeconds(5)),
             ["RequestsByTarget"] = activeRequests
                 .Where(r => r.IsHtmxRequest && !string.IsNullOrEmpty(r.Target))
-                .GroupBy(r => r.Target)
+                .GroupBy(r => r.Target!)
                 .ToDictionary(g => g.Key, g => g.Count()),
             ["RequestsByPath"] = activeRequests
                 .GroupBy(r => r.Path.ToString())
-                .ToDictionary(g => g.Key, g => g.Count())
+                .ToDictionary(g => g.Key ?? string.Empty, g => g.Count())
         };
     }
 }
 
 public class RequestInfo
 {
-    public string RequestId { get; set; } = "";
+    public string RequestId { get; set; } = string.Empty;
     public PathString Path { get; set; }
     public bool IsHtmxRequest { get; set; }
     public string? Target { get; set; }
     public string? Trigger { get; set; }
     public DateTime StartTime { get; set; }
-    public string UserAgent { get; set; } = "";
+    public string UserAgent { get; set; } = string.Empty;
 }

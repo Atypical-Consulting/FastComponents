@@ -24,7 +24,7 @@ public class HtmxResponseHeadersTests
     public void Constructor_WithHeaderDictionary_InitializesHeaders()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
 
         // Act
         HtmxResponseHeaders headers = new(headerDict);
@@ -38,7 +38,7 @@ public class HtmxResponseHeadersTests
     public void Location_WithString_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -52,7 +52,7 @@ public class HtmxResponseHeadersTests
     public void Location_WithObject_SetsJsonHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
         var locationData = new { path = "/new-page", target = "#content" };
 
@@ -69,7 +69,7 @@ public class HtmxResponseHeadersTests
     public void PushUrl_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -83,7 +83,7 @@ public class HtmxResponseHeadersTests
     public void PreventPushUrl_SetsFalse()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -97,7 +97,7 @@ public class HtmxResponseHeadersTests
     public void Redirect_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -111,7 +111,7 @@ public class HtmxResponseHeadersTests
     public void Refresh_SetsTrue()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -125,7 +125,7 @@ public class HtmxResponseHeadersTests
     public void ReplaceUrl_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -139,7 +139,7 @@ public class HtmxResponseHeadersTests
     public void PreventReplaceUrl_SetsFalse()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -153,7 +153,7 @@ public class HtmxResponseHeadersTests
     public void Reswap_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -167,7 +167,7 @@ public class HtmxResponseHeadersTests
     public void Retarget_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -181,7 +181,7 @@ public class HtmxResponseHeadersTests
     public void Reselect_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -195,7 +195,7 @@ public class HtmxResponseHeadersTests
     public void Trigger_SingleEvent_SetsHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -209,7 +209,7 @@ public class HtmxResponseHeadersTests
     public void Trigger_MultipleEvents_SetsCommaSeparated()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -223,7 +223,7 @@ public class HtmxResponseHeadersTests
     public void TriggerWithDetails_SetsJsonHeader()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
         var eventDetails = new { myEvent = new { level = "info", message = "Test" } };
 
@@ -240,7 +240,7 @@ public class HtmxResponseHeadersTests
     public void TriggerAfterSettle_Works()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -254,7 +254,7 @@ public class HtmxResponseHeadersTests
     public void TriggerAfterSwap_Works()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -268,7 +268,7 @@ public class HtmxResponseHeadersTests
     public void MethodChaining_Works()
     {
         // Arrange
-        HeaderDictionary headerDict = new();
+        HeaderDictionary headerDict = [];
         HtmxResponseHeaders headers = new(headerDict);
 
         // Act
@@ -289,16 +289,16 @@ public class HtmxResponseHeadersTests
     public void HeaderNames_Constants_HaveCorrectValues()
     {
         // Assert
-        Http.HtmxResponseHeaders.Names.HxLocation.ShouldBe("HX-Location");
-        Http.HtmxResponseHeaders.Names.HxPushUrl.ShouldBe("HX-Push-Url");
-        Http.HtmxResponseHeaders.Names.HxRedirect.ShouldBe("HX-Redirect");
-        Http.HtmxResponseHeaders.Names.HxRefresh.ShouldBe("HX-Refresh");
-        Http.HtmxResponseHeaders.Names.HxReplaceUrl.ShouldBe("HX-Replace-Url");
-        Http.HtmxResponseHeaders.Names.HxReswap.ShouldBe("HX-Reswap");
-        Http.HtmxResponseHeaders.Names.HxRetarget.ShouldBe("HX-Retarget");
-        Http.HtmxResponseHeaders.Names.HxReselect.ShouldBe("HX-Reselect");
-        Http.HtmxResponseHeaders.Names.HxTrigger.ShouldBe("HX-Trigger");
-        Http.HtmxResponseHeaders.Names.HxTriggerAfterSettle.ShouldBe("HX-Trigger-After-Settle");
-        Http.HtmxResponseHeaders.Names.HxTriggerAfterSwap.ShouldBe("HX-Trigger-After-Swap");
+        HtmxResponseHeaders.Names.HxLocation.ShouldBe("HX-Location");
+        HtmxResponseHeaders.Names.HxPushUrl.ShouldBe("HX-Push-Url");
+        HtmxResponseHeaders.Names.HxRedirect.ShouldBe("HX-Redirect");
+        HtmxResponseHeaders.Names.HxRefresh.ShouldBe("HX-Refresh");
+        HtmxResponseHeaders.Names.HxReplaceUrl.ShouldBe("HX-Replace-Url");
+        HtmxResponseHeaders.Names.HxReswap.ShouldBe("HX-Reswap");
+        HtmxResponseHeaders.Names.HxRetarget.ShouldBe("HX-Retarget");
+        HtmxResponseHeaders.Names.HxReselect.ShouldBe("HX-Reselect");
+        HtmxResponseHeaders.Names.HxTrigger.ShouldBe("HX-Trigger");
+        HtmxResponseHeaders.Names.HxTriggerAfterSettle.ShouldBe("HX-Trigger-After-Settle");
+        HtmxResponseHeaders.Names.HxTriggerAfterSwap.ShouldBe("HX-Trigger-After-Swap");
     }
 }

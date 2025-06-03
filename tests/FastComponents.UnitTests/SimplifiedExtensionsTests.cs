@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Shouldly;
-using Xunit;
 
 namespace FastComponents.UnitTests;
 
@@ -14,16 +13,17 @@ public class SimplifiedExtensionsTests
     public void AddFastComponentsAuto_ShouldAddCoreServices()
     {
         // Arrange
-        var services = new ServiceCollection();
+        ServiceCollection services = [];
+        services.AddLogging(); // Add logging services for HtmlRenderer dependency
 
         // Act
-        var result = services.AddFastComponentsAuto();
+        IServiceCollection result = services.AddFastComponentsAuto();
 
         // Assert
         result.ShouldBeSameAs(services);
-        
+
         // Verify that core FastComponents services are registered
-        var serviceProvider = services.BuildServiceProvider();
+        ServiceProvider serviceProvider = services.BuildServiceProvider();
         serviceProvider.GetService<ComponentHtmlResponseService>().ShouldNotBeNull();
     }
 
@@ -31,11 +31,11 @@ public class SimplifiedExtensionsTests
     public void UseFastComponentsAuto_ShouldReturnApp()
     {
         // Arrange
-        var builder = WebApplication.CreateBuilder();
-        var app = builder.Build();
+        WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        WebApplication app = builder.Build();
 
         // Act
-        var result = app.UseFastComponentsAuto();
+        WebApplication result = app.UseFastComponentsAuto();
 
         // Assert
         result.ShouldBeSameAs(app);
@@ -54,7 +54,7 @@ public class SimplifiedExtensionsTests
     public void HtmxPatterns_SelfUpdatingButton_ShouldReturnCorrectAttributes()
     {
         // Act
-        var attributes = HtmxPatterns.SelfUpdatingButton("/update", "my-button");
+        Dictionary<string, object> attributes = HtmxPatterns.SelfUpdatingButton("/update", "my-button");
 
         // Assert
         attributes.ShouldContainKeyAndValue("hx-get", "/update");
@@ -67,7 +67,7 @@ public class SimplifiedExtensionsTests
     public void HtmxPatterns_SearchInput_ShouldReturnCorrectAttributes()
     {
         // Act
-        var attributes = HtmxPatterns.SearchInput("/search", "#results");
+        Dictionary<string, object> attributes = HtmxPatterns.SearchInput("/search", "#results");
 
         // Assert
         attributes.ShouldContainKeyAndValue("hx-get", "/search");
@@ -80,7 +80,7 @@ public class SimplifiedExtensionsTests
     public void HtmxPatterns_LoadOnce_ShouldReturnCorrectAttributes()
     {
         // Act
-        var attributes = HtmxPatterns.LoadOnce("/load-content");
+        Dictionary<string, object> attributes = HtmxPatterns.LoadOnce("/load-content");
 
         // Assert
         attributes.ShouldContainKeyAndValue("hx-get", "/load-content");

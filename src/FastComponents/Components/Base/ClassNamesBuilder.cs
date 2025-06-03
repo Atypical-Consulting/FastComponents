@@ -25,7 +25,9 @@ namespace FastComponents;
 /// <param name="prefix">A optional prefix to add to each class name.</param>
 /// <param name="suffix">A optional suffix to add to each class name.</param>
 public readonly struct ClassNamesBuilder(
-    string value, string prefix = "", string suffix = "")
+    string value,
+    string prefix = "",
+    string suffix = "")
 {
     private readonly StringBuilder _stringBuffer = new(value);
 
@@ -36,14 +38,14 @@ public readonly struct ClassNamesBuilder(
     /// <returns>A new instance of <see cref="ClassNamesBuilder"/>.</returns>
     public static ClassNamesBuilder Default(string value)
         => new(value);
-    
+
     /// <summary>
     /// Creates a new instance of <see cref="ClassNamesBuilder"/> with a prefix.
     /// </summary>
     /// <returns>A new instance of <see cref="ClassNamesBuilder"/>.</returns>
     public static ClassNamesBuilder Empty()
-        => new("");
-    
+        => new(string.Empty);
+
     private static bool Invoke(Func<bool>? when)
         => when?.Invoke() ?? true;
 
@@ -112,7 +114,7 @@ public readonly struct ClassNamesBuilder(
     /// <param name="builder">The builder whose classes to add.</param>
     /// <param name="when">The condition to check.</param>
     /// <returns>The current instance of <see cref="ClassNamesBuilder"/>.</returns>
-    public ClassNamesBuilder AddClass(ClassNamesBuilder builder, bool when)
+    public ClassNamesBuilder AddClass(in ClassNamesBuilder builder, bool when)
         => when ? AddClass(builder.Build()) : this;
 
     /// <summary>
@@ -121,7 +123,7 @@ public readonly struct ClassNamesBuilder(
     /// <param name="builder">The builder whose classes to add.</param>
     /// <param name="when">A function to check the condition.</param>
     /// <returns>The current instance of <see cref="ClassNamesBuilder"/>.</returns>
-    public ClassNamesBuilder AddClass(ClassNamesBuilder builder, Func<bool>? when)
+    public ClassNamesBuilder AddClass(in ClassNamesBuilder builder, Func<bool>? when)
         => Invoke(when) ? AddClass(builder.Build()) : this;
 
     /// <summary>
@@ -130,9 +132,9 @@ public readonly struct ClassNamesBuilder(
     /// <param name="additionalAttributes">The additional attributes dictionary.</param>
     /// <returns>The current instance of <see cref="ClassNamesBuilder"/>.</returns>
     public ClassNamesBuilder AddClassFromAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
-        => additionalAttributes != null
-           && additionalAttributes.TryGetValue("class", out object? c)
-           && c is string classes
+        => additionalAttributes is not null
+            && additionalAttributes.TryGetValue("class", out object? c)
+            && c is string classes
             ? AddClass(classes)
             : this;
 
@@ -141,7 +143,7 @@ public readonly struct ClassNamesBuilder(
     /// </summary>
     /// <returns>The string of class names.</returns>
     public string Build()
-        => _stringBuffer?.Replace("  ", " ").ToString().Trim() ?? "";
+        => _stringBuffer?.Replace("  ", " ").ToString().Trim() ?? string.Empty;
 
     /// <summary>
     /// Builds the string of class names.

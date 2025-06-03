@@ -24,10 +24,7 @@ public class HtmxRequestHeadersTests
     public void Constructor_WithHeaderDictionary_InitializesHeaders()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Request"] = "true"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Request"] = "true" };
 
         // Act
         HtmxRequestHeaders headers = new(headerDict);
@@ -40,10 +37,7 @@ public class HtmxRequestHeadersTests
     public void IsBoosted_WhenHeaderPresent_ReturnsTrue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Boosted"] = "true"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Boosted"] = "true" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -64,10 +58,7 @@ public class HtmxRequestHeadersTests
     public void CurrentUrl_WhenHeaderPresent_ReturnsValue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Current-URL"] = "https://example.com/page"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Current-URL"] = "https://example.com/page" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -78,10 +69,7 @@ public class HtmxRequestHeadersTests
     public void IsHistoryRestoreRequest_WhenTrue_ReturnsTrue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-History-Restore-Request"] = "true"
-        };
+        HeaderDictionary headerDict = new() { ["HX-History-Restore-Request"] = "true" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -92,10 +80,7 @@ public class HtmxRequestHeadersTests
     public void Prompt_WhenHeaderPresent_ReturnsValue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Prompt"] = "User input text"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Prompt"] = "User input text" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -110,10 +95,7 @@ public class HtmxRequestHeadersTests
 
         foreach (string value in testCases)
         {
-            HeaderDictionary headerDict = new()
-            {
-                ["HX-Request"] = value
-            };
+            HeaderDictionary headerDict = new() { ["HX-Request"] = value };
             HtmxRequestHeaders headers = new(headerDict);
 
             // Act & Assert
@@ -125,10 +107,7 @@ public class HtmxRequestHeadersTests
     public void Target_WhenHeaderPresent_ReturnsValue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Target"] = "my-target-id"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Target"] = "my-target-id" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -139,10 +118,7 @@ public class HtmxRequestHeadersTests
     public void TriggerName_WhenHeaderPresent_ReturnsValue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Trigger-Name"] = "submit-button"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Trigger-Name"] = "submit-button" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -153,10 +129,7 @@ public class HtmxRequestHeadersTests
     public void Trigger_WhenHeaderPresent_ReturnsValue()
     {
         // Arrange
-        HeaderDictionary headerDict = new()
-        {
-            ["HX-Trigger"] = "trigger-element-id"
-        };
+        HeaderDictionary headerDict = new() { ["HX-Trigger"] = "trigger-element-id" };
         HtmxRequestHeaders headers = new(headerDict);
 
         // Act & Assert
@@ -184,13 +157,13 @@ public class HtmxRequestHeadersTests
     public void HeaderNames_Constants_HaveCorrectValues()
     {
         // Assert
-        Http.HtmxRequestHeaders.Names.HxBoosted.ShouldBe("HX-Boosted");
-        Http.HtmxRequestHeaders.Names.HxCurrentUrl.ShouldBe("HX-Current-URL");
-        Http.HtmxRequestHeaders.Names.HxHistoryRestoreRequest.ShouldBe("HX-History-Restore-Request");
-        Http.HtmxRequestHeaders.Names.HxPrompt.ShouldBe("HX-Prompt");
-        Http.HtmxRequestHeaders.Names.HxRequest.ShouldBe("HX-Request");
-        Http.HtmxRequestHeaders.Names.HxTarget.ShouldBe("HX-Target");
-        Http.HtmxRequestHeaders.Names.HxTriggerName.ShouldBe("HX-Trigger-Name");
-        Http.HtmxRequestHeaders.Names.HxTrigger.ShouldBe("HX-Trigger");
+        HtmxRequestHeaders.Names.HxBoosted.ShouldBe("HX-Boosted");
+        HtmxRequestHeaders.Names.HxCurrentUrl.ShouldBe("HX-Current-URL");
+        HtmxRequestHeaders.Names.HxHistoryRestoreRequest.ShouldBe("HX-History-Restore-Request");
+        HtmxRequestHeaders.Names.HxPrompt.ShouldBe("HX-Prompt");
+        HtmxRequestHeaders.Names.HxRequest.ShouldBe("HX-Request");
+        HtmxRequestHeaders.Names.HxTarget.ShouldBe("HX-Target");
+        HtmxRequestHeaders.Names.HxTriggerName.ShouldBe("HX-Trigger-Name");
+        HtmxRequestHeaders.Names.HxTrigger.ShouldBe("HX-Trigger");
     }
 }

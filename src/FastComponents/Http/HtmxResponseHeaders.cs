@@ -29,42 +29,64 @@ public class HtmxResponseHeaders
     /// </summary>
     public static class Names
     {
-        /// <summary>Allows you to do a client-side redirect that does not do a full page reload</summary>
+        /// <summary>
+        /// Allows you to do a client-side redirect that does not do a full page reload
+        /// </summary>
         public const string HxLocation = "HX-Location";
-        
-        /// <summary>Pushes a new url into the history stack</summary>
+
+        /// <summary>
+        /// Pushes a new url into the history stack
+        /// </summary>
         public const string HxPushUrl = "HX-Push-Url";
-        
-        /// <summary>Can be used to do a client-side redirect to a new location</summary>
+
+        /// <summary>
+        /// Can be used to do a client-side redirect to a new location
+        /// </summary>
         public const string HxRedirect = "HX-Redirect";
-        
-        /// <summary>If set to "true" the client-side will do a full refresh of the page</summary>
+
+        /// <summary>
+        /// If set to "true" the client-side will do a full refresh of the page
+        /// </summary>
         public const string HxRefresh = "HX-Refresh";
-        
-        /// <summary>Replaces the current URL in the location bar</summary>
+
+        /// <summary>
+        /// Replaces the current URL in the location bar
+        /// </summary>
         public const string HxReplaceUrl = "HX-Replace-Url";
-        
-        /// <summary>Allows you to specify how the response will be swapped</summary>
+
+        /// <summary>
+        /// Allows you to specify how the response will be swapped
+        /// </summary>
         public const string HxReswap = "HX-Reswap";
-        
-        /// <summary>A CSS selector that updates the target of the content update to a different element on the page</summary>
+
+        /// <summary>
+        /// A CSS selector that updates the target of the content update to a different element on the page
+        /// </summary>
         public const string HxRetarget = "HX-Retarget";
-        
-        /// <summary>A CSS selector that allows you to choose which part of the response is used to be swapped in</summary>
+
+        /// <summary>
+        /// A CSS selector that allows you to choose which part of the response is used to be swapped in
+        /// </summary>
         public const string HxReselect = "HX-Reselect";
-        
-        /// <summary>Allows you to trigger client-side events</summary>
+
+        /// <summary>
+        /// Allows you to trigger client-side events
+        /// </summary>
         public const string HxTrigger = "HX-Trigger";
-        
-        /// <summary>Allows you to trigger client-side events after the settle step</summary>
+
+        /// <summary>
+        /// Allows you to trigger client-side events after the settle step
+        /// </summary>
         public const string HxTriggerAfterSettle = "HX-Trigger-After-Settle";
-        
-        /// <summary>Allows you to trigger client-side events after the swap step</summary>
+
+        /// <summary>
+        /// Allows you to trigger client-side events after the swap step
+        /// </summary>
         public const string HxTriggerAfterSwap = "HX-Trigger-After-Swap";
     }
-    
+
     private readonly IHeaderDictionary _headers;
-    
+
     /// <summary>
     /// Creates a new instance of HtmxResponseHeaders from the HTTP context
     /// </summary>
@@ -72,7 +94,7 @@ public class HtmxResponseHeaders
     {
         _headers = context.Response.Headers;
     }
-    
+
     /// <summary>
     /// Creates a new instance of HtmxResponseHeaders from the response headers
     /// </summary>
@@ -80,7 +102,7 @@ public class HtmxResponseHeaders
     {
         _headers = headers;
     }
-    
+
     /// <summary>
     /// Allows you to do a client-side redirect that does not do a full page reload
     /// </summary>
@@ -89,7 +111,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxLocation] = url;
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to do a client-side redirect with additional options
     /// </summary>
@@ -98,7 +120,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxLocation] = JsonSerializer.Serialize(locationData);
         return this;
     }
-    
+
     /// <summary>
     /// Pushes a new url into the history stack
     /// </summary>
@@ -107,7 +129,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxPushUrl] = url;
         return this;
     }
-    
+
     /// <summary>
     /// Prevent pushing the url into the history stack
     /// </summary>
@@ -116,7 +138,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxPushUrl] = "false";
         return this;
     }
-    
+
     /// <summary>
     /// Can be used to do a client-side redirect to a new location
     /// </summary>
@@ -125,7 +147,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxRedirect] = url;
         return this;
     }
-    
+
     /// <summary>
     /// If set to "true" the client-side will do a full refresh of the page
     /// </summary>
@@ -134,7 +156,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxRefresh] = "true";
         return this;
     }
-    
+
     /// <summary>
     /// Replaces the current URL in the location bar
     /// </summary>
@@ -143,7 +165,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxReplaceUrl] = url;
         return this;
     }
-    
+
     /// <summary>
     /// Prevent replacing the current URL in the location bar
     /// </summary>
@@ -152,7 +174,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxReplaceUrl] = "false";
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to specify how the response will be swapped
     /// </summary>
@@ -161,7 +183,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxReswap] = swapStrategy;
         return this;
     }
-    
+
     /// <summary>
     /// A CSS selector that updates the target of the content update to a different element on the page
     /// </summary>
@@ -170,7 +192,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxRetarget] = selector;
         return this;
     }
-    
+
     /// <summary>
     /// A CSS selector that allows you to choose which part of the response is used to be swapped in
     /// </summary>
@@ -179,7 +201,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxReselect] = selector;
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger a client-side event
     /// </summary>
@@ -188,7 +210,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTrigger] = eventName;
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger multiple client-side events
     /// </summary>
@@ -197,7 +219,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTrigger] = string.Join(",", eventNames);
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger client-side events with details
     /// </summary>
@@ -206,7 +228,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTrigger] = JsonSerializer.Serialize(eventDetails);
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger a client-side event after the settle step
     /// </summary>
@@ -215,7 +237,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTriggerAfterSettle] = eventName;
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger multiple client-side events after the settle step
     /// </summary>
@@ -224,7 +246,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTriggerAfterSettle] = string.Join(",", eventNames);
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger client-side events with details after the settle step
     /// </summary>
@@ -233,7 +255,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTriggerAfterSettle] = JsonSerializer.Serialize(eventDetails);
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger a client-side event after the swap step
     /// </summary>
@@ -242,7 +264,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTriggerAfterSwap] = eventName;
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger multiple client-side events after the swap step
     /// </summary>
@@ -251,7 +273,7 @@ public class HtmxResponseHeaders
         _headers[Names.HxTriggerAfterSwap] = string.Join(",", eventNames);
         return this;
     }
-    
+
     /// <summary>
     /// Allows you to trigger client-side events with details after the swap step
     /// </summary>

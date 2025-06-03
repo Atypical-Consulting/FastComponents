@@ -1,0 +1,64 @@
+is_global = true
+
+# Enforce explicit type usage (not var)
+dotnet_diagnostic.IDE0007.severity = none  # Use 'var' instead of explicit type
+dotnet_diagnostic.IDE0008.severity = warning  # Use explicit type instead of 'var'
+
+# Naming conventions
+dotnet_diagnostic.IDE1006.severity = warning  # Naming rule violation
+
+# Code quality
+dotnet_diagnostic.CA1031.severity = suggestion  # Do not catch general exception types
+dotnet_diagnostic.CA1062.severity = suggestion  # Validate arguments of public methods
+dotnet_diagnostic.CA1303.severity = suggestion  # Do not pass literals as localized parameters
+dotnet_diagnostic.CA1305.severity = suggestion  # Specify IFormatProvider
+dotnet_diagnostic.CA1707.severity = warning  # Identifiers should not contain underscores (except tests)
+dotnet_diagnostic.CA1822.severity = suggestion  # Mark members as static
+dotnet_diagnostic.CA2227.severity = suggestion  # Collection properties should be read only
+
+# Performance
+dotnet_diagnostic.CA1805.severity = warning  # Do not initialize unnecessarily
+dotnet_diagnostic.CA1819.severity = suggestion  # Properties should not return arrays
+dotnet_diagnostic.CA1859.severity = suggestion  # Use concrete types when possible for improved performance
+dotnet_diagnostic.CA1860.severity = suggestion  # Avoid using 'Enumerable.Any()' extension method
+dotnet_diagnostic.CA1861.severity = suggestion  # Avoid constant arrays as arguments
+
+# Reliability
+dotnet_diagnostic.CA2007.severity = none  # Do not directly await a Task (not needed in ASP.NET Core)
+
+# Style
+dotnet_diagnostic.IDE0008.severity = none  # Use 'var' instead of explicit type
+dotnet_diagnostic.IDE0022.severity = suggestion  # Use expression body for methods
+dotnet_diagnostic.IDE0039.severity = suggestion  # Use local function
+dotnet_diagnostic.IDE0058.severity = suggestion  # Expression value is never used
+dotnet_diagnostic.IDE0059.severity = warning  # Value assigned is never used
+dotnet_diagnostic.IDE0060.severity = warning  # Remove unused parameter
+dotnet_diagnostic.IDE0090.severity = suggestion  # Use 'new(...)'
+dotnet_diagnostic.IDE0161.severity = warning  # Use file-scoped namespace
+dotnet_diagnostic.IDE0200.severity = none  # Anonymous function can be made static
+
+# Design
+dotnet_diagnostic.CA1000.severity = suggestion  # Do not declare static members on generic types
+dotnet_diagnostic.CA1010.severity = suggestion  # Collections should implement generic interface
+dotnet_diagnostic.CA1051.severity = warning  # Do not declare visible instance fields
+
+# Usage
+dotnet_diagnostic.CA2201.severity = warning  # Do not raise reserved exception types
+dotnet_diagnostic.CA2208.severity = warning  # Instantiate argument exceptions correctly
+dotnet_diagnostic.CA2211.severity = warning  # Non-constant fields should not be visible
+
+# Roslynator integration
+dotnet_diagnostic.RCS1001.severity = none  # Add braces (handled by editorconfig)
+dotnet_diagnostic.RCS1003.severity = none  # Add braces to if-else (handled by editorconfig)
+dotnet_diagnostic.RCS1007.severity = none  # Add braces (handled by editorconfig)
+dotnet_diagnostic.RCS1008.severity = none  # Use explicit type instead of 'var' (when the type is not obvious)
+dotnet_diagnostic.RCS1009.severity = none  # Use explicit type instead of 'var' (foreach variable)
+dotnet_diagnostic.RCS1010.severity = warning  # Use explicit type instead of 'var' (when the type is obvious)
+dotnet_diagnostic.RCS1018.severity = warning  # Add accessibility modifiers
+dotnet_diagnostic.RCS1036.severity = warning  # Remove redundant empty line
+dotnet_diagnostic.RCS1037.severity = warning  # Remove trailing white-space
+dotnet_diagnostic.RCS1090.severity = none  # Call 'ConfigureAwait(false)' (not needed in ASP.NET Core)
+dotnet_diagnostic.RCS1118.severity = warning  # Mark local variable as const
+dotnet_diagnostic.RCS1124.severity = none  # Inline local variable
+dotnet_diagnostic.RCS1163.severity = none  # Unused parameter (handled by IDE0060)
+dotnet_diagnostic.RCS1194.severity = warning  # Implement exception constructors

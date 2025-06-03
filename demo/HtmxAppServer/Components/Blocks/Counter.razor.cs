@@ -8,14 +8,14 @@ public partial record CounterParameters : HtmxComponentParameters
     // this method is not used by example
     public string Decrement()
     {
-        var parameters = this with { Count = Count - 1 }; 
+        CounterParameters parameters = new() { Count = Count - 1 };
         return parameters.ToComponentUrl(HtmxRoutes.RouteCounter);
     }
 
     // but this one is
     public string Increment()
     {
-        var parameters = this with { Count = Count + 1 }; 
+        CounterParameters parameters = new() { Count = Count + 1 };
         return parameters.ToComponentUrl(HtmxRoutes.RouteCounter);
     }
 }

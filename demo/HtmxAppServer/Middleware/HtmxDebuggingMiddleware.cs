@@ -1,23 +1,17 @@
+using HtmxAppServer.Logging;
 using HtmxAppServer.Services;
 
 namespace HtmxAppServer.Middleware;
 
-public class HtmxDebuggingMiddleware
+public class HtmxDebuggingMiddleware(RequestDelegate next, HtmxRequestTracker requestTracker, ILogger<HtmxDebuggingMiddleware> logger)
 {
-    private readonly RequestDelegate _next;
-    private readonly HtmxRequestTracker _requestTracker;
-    private readonly ILogger<HtmxDebuggingMiddleware> _logger;
-
-    public HtmxDebuggingMiddleware(RequestDelegate next, HtmxRequestTracker requestTracker, ILogger<HtmxDebuggingMiddleware> logger)
-    {
-        _next = next;
-        _requestTracker = requestTracker;
-        _logger = logger;
-    }
+    private readonly RequestDelegate _next = next;
+    private readonly HtmxRequestTracker _requestTracker = requestTracker;
+    private readonly ILogger<HtmxDebuggingMiddleware> _logger = logger;
 
     public async Task InvokeAsync(HttpContext context)
     {
-        var requestId = context.TraceIdentifier;
+        string requestId = context.TraceIdentifier;
         
         try
         {
@@ -31,11 +25,11 @@ public class HtmxDebuggingMiddleware
                 context.Response.Headers.Append("X-HTMX-Debug-Timestamp", DateTimeOffset.UtcNow.ToUnixTimeMilliseconds().ToString());
             }
 
-            await _next(context);
+            await _next(context).ConfigureAwait(false);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error in HTMX request {RequestId}: {Message}", requestId, ex.Message);
+            _logger.HtmxRequestError(ex, requestId, ex.Message);
             throw;
         }
         finally

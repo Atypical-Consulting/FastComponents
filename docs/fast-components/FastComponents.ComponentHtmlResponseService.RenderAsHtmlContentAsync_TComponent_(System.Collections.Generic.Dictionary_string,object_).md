@@ -1,24 +1,24 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
 ### [FastComponents](FastComponents.md 'FastComponents').[ComponentHtmlResponseService](FastComponents.ComponentHtmlResponseService.md 'FastComponents\.ComponentHtmlResponseService')
 
-## ComponentHtmlResponseService\.RenderAsHtmlContent\<TComponent\>\(Dictionary\<string,object\>\) Method
+## ComponentHtmlResponseService\.RenderAsHtmlContentAsync\<TComponent\>\(Dictionary\<string,object\>\) Method
 
 Renders a component as HTML and returns it as an HTTP content result\.
 
 ```csharp
-public System.Threading.Tasks.Task<Microsoft.AspNetCore.Http.IResult> RenderAsHtmlContent<TComponent>(System.Collections.Generic.Dictionary<string,object?>? parameters=null)
+public System.Threading.Tasks.Task<Microsoft.AspNetCore.Http.IResult> RenderAsHtmlContentAsync<TComponent>(System.Collections.Generic.Dictionary<string,object?>? parameters=null)
     where TComponent : FastComponents.HtmxComponentBase;
 ```
 #### Type parameters
 
-<a name='FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent_TComponent_(System.Collections.Generic.Dictionary_string,object_).TComponent'></a>
+<a name='FastComponents.ComponentHtmlResponseService.RenderAsHtmlContentAsync_TComponent_(System.Collections.Generic.Dictionary_string,object_).TComponent'></a>
 
 `TComponent`
 
 The type of the Blazor component to render\.
 #### Parameters
 
-<a name='FastComponents.ComponentHtmlResponseService.RenderAsHtmlContent_TComponent_(System.Collections.Generic.Dictionary_string,object_).parameters'></a>
+<a name='FastComponents.ComponentHtmlResponseService.RenderAsHtmlContentAsync_TComponent_(System.Collections.Generic.Dictionary_string,object_).parameters'></a>
 
 `parameters` [System\.Collections\.Generic\.Dictionary&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')
 

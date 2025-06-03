@@ -25,35 +25,35 @@ public static class HtmxHttpContextExtensions
 {
     private const string HtmxRequestHeadersKey = "HtmxRequestHeaders";
     private const string HtmxResponseHeadersKey = "HtmxResponseHeaders";
-    
+
     /// <summary>
     /// Gets the HTMX request headers from the current request
     /// </summary>
     public static HtmxRequestHeaders GetHtmxRequestHeaders(this HttpContext context)
     {
-        if (!context.Items.TryGetValue(HtmxRequestHeadersKey, out var headers))
+        if (!context.Items.TryGetValue(HtmxRequestHeadersKey, out object? headers))
         {
             headers = new HtmxRequestHeaders(context);
             context.Items[HtmxRequestHeadersKey] = headers;
         }
-        
+
         return (HtmxRequestHeaders)headers!;
     }
-    
+
     /// <summary>
     /// Gets the HTMX response headers for the current response
     /// </summary>
     public static HtmxResponseHeaders GetHtmxResponseHeaders(this HttpContext context)
     {
-        if (!context.Items.TryGetValue(HtmxResponseHeadersKey, out var headers))
+        if (!context.Items.TryGetValue(HtmxResponseHeadersKey, out object? headers))
         {
             headers = new HtmxResponseHeaders(context);
             context.Items[HtmxResponseHeadersKey] = headers;
         }
-        
+
         return (HtmxResponseHeaders)headers!;
     }
-    
+
     /// <summary>
     /// Checks if the current request is an HTMX request
     /// </summary>
@@ -61,7 +61,7 @@ public static class HtmxHttpContextExtensions
     {
         return context.GetHtmxRequestHeaders().IsHtmxRequest;
     }
-    
+
     /// <summary>
     /// Checks if the current request is an HTMX boosted request
     /// </summary>

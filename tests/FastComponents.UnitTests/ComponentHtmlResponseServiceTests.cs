@@ -12,8 +12,11 @@ public class ComponentHtmlResponseServiceTests
 {
     public class TestComponent : HtmxComponentBase
     {
-        [Parameter] public string? Title { get; set; }
-        [Parameter] public int Count { get; set; }
+        [Parameter]
+        public string? Title { get; set; }
+
+        [Parameter]
+        public int Count { get; set; }
 
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder)
         {
@@ -39,27 +42,28 @@ public class ComponentHtmlResponseServiceTests
 
     public ComponentHtmlResponseServiceTests()
     {
-        ServiceCollection services = new();
+        ServiceCollection services = [];
         services.AddLogging();
         ServiceProvider serviceProvider = services.BuildServiceProvider();
         ILoggerFactory loggerFactory = serviceProvider.GetRequiredService<ILoggerFactory>();
         HtmlRenderer htmlRenderer = new(serviceProvider, loggerFactory);
-        _service = new(htmlRenderer);
+        _service = new ComponentHtmlResponseService(htmlRenderer);
     }
 
     [Fact]
     public async Task RenderAsHtmlContent_WithoutParameters_RendersComponent()
     {
         // Act
-        IResult result = await _service.RenderAsHtmlContent<TestComponent>();
+        IResult result = await _service.RenderAsHtmlContentAsync<TestComponent>().ConfigureAwait(true);
 
         // Assert
         result.ShouldNotBeNull();
-        ContentHttpResult? content = result as ContentHttpResult;
+        var content = result as ContentHttpResult;
         content.ShouldNotBeNull();
         content.ContentType.ShouldBe("text/html; charset=utf-8");
 
         string? responseText = content.ResponseContent;
+        responseText.ShouldNotBeNull();
         responseText.ShouldContain("<div class=\"test-component\">");
         responseText.ShouldContain("<p>Count: 0</p>");
         responseText.ShouldNotContain("<h1>");
@@ -69,20 +73,19 @@ public class ComponentHtmlResponseServiceTests
     public async Task RenderAsHtmlContent_WithParameters_RendersComponentWithValues()
     {
         // Arrange
-        Dictionary<string, object?> parameters = new()
-        {
-            { "Title", "Test Title" },
-            { "Count", 42 }
-        };
+        Dictionary<string, object?> parameters = [];
+        parameters.Add("Title", "Test Title");
+        parameters.Add("Count", 42);
 
         // Act
-        IResult result = await _service.RenderAsHtmlContent<TestComponent>(parameters);
+        IResult result = await _service.RenderAsHtmlContentAsync<TestComponent>(parameters).ConfigureAwait(true);
 
         // Assert
-        ContentHttpResult? content = result as ContentHttpResult;
+        var content = result as ContentHttpResult;
         content.ShouldNotBeNull();
 
         string? responseText = content.ResponseContent;
+        responseText.ShouldNotBeNull();
         responseText.ShouldContain("<h1>Test Title</h1>");
         responseText.ShouldContain("<p>Count: 42</p>");
     }
@@ -91,17 +94,17 @@ public class ComponentHtmlResponseServiceTests
     public async Task RenderAsHtmlContent_ReturnsBeautifiedHtml()
     {
         // Arrange
-        Dictionary<string, object?> parameters = new()
-        {
-            { "Title", "Test" }
-        };
+        Dictionary<string, object?> parameters = [];
+        parameters.Add("Title", "Test");
 
         // Act
-        IResult result = await _service.RenderAsHtmlContent<TestComponent>(parameters);
+        IResult result = await _service.RenderAsHtmlContentAsync<TestComponent>(parameters).ConfigureAwait(true);
 
         // Assert
-        ContentHttpResult? content = result as ContentHttpResult;
+        var content = result as ContentHttpResult;
+        content.ShouldNotBeNull();
         string? responseText = content.ResponseContent;
+        responseText.ShouldNotBeNull();
 
         // Check that HTML is beautified (note: HtmlBeautifier returns minified HTML)
         responseText.ShouldContain("<div class=\"test-component\">");
@@ -112,7 +115,7 @@ public class ComponentHtmlResponseServiceTests
     public async Task RenderComponent_WithoutParameters_RendersAsString()
     {
         // Act
-        string html = await _service.RenderComponent<TestComponent>();
+        string html = await _service.RenderComponentAsync<TestComponent>().ConfigureAwait(true);
 
         // Assert
         html.ShouldNotBeNull();
@@ -124,14 +127,12 @@ public class ComponentHtmlResponseServiceTests
     public async Task RenderComponent_WithParameters_RendersAsString()
     {
         // Arrange
-        Dictionary<string, object?> parameters = new()
-        {
-            { "Title", "Component Test" },
-            { "Count", 99 }
-        };
+        Dictionary<string, object?> parameters = [];
+        parameters.Add("Title", "Component Test");
+        parameters.Add("Count", 99);
 
         // Act
-        string html = await _service.RenderComponent<TestComponent>(parameters);
+        string html = await _service.RenderComponentAsync<TestComponent>(parameters).ConfigureAwait(true);
 
         // Assert
         html.ShouldContain("<h1>Component Test</h1>");
@@ -142,7 +143,7 @@ public class ComponentHtmlResponseServiceTests
     public async Task RenderComponent_WithNullParameters_RendersDefaultValues()
     {
         // Act
-        string html = await _service.RenderComponent<TestComponent>(null);
+        string html = await _service.RenderComponentAsync<TestComponent>().ConfigureAwait(true);
 
         // Assert
         html.ShouldNotBeNull();

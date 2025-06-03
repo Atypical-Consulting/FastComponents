@@ -34,16 +34,18 @@ public abstract record HtmxComponentParameters
         string queryString = BuildQueryString();
         return string.IsNullOrEmpty(queryString) ? route : $"{route}?{queryString}";
     }
-    
+
     /// <summary>
     /// Builds the query string from parameters. Override this method to provide custom query string generation.
     /// </summary>
     /// <returns>The query string representation</returns>
     protected virtual string BuildQueryString()
     {
-        throw new NotImplementedException($"BuildQueryString must be implemented in {GetType().Name}. Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
+        throw new InvalidOperationException(
+            $"BuildQueryString must be implemented in {GetType().Name}. "
+                + $"Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
     }
-    
+
     /// <summary>
     /// Creates a new instance of parameters with values bound from the query collection
     /// </summary>
@@ -51,9 +53,11 @@ public abstract record HtmxComponentParameters
     /// <returns>A new instance with bound values</returns>
     public virtual HtmxComponentParameters BindFromQuery(IQueryCollection query)
     {
-        throw new NotImplementedException($"BindFromQuery must be implemented in {GetType().Name}. Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
+        throw new InvalidOperationException(
+            $"BindFromQuery must be implemented in {GetType().Name}. "
+                + "Consider using the [GenerateParameterMethods] attribute to auto-generate this method.");
     }
-    
+
     /// <summary>
     /// Helper method to get a string value from query collection
     /// </summary>
@@ -63,13 +67,13 @@ public abstract record HtmxComponentParameters
             ? value.ToString()
             : null;
     }
-    
+
     /// <summary>
     /// Helper method to get an int value from query collection
     /// </summary>
     protected static int? GetQueryInt(IQueryCollection query, string key)
     {
         string? value = GetQueryValue(query, key);
-        return value != null && int.TryParse(value, out int result) ? result : null;
+        return value is not null && int.TryParse(value, out int result) ? result : null;
     }
 }

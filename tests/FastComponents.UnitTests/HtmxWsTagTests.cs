@@ -77,10 +77,12 @@ public class HtmxWsTagTests : Bunit.TestContext
     {
         // Act
         IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
-            .Add(p => p.ChildContent, (RenderFragment)(builder =>
-            {
-                builder.AddMarkupContent(0, "<form><input type='text'/></form>");
-            })));
+            .Add(
+                p => p.ChildContent,
+                (RenderFragment)(builder =>
+                    {
+                        builder.AddMarkupContent(0, "<form><input type='text'/></form>");
+                    })));
 
         // Assert
         cut.Find("form").ShouldNotBeNull();
@@ -106,7 +108,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     {
         // Act
         IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
-            .Add(p => p.WsConnect, "")
+            .Add(p => p.WsConnect, string.Empty)
             .Add(p => p.WsSend, null)
             .Add(p => p.HxPost, "   "));
 

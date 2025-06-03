@@ -77,10 +77,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     {
         // Act
         IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
-            .Add(p => p.ChildContent, (RenderFragment)(builder =>
-            {
-                builder.AddMarkupContent(0, "<span>SSE Content</span>");
-            })));
+            .Add(p => p.ChildContent, (RenderFragment)(builder => builder.AddMarkupContent(0, "<span>SSE Content</span>"))));
 
         // Assert
         cut.Find("span").TextContent.ShouldBe("SSE Content");
@@ -105,7 +102,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     {
         // Act
         IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
-            .Add(p => p.SseConnect, "")
+            .Add(p => p.SseConnect, string.Empty)
             .Add(p => p.SseSwap, null)
             .Add(p => p.HxGet, "   "));
 

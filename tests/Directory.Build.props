@@ -4,7 +4,7 @@
 
   <!-- Test project specific settings -->
   <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
@@ -12,7 +12,14 @@
   <!-- Test projects have different quality requirements -->
   <PropertyGroup>
     <!-- Allow file-scoped namespaces choice -->
-    <NoWarn>$(NoWarn);IDE0160</NoWarn>
+    <!-- Suppress XML documentation warnings for test projects -->
+    <NoWarn>$(NoWarn);IDE0160;CS1591</NoWarn>
+    <!-- Suppress CA1707: Identifiers should not contain underscores -->
+    <NoWarn>$(NoWarn);CA1707</NoWarn>
+    <!-- Suppress BL0006: The types in 'Microsoft.AspNetCore.Components.RenderTree' are not recommended for use outside of the Blazor framework.-->
+    <NoWarn>$(NoWarn);BL0006</NoWarn>
+    <!-- Suppress RCS1046: Add suffix 'Async' to asynchronous method name -->
+    <NoWarn>$(NoWarn);RCS1046</NoWarn>
   </PropertyGroup>
 
 </Project>

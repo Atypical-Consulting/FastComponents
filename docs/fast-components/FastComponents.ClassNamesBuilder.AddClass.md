@@ -20,7 +20,7 @@
 Adds classes from another builder if the condition is true\.
 
 ```csharp
-public FastComponents.ClassNamesBuilder AddClass(FastComponents.ClassNamesBuilder builder, bool when);
+public FastComponents.ClassNamesBuilder AddClass(in FastComponents.ClassNamesBuilder builder, bool when);
 ```
 #### Parameters
 
@@ -47,7 +47,7 @@ The current instance of [ClassNamesBuilder](FastComponents.ClassNamesBuilder.md 
 Adds classes from another builder if the result of the function is true\.
 
 ```csharp
-public FastComponents.ClassNamesBuilder AddClass(FastComponents.ClassNamesBuilder builder, System.Func<bool>? when);
+public FastComponents.ClassNamesBuilder AddClass(in FastComponents.ClassNamesBuilder builder, System.Func<bool>? when);
 ```
 #### Parameters
 

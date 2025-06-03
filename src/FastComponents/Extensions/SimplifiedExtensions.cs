@@ -22,9 +22,9 @@ public static class SimplifiedExtensions
     {
         // Add core FastComponents services
         _ = services.AddFastComponents();
-        
+
         // TODO: Add automatic JSON context generation for discovered component states
-        
+
         return services;
     }
 
@@ -38,7 +38,7 @@ public static class SimplifiedExtensions
     {
         // Auto-discover and register all HTMX components
         _ = app.MapHtmxComponentsByConvention();
-        
+
         return app;
     }
 }
@@ -52,12 +52,12 @@ public static class HtmxDefaults
     /// Default swap mode for most updates
     /// </summary>
     public static string Swap => "outerHTML";
-    
+
     /// <summary>
     /// Default trigger for search inputs
     /// </summary>
     public static string SearchTrigger => "keyup changed delay:300ms, search";
-    
+
     /// <summary>
     /// Default trigger for load-once content
     /// </summary>

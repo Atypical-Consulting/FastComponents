@@ -1,7 +1,6 @@
-using Microsoft.AspNetCore.Components;
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components.Rendering;
 using Shouldly;
-using Xunit;
 
 namespace FastComponents.UnitTests;
 
@@ -10,9 +9,9 @@ namespace FastComponents.UnitTests;
 /// </summary>
 public class SimpleHtmxComponentTests
 {
-    private record TestState
+    private sealed record TestState
     {
-        public int Count { get; init; } = 0;
+        public int Count { get; init; }
         public string Name { get; init; } = "Test";
     }
 
@@ -30,7 +29,7 @@ public class SimpleHtmxComponentTests
     public void State_ShouldDefaultToNewInstance()
     {
         // Arrange & Act
-        var component = new TestComponent();
+        TestComponent component = new();
 
         // Assert
         component.State.ShouldNotBeNull();
@@ -42,10 +41,10 @@ public class SimpleHtmxComponentTests
     public void Url_WithoutParameters_ShouldReturnBaseRoute()
     {
         // Arrange
-        var component = new TestComponent();
+        TestComponent component = new();
 
         // Act
-        var url = component.Url();
+        string url = component.Url();
 
         // Assert
         url.ShouldStartWith("/htmx/test?");
@@ -57,11 +56,11 @@ public class SimpleHtmxComponentTests
     public void Url_WithNewState_ShouldReturnUpdatedRoute()
     {
         // Arrange
-        var component = new TestComponent();
-        var newState = new TestState { Count = 5, Name = "Updated" };
+        TestComponent component = new();
+        TestState newState = new() { Count = 5, Name = "Updated" };
 
         // Act
-        var url = component.Url(newState);
+        string url = component.Url(newState);
 
         // Assert
         url.ShouldStartWith("/htmx/test?");
@@ -70,14 +69,15 @@ public class SimpleHtmxComponentTests
     }
 
     [Fact]
+    [SuppressMessage("Usage", "BL0005:Component parameter should not be set outside of its component.")]
     public void Url_WithUpdateFunction_ShouldApplyChanges()
     {
         // Arrange
-        var component = new TestComponent();
+        TestComponent component = new();
         component.State = new TestState { Count = 3, Name = "Original" };
 
         // Act
-        var url = component.Url(s => s with { Count = s.Count + 1 });
+        string url = component.Url(s => s with { Count = s.Count + 1 });
 
         // Assert
         url.ShouldStartWith("/htmx/test?");
@@ -89,10 +89,10 @@ public class SimpleHtmxComponentTests
     public void GetRoute_ShouldReturnConventionalRoute()
     {
         // Arrange
-        var component = new TestComponent();
+        TestComponent component = new();
 
         // Act
-        var route = component.GetRoute();
+        string route = component.GetRoute();
 
         // Assert
         route.ShouldBe("/htmx/test");
@@ -112,7 +112,7 @@ public class SimpleHtmxComponentTests
     public void StatelessComponent_GetRoute_ShouldWork()
     {
         // Act
-        var route = SimpleHtmxComponent.GetRoute<TestStatelessComponent>();
+        string route = SimpleHtmxComponent.GetRoute<TestStatelessComponent>();
 
         // Assert
         route.ShouldBe("/htmx/teststateless");

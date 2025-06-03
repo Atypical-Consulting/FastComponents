@@ -39,7 +39,7 @@ public class ClassNamesBuilderTests
         string result = builder.Build();
 
         // Assert
-        result.ShouldBe("");
+        result.ShouldBe(string.Empty);
     }
 
     [Fact]
@@ -87,7 +87,7 @@ public class ClassNamesBuilderTests
 
         // Act & Assert
         builder.AddRawValue(null!).Build().ShouldBe("initial");
-        builder.AddRawValue("").Build().ShouldBe("initial");
+        builder.AddRawValue(string.Empty).Build().ShouldBe("initial");
         builder.AddRawValue("   ").Build().ShouldBe("initial");
     }
 
@@ -296,10 +296,7 @@ public class ClassNamesBuilderTests
     {
         // Arrange
         ClassNamesBuilder builder = ClassNamesBuilder.Empty();
-        Dictionary<string, object> attributes = new()
-        {
-            ["class"] = "attr-class"
-        };
+        Dictionary<string, object> attributes = new() { ["class"] = "attr-class" };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
@@ -314,10 +311,7 @@ public class ClassNamesBuilderTests
     {
         // Arrange
         ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
-        Dictionary<string, object> attributes = new()
-        {
-            ["class"] = 123
-        };
+        Dictionary<string, object> attributes = new() { ["class"] = 123 };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
@@ -332,10 +326,7 @@ public class ClassNamesBuilderTests
     {
         // Arrange
         ClassNamesBuilder builder = ClassNamesBuilder.Default("initial");
-        Dictionary<string, object> attributes = new()
-        {
-            ["other"] = "value"
-        };
+        Dictionary<string, object> attributes = new() { ["other"] = "value" };
 
         // Act
         builder = builder.AddClassFromAttributes(attributes);
@@ -412,7 +403,7 @@ public class ClassNamesBuilderTests
     public void WithPrefixAndSuffix_ShouldApplyToAllAddedClasses()
     {
         // Arrange & Act
-        string result = new ClassNamesBuilder("", "btn-", "-lg")
+        string result = new ClassNamesBuilder(string.Empty, "btn-", "-lg")
             .AddClass("primary")
             .AddClass("secondary", true)
             .AddClass("tertiary", false)

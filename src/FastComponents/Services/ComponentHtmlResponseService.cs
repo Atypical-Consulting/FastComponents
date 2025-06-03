@@ -34,11 +34,11 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <typeparam name="TComponent">The type of the Blazor component to render.</typeparam>
     /// <param name="parameters">Optional parameters to pass to the component during rendering.</param>
     /// <returns>An <see cref="IResult"/> representing the HTTP content result of the rendered HTML.</returns>
-    public async Task<IResult> RenderAsHtmlContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+    public async Task<IResult> RenderAsHtmlContentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? parameters = null)
         where TComponent : HtmxComponentBase
     {
-        string html = await RenderComponent<TComponent>(parameters);
+        string html = await RenderComponentAsync<TComponent>(parameters).ConfigureAwait(false);
         string beautified = HtmlBeautifier.BeautifyHtml(html);
         return Results.Content(beautified, "text/html", Encoding.UTF8);
     }
@@ -49,7 +49,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <param name="dictionary">The dictionary of parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    public Task<string> RenderComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+    public Task<string> RenderComponentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? dictionary = null)
         where TComponent : HtmxComponentBase
     {
@@ -57,7 +57,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
             ? ParameterView.Empty
             : ParameterView.FromDictionary(dictionary);
 
-        return RenderComponent<TComponent>(parameters);
+        return RenderComponentAsync<TComponent>(parameters);
     }
 
     /// <summary>
@@ -67,14 +67,18 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <param name="parameters">The parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    private Task<string> RenderComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(ParameterView parameters)
+    private Task<string> RenderComponentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+        ParameterView parameters)
         where TComponent : HtmxComponentBase
     {
         return htmlRenderer.Dispatcher.InvokeAsync(Callback);
 
         async Task<string> Callback()
         {
-            HtmlRootComponent output = await htmlRenderer.RenderComponentAsync<TComponent>(parameters);
+            HtmlRootComponent output = await htmlRenderer
+                .RenderComponentAsync<TComponent>(parameters)
+                .ConfigureAwait(false);
+
             return output.ToHtmlString();
         }
     }

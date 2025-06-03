@@ -6,7 +6,7 @@
 Override this method to add custom class names to the component\.
 
 ```csharp
-protected virtual FastComponents.ClassNamesBuilder OnBuildClassNames(FastComponents.ClassNamesBuilder builder);
+protected virtual FastComponents.ClassNamesBuilder OnBuildClassNames(in FastComponents.ClassNamesBuilder builder);
 ```
 #### Parameters
 

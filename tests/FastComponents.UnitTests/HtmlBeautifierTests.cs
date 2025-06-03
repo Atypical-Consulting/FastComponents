@@ -43,7 +43,7 @@ public class HtmlBeautifierTests
         string result = HtmlBeautifier.BeautifyHtml(html);
 
         // Assert
-        result.ShouldBe("");
+        result.ShouldBe(string.Empty);
     }
 
     [Fact]

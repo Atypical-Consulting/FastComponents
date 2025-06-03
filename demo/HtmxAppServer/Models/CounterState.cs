@@ -8,5 +8,5 @@ public record CounterState
     /// <summary>
     /// Current count value
     /// </summary>
-    public int Count { get; init; } = 0;
+    public int Count { get; init; }
 }

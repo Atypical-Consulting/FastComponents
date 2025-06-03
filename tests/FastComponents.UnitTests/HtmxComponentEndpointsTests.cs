@@ -21,7 +21,7 @@ public class HtmxComponentEndpointsTests
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder builder)
         {
             builder.OpenElement(0, "div");
-            builder.AddContent(1, $"Name: {Parameters?.Name ?? "Unknown"}, Count: {Parameters?.Count ?? 0}");
+            builder.AddContent(1, $"Name: {Parameters.Name ?? "Unknown"}, Count: {Parameters.Count ?? 0}");
             builder.CloseElement();
         }
     }
@@ -33,7 +33,7 @@ public class HtmxComponentEndpointsTests
 
         protected override string BuildQueryString()
         {
-            List<string> parts = new();
+            List<string> parts = [];
             if (!string.IsNullOrEmpty(Name))
             {
                 parts.Add($"name={Uri.EscapeDataString(Name)}");

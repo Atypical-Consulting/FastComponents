@@ -17,7 +17,9 @@
       "WebFetch(domain:xunit.net)",
       "Bash(dotnet add:*)",
       "Bash(./coverage.sh)",
-      "Bash(grep:*)"
+      "Bash(grep:*)",
+      "Bash(rm:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   }

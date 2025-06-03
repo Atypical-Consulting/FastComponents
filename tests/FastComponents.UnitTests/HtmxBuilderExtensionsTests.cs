@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Shouldly;
-using Xunit;
 
 namespace FastComponents.UnitTests;
 
@@ -14,11 +14,11 @@ public class HtmxBuilderExtensionsTests
     public void Button_ShouldCreateButtonRenderFragment()
     {
         // Act
-        var fragment = HtmxBuilderExtensions.Button("Click me", "/update", "my-button");
+        RenderFragment fragment = HtmxBuilderExtensions.Button("Click me", "/update", "my-button");
 
         // Assert
         fragment.ShouldNotBeNull();
-        var html = RenderFragmentToString(fragment);
+        string html = RenderFragmentToString(fragment);
         html.ShouldContain("Click me");
         html.ShouldContain("hx-get=\"/update\"");
         html.ShouldContain("id=\"my-button\"");
@@ -29,11 +29,11 @@ public class HtmxBuilderExtensionsTests
     public void SearchInput_ShouldCreateSearchInputRenderFragment()
     {
         // Act
-        var fragment = HtmxBuilderExtensions.SearchInput("/search", "#results", "Search...");
+        RenderFragment fragment = HtmxBuilderExtensions.SearchInput("/search", "#results");
 
         // Assert
         fragment.ShouldNotBeNull();
-        var html = RenderFragmentToString(fragment);
+        string html = RenderFragmentToString(fragment);
         html.ShouldContain("type=\"search\"");
         html.ShouldContain("placeholder=\"Search...\"");
         html.ShouldContain("hx-get=\"/search\"");
@@ -44,11 +44,11 @@ public class HtmxBuilderExtensionsTests
     public void SearchInput_WithDefaultPlaceholder_ShouldUseDefault()
     {
         // Act
-        var fragment = HtmxBuilderExtensions.SearchInput("/search", "#results");
+        RenderFragment fragment = HtmxBuilderExtensions.SearchInput("/search", "#results");
 
         // Assert
         fragment.ShouldNotBeNull();
-        var html = RenderFragmentToString(fragment);
+        string html = RenderFragmentToString(fragment);
         html.ShouldContain("placeholder=\"Search...\"");
     }
 
@@ -56,11 +56,11 @@ public class HtmxBuilderExtensionsTests
     public void LoadContainer_ShouldCreateLoadingDiv()
     {
         // Act
-        var fragment = HtmxBuilderExtensions.LoadContainer("/load-content", "Loading data...");
+        RenderFragment fragment = HtmxBuilderExtensions.LoadContainer("/load-content", "Loading data...");
 
         // Assert
         fragment.ShouldNotBeNull();
-        var html = RenderFragmentToString(fragment);
+        string html = RenderFragmentToString(fragment);
         html.ShouldContain("Loading data...");
         html.ShouldContain("hx-get=\"/load-content\"");
         html.ShouldContain("hx-trigger=\"load once\"");
@@ -70,49 +70,49 @@ public class HtmxBuilderExtensionsTests
     public void LoadContainer_WithDefaultText_ShouldUseDefault()
     {
         // Act
-        var fragment = HtmxBuilderExtensions.LoadContainer("/load-content");
+        RenderFragment fragment = HtmxBuilderExtensions.LoadContainer("/load-content");
 
         // Assert
         fragment.ShouldNotBeNull();
-        var html = RenderFragmentToString(fragment);
+        string html = RenderFragmentToString(fragment);
         html.ShouldContain("Loading...");
     }
 
     private static string RenderFragmentToString(RenderFragment fragment)
     {
-        var builder = new RenderTreeBuilder();
+        RenderTreeBuilder builder = new();
         fragment(builder);
-        var frames = builder.GetFrames();
-        
+        ArrayRange<RenderTreeFrame> frames = builder.GetFrames();
+
         // Simple HTML rendering for test purposes
         if (frames.Array.Length > 0)
         {
-            var element = frames.Array[0];
-            var html = $"<{element.ElementName}";
-            
+            RenderTreeFrame element = frames.Array[0];
+            string html = $"<{element.ElementName}";
+
             // Add attributes
             for (int i = 1; i < frames.Array.Length; i++)
             {
-                var frame = frames.Array[i];
-                if (frame.FrameType == Microsoft.AspNetCore.Components.RenderTree.RenderTreeFrameType.Attribute)
+                RenderTreeFrame frame = frames.Array[i];
+                if (frame.FrameType == RenderTreeFrameType.Attribute)
                 {
                     html += $" {frame.AttributeName}=\"{frame.AttributeValue}\"";
                 }
-                else if (frame.FrameType == Microsoft.AspNetCore.Components.RenderTree.RenderTreeFrameType.Text)
+                else if (frame.FrameType == RenderTreeFrameType.Text)
                 {
                     html += $">{frame.TextContent}</{element.ElementName}";
                     break;
                 }
             }
-            
+
             if (!html.Contains(">"))
             {
                 html += $"></{element.ElementName}>";
             }
-            
+
             return html;
         }
-        
-        return "";
+
+        return string.Empty;
     }
 }

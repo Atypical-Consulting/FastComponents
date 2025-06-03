@@ -19,7 +19,7 @@ namespace FastComponents;
 /// <summary>
 /// Provides HTML beautification services.
 /// </summary>
-public class HtmlBeautifier
+public static class HtmlBeautifier
 {
     /// <summary>
     /// Beautifies the provided HTML string.

@@ -14,7 +14,7 @@ public partial record AppParameters : HtmxComponentParameters
     public string SetTheme(string theme)
     {
         // create a new set of parameters 
-        var parameters = this with { Theme = theme };
+        AppParameters parameters = this with { Theme = theme };
     
         // return the url with the new parameters as query string
         return parameters.ToComponentUrl(HtmxRoutes.RouteApp);

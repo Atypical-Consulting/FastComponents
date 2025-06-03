@@ -27,7 +27,7 @@ public class MainExtensionsTests
     public void AddFastComponents_ShouldRegisterRequiredServices()
     {
         // Arrange
-        ServiceCollection services = new();
+        ServiceCollection services = [];
         services.AddLogging(); // Add required logging dependencies
 
         // Act
@@ -45,7 +45,7 @@ public class MainExtensionsTests
     public void AddFastComponents_ShouldReturnSameServiceCollection()
     {
         // Arrange
-        ServiceCollection services = new();
+        ServiceCollection services = [];
 
         // Act
         IServiceCollection result = services.AddFastComponents();
@@ -58,7 +58,7 @@ public class MainExtensionsTests
     public void AddFastComponents_WithExistingServices_ShouldNotThrow()
     {
         // Arrange
-        ServiceCollection services = new();
+        ServiceCollection services = [];
         services.AddScoped<HtmlRenderer>();
 
         // Act & Assert

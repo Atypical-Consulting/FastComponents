@@ -8,7 +8,7 @@ public partial record MovieCharactersRowsParameters : HtmxComponentParameters
     
     public string NextPage()
     {
-        var parameters = this with { Page = Page + 1 };
+        MovieCharactersRowsParameters parameters = this with { Page = Page + 1 };
         return parameters.ToComponentUrl(HtmxRoutes.RouteMovieCharactersRows);
     }
 }

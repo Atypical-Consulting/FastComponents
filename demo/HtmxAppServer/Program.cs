@@ -9,14 +9,11 @@ using HtmxAppServer.Middleware;
 // TODO: create a Template from this project
 // TODO: complete README.md for this project
 
-var builder = WebApplication.CreateBuilder(args);
-var services = builder.Services;
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+IServiceCollection services = builder.Services;
 
 // Configure JSON serialization for AOT
-services.ConfigureHttpJsonOptions(options =>
-{
-    options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default);
-});
+services.ConfigureHttpJsonOptions(options => options.SerializerOptions.TypeInfoResolverChain.Insert(0, AppJsonSerializerContext.Default));
 
 // Add FastComponents services
 services.AddFastComponents();
@@ -27,7 +24,7 @@ services.AddSingleton<MovieService>();
 // Add debugging services
 services.AddSingleton<HtmxRequestTracker>();
 
-var app = builder.Build();
+WebApplication app = builder.Build();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();

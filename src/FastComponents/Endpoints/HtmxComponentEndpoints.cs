@@ -35,15 +35,15 @@ public static class HtmxComponentEndpoints
     /// <returns>The route handler builder for further configuration</returns>
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
-    public static RouteHandlerBuilder MapHtmxGet<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+    public static RouteHandlerBuilder MapHtmxGet<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase
     {
-        return endpoints.MapGet(pattern, async (ComponentHtmlResponseService service) =>
-        {
-            return await service.RenderAsHtmlContent<TComponent>();
-        });
+        return endpoints.MapGet(
+            pattern,
+            (ComponentHtmlResponseService service)
+                => service.RenderAsHtmlContentAsync<TComponent>());
     }
 
     /// <summary>
@@ -57,28 +57,22 @@ public static class HtmxComponentEndpoints
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxGet<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        TParameters>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent, TParameters>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase<TParameters>
         where TParameters : HtmxComponentParameters, new()
     {
-        return endpoints.MapGet(pattern, async (
-            ComponentHtmlResponseService service,
-            HttpContext context) =>
-        {
-            // Create new parameters and bind from query
-            TParameters baseParams = new();
-            HtmxComponentParameters boundParams = baseParams.BindFromQuery(context.Request.Query);
-            
-            Dictionary<string, object?> componentParameters = new()
-            { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams 
-            };
-            
-            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
-        });
+        return endpoints.MapGet(
+            pattern,
+            (ComponentHtmlResponseService service, HttpContext context) =>
+            {
+                // Create new parameters and bind from query
+                TParameters baseParams = new();
+                HtmxComponentParameters boundParams = baseParams.BindFromQuery(context.Request.Query);
+                Dictionary<string, object?> componentParameters = new()
+                    { [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams };
+                return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
+            });
     }
 
     /// <summary>
@@ -90,15 +84,14 @@ public static class HtmxComponentEndpoints
     /// <returns>The route handler builder for further configuration</returns>
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
-    public static RouteHandlerBuilder MapHtmxPost<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+    public static RouteHandlerBuilder MapHtmxPost<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase
     {
-        return endpoints.MapPost(pattern, async (ComponentHtmlResponseService service) =>
-        {
-            return await service.RenderAsHtmlContent<TComponent>();
-        });
+        return endpoints.MapPost(
+            pattern,
+            (ComponentHtmlResponseService service) => service.RenderAsHtmlContentAsync<TComponent>());
     }
 
     /// <summary>
@@ -112,28 +105,26 @@ public static class HtmxComponentEndpoints
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPost<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        TParameters>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent, TParameters>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase<TParameters>
         where TParameters : HtmxComponentParameters, new()
     {
-        return endpoints.MapPost(pattern, async (
-            ComponentHtmlResponseService service,
-            HttpContext context,
-            TParameters parameters) =>
-        {
-            // For POST, parameters come from body, but also check query
-            HtmxComponentParameters boundParams = parameters.BindFromQuery(context.Request.Query);
-            
-            Dictionary<string, object?> componentParameters = new()
-            { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams 
-            };
-            
-            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
-        });
+        return endpoints.MapPost(
+            pattern,
+            (
+                ComponentHtmlResponseService service,
+                HttpContext context,
+                TParameters parameters) =>
+            {
+                // For POST, parameters come from body, but also check query
+                HtmxComponentParameters boundParams = parameters.BindFromQuery(context.Request.Query);
+
+                const string key = nameof(HtmxComponentBase<TParameters>.Parameters);
+                Dictionary<string, object?> componentParameters = new() { [key] = boundParams };
+
+                return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
+            });
     }
 
     /// <summary>
@@ -147,24 +138,22 @@ public static class HtmxComponentEndpoints
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPut<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        TParameters>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent, TParameters>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase<TParameters>
         where TParameters : HtmxComponentParameters, new()
     {
-        return endpoints.MapPut(pattern, async (
-            ComponentHtmlResponseService service,
-            TParameters parameters) =>
-        {
-            Dictionary<string, object?> componentParameters = new()
-            { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
-            };
-            
-            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
-        });
+        return endpoints.MapPut(
+            pattern,
+            (
+                ComponentHtmlResponseService service,
+                TParameters parameters) =>
+            {
+                const string key = nameof(HtmxComponentBase<TParameters>.Parameters);
+                Dictionary<string, object?> componentParameters = new() { [key] = parameters };
+
+                return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
+            });
     }
 
     /// <summary>
@@ -178,24 +167,19 @@ public static class HtmxComponentEndpoints
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxDelete<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        TParameters>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent, TParameters>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase<TParameters>
         where TParameters : HtmxComponentParameters, new()
     {
-        return endpoints.MapDelete(pattern, async (
-            ComponentHtmlResponseService service,
-            TParameters parameters) =>
-        {
-            Dictionary<string, object?> componentParameters = new()
-            { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
-            };
-            
-            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
-        });
+        return endpoints.MapDelete(
+            pattern,
+            (ComponentHtmlResponseService service, TParameters parameters) =>
+            {
+                Dictionary<string, object?> componentParameters =
+                    new() { [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters };
+                return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
+            });
     }
 
     /// <summary>
@@ -209,23 +193,21 @@ public static class HtmxComponentEndpoints
     [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
     [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
     public static RouteHandlerBuilder MapHtmxPatch<
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
-        TParameters>(
-        this IEndpointRouteBuilder endpoints,
-        string pattern)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent, TParameters>(
+            this IEndpointRouteBuilder endpoints, string pattern)
         where TComponent : HtmxComponentBase<TParameters>
         where TParameters : HtmxComponentParameters, new()
     {
-        return endpoints.MapPatch(pattern, async (
-            ComponentHtmlResponseService service,
-            TParameters parameters) =>
-        {
-            Dictionary<string, object?> componentParameters = new()
-            { 
-                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
-            };
-            
-            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
-        });
+        return endpoints.MapPatch(
+            pattern,
+            (
+                ComponentHtmlResponseService service,
+                TParameters parameters) =>
+            {
+                const string key = nameof(HtmxComponentBase<TParameters>.Parameters);
+                Dictionary<string, object?> componentParameters = new() { [key] = parameters };
+
+                return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
+            });
     }
 }

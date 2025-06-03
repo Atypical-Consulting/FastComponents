@@ -18,6 +18,4 @@ namespace HtmxAppServer;
     PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
     WriteIndented = false,
     DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull)]
-public partial class AppJsonSerializerContext : JsonSerializerContext
-{
-}
+public partial class AppJsonSerializerContext : JsonSerializerContext;

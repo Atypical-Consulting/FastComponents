@@ -264,7 +264,7 @@ public class HtmxTagTests : Bunit.TestContext
     {
         // Act
         IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
-            .Add(p => p.HxGet, "")
+            .Add(p => p.HxGet, string.Empty)
             .Add(p => p.HxPost, " ")
             .Add(p => p.HxTarget, "/api/valid"));
 

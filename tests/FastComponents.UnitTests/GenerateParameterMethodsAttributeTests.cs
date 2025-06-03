@@ -18,10 +18,7 @@ public class GenerateParameterMethodsAttributeTests
     public void GenerateParameterMethodsAttribute_CanSetSkipDefaults()
     {
         // Act
-        GenerateParameterMethodsAttribute attribute = new()
-        {
-            SkipDefaults = false
-        };
+        GenerateParameterMethodsAttribute attribute = new() { SkipDefaults = false };
 
         // Assert
         attribute.SkipDefaults.ShouldBe(false);
@@ -38,7 +35,7 @@ public class GenerateParameterMethodsAttributeTests
 
         // Assert
         attributes.Length.ShouldBe(1);
-        GenerateParameterMethodsAttribute? attribute = attributes[0] as GenerateParameterMethodsAttribute;
+        var attribute = attributes[0] as GenerateParameterMethodsAttribute;
         attribute.ShouldNotBeNull();
     }
 
@@ -69,7 +66,7 @@ public class GenerateParameterMethodsAttributeTests
 
         // Assert
         usageAttributes.Length.ShouldBe(1);
-        AttributeUsageAttribute? usage = usageAttributes[0] as AttributeUsageAttribute;
+        var usage = usageAttributes[0] as AttributeUsageAttribute;
         usage.ShouldNotBeNull();
         usage.ValidOn.ShouldBe(AttributeTargets.Class);
         usage.Inherited.ShouldBe(false);
@@ -77,11 +74,7 @@ public class GenerateParameterMethodsAttributeTests
     }
 
     [GenerateParameterMethods]
-    private class TestClassWithAttribute
-    {
-    }
+    private class TestClassWithAttribute;
 
-    private class DerivedTestClass : TestClassWithAttribute
-    {
-    }
+    private class DerivedTestClass : TestClassWithAttribute;
 }

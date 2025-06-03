@@ -75,10 +75,10 @@ public class HtmxEventsTests
     {
         // Get all event constants via reflection
         Type eventType = typeof(Events.HtmxEvents);
-        FieldInfo[] fields = eventType.GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy);
+        FieldInfo[] fields = eventType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.FlattenHierarchy);
 
         List<string?> eventValues = fields
-            .Where(f => f.IsLiteral && !f.IsInitOnly && f.FieldType == typeof(string))
+            .Where(f => f is { IsLiteral: true, IsInitOnly: false } && f.FieldType == typeof(string))
             .Select(f => f.GetValue(null) as string)
             .ToList();
 
