@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,7 +18,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
     /// <typeparam name="TComponent">The type of the Blazor component to render.</typeparam>
     /// <param name="parameters">Optional parameters to pass to the component during rendering.</param>
     /// <returns>An <see cref="IResult"/> representing the HTTP content result of the rendered HTML.</returns>
-    public async Task<IResult> RenderAsHtmlContent<TComponent>(
+    public async Task<IResult> RenderAsHtmlContent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? parameters = null)
         where TComponent : HtmxComponentBase
     {
@@ -32,7 +33,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
     /// <param name="dictionary">The dictionary of parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    public Task<string> RenderComponent<TComponent>(
+    public Task<string> RenderComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? dictionary = null)
         where TComponent : HtmxComponentBase
     {
@@ -50,7 +51,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
     /// <param name="parameters">The parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    private Task<string> RenderComponent<TComponent>(ParameterView parameters)
+    private Task<string> RenderComponent<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(ParameterView parameters)
         where TComponent : HtmxComponentBase
     {
         return htmlRenderer.Dispatcher.InvokeAsync(Callback);

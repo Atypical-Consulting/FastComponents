@@ -4,7 +4,6 @@ global using static HtmxAppServer.Components.HtmxRoutes;
 using HtmxAppServer.Components;
 using HtmxAppServer.Services;
 
-// TODO: enable AOT compilation
 // TODO: create a Template from this project
 // TODO: complete README.md for this project
 
@@ -26,6 +25,8 @@ app.UseStaticFiles();
 app.UseFastComponents();
 
 // Map HTMX endpoints
+#pragma warning disable IL2026, IL3050 // HTMX endpoints require reflection and dynamic code
 app.MapHtmxEndpoints();
+#pragma warning restore IL2026, IL3050
 
 app.Run();

@@ -13,6 +13,7 @@
     <DefaultDocumentationFolder>../../docs/fast-components</DefaultDocumentationFolder>
     <DefaultDocumentationLinksOutputFile>../../docs/links</DefaultDocumentationLinksOutputFile>
     <DefaultDocumentationAssemblyPageName>FastComponents</DefaultDocumentationAssemblyPageName>
+    <IsAotCompatible>true</IsAotCompatible>
   </PropertyGroup>
 
   <!-- File inclusion -->

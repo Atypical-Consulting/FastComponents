@@ -49,6 +49,9 @@ T:FastComponents.HtmxComponentBase|FastComponents.HtmxComponentBase.md|HtmxCompo
 P:FastComponents.HtmxComponentBase`1.Parameters|FastComponents.HtmxComponentBase_TParameters_.Parameters.md|Parameters
 M:FastComponents.HtmxComponentBase`1.CreateDefaultParameters|FastComponents.HtmxComponentBase_TParameters_.CreateDefaultParameters().md|CreateDefaultParameters()
 T:FastComponents.HtmxComponentBase`1|FastComponents.HtmxComponentBase_TParameters_.md|HtmxComponentBase<TParameters>
+M:FastComponents.HtmxComponentParameters.ToComponentUrl(System.String)|FastComponents.HtmxComponentParameters.ToComponentUrl(string).md|ToComponentUrl(string)
+M:FastComponents.HtmxComponentParameters.ToQueryString|FastComponents.HtmxComponentParameters.ToQueryString().md|ToQueryString()
+T:FastComponents.HtmxComponentParameters|FastComponents.HtmxComponentParameters.md|HtmxComponentParameters
 P:FastComponents.IHxAdditionalAttributes.HxConfirm|FastComponents.IHxAdditionalAttributes.HxConfirm.md|HxConfirm
 P:FastComponents.IHxAdditionalAttributes.HxDelete|FastComponents.IHxAdditionalAttributes.HxDelete.md|HxDelete
 P:FastComponents.IHxAdditionalAttributes.HxDisable|FastComponents.IHxAdditionalAttributes.HxDisable.md|HxDisable

@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +19,9 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxGet<TComponent>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxGet<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase
@@ -37,7 +40,11 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxGet<TComponent, TParameters>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxGet<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties | DynamicallyAccessedMemberTypes.PublicConstructors)] TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
@@ -49,7 +56,7 @@ public static class HtmxComponentEndpoints
         {
             // Bind query parameters to the parameters type
             TParameters parameters = new();
-            await context.Request.BindAsync(parameters);
+            await BindQueryParameters(context.Request, parameters);
             
             Dictionary<string, object?> componentParameters = new()
             { 
@@ -67,7 +74,9 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxPost<TComponent>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxPost<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase
@@ -86,7 +95,11 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxPost<TComponent, TParameters>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxPost<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
@@ -113,7 +126,11 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxPut<TComponent, TParameters>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxPut<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
@@ -140,7 +157,11 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxDelete<TComponent, TParameters>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxDelete<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
@@ -167,7 +188,11 @@ public static class HtmxComponentEndpoints
     /// <param name="endpoints">The endpoint route builder</param>
     /// <param name="pattern">The route pattern</param>
     /// <returns>The route handler builder for further configuration</returns>
-    public static RouteHandlerBuilder MapHtmxPatch<TComponent, TParameters>(
+    [RequiresUnreferencedCode("Component endpoints may require types that cannot be statically analyzed.")]
+    [RequiresDynamicCode("Component endpoints may require runtime code generation.")]
+    public static RouteHandlerBuilder MapHtmxPatch<
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent,
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] TParameters>(
         this IEndpointRouteBuilder endpoints,
         string pattern)
         where TComponent : HtmxComponentBase<TParameters>
@@ -187,25 +212,28 @@ public static class HtmxComponentEndpoints
     }
 
     // Helper method to bind query parameters to an object
-    private static async Task BindAsync<T>(this HttpRequest request, T target) where T : class
+    [UnconditionalSuppressMessage("Trimming", "IL2075", Justification = "Properties are preserved by DynamicallyAccessedMembers attribute")]
+    private static Task BindQueryParameters<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.PublicProperties)] T>(
+        HttpRequest request, 
+        T target) where T : class
     {
-        await Task.CompletedTask; // Make async to match signature pattern
-        
         PropertyInfo[] properties = typeof(T).GetProperties();
         foreach (PropertyInfo property in properties)
         {
-            if (request.Query.TryGetValue(property.Name, out StringValues value))
+            if (request.Query.TryGetValue(property.Name, out StringValues value) && !string.IsNullOrEmpty(value))
             {
                 try
                 {
-                    object convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
+                    object? convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
                     property.SetValue(target, convertedValue);
                 }
                 catch
                 {
-                    // Ignore conversion errors for now
+                    // Ignore conversion errors - property will keep its default value
                 }
             }
         }
+        
+        return Task.CompletedTask;
     }
 }
