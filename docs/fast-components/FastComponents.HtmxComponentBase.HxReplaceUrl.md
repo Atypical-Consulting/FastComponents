@@ -1,17 +1,17 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
-### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents.HtmxComponentBase')
+### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase')
 
-## HtmxComponentBase.HxReplaceUrl Property
+## HtmxComponentBase\.HxReplaceUrl Property
 
-ADDITIONAL ATTRIBUTE<br/>  
-------------------------------<br/>  
-Replace the URL in the browser location bar.
+ADDITIONAL ATTRIBUTE<br/>
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/>
+Replace the URL in the browser location bar\.
 
 ```csharp
 public string? HxReplaceUrl { get; set; }
 ```
 
-Implements [HxReplaceUrl](FastComponents.IHxAdditionalAttributes.HxReplaceUrl.md 'FastComponents.IHxAdditionalAttributes.HxReplaceUrl')
+Implements [HxReplaceUrl](FastComponents.IHxAdditionalAttributes.HxReplaceUrl.md 'FastComponents\.IHxAdditionalAttributes\.HxReplaceUrl')
 
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')

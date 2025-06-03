@@ -1,10 +1,10 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
-### [FastComponents](FastComponents.md 'FastComponents').[IHxCoreAttributes](FastComponents.IHxCoreAttributes.md 'FastComponents.IHxCoreAttributes')
+### [FastComponents](FastComponents.md 'FastComponents').[IHxCoreAttributes](FastComponents.IHxCoreAttributes.md 'FastComponents\.IHxCoreAttributes')
 
-## IHxCoreAttributes.HxPost Property
+## IHxCoreAttributes\.HxPost Property
 
-CORE ATTRIBUTE<br/>  
-------------------------------<br/>  
+CORE ATTRIBUTE<br/>
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/>
 Issues a POST to the specified URL
 
 ```csharp
@@ -12,4 +12,4 @@ string? HxPost { get; set; }
 ```
 
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
