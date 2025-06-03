@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.HtmlRendering;
 using Microsoft.AspNetCore.Http;
 
 namespace FastComponents;
@@ -20,8 +21,8 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
         Dictionary<string, object?>? parameters = null)
         where TComponent : HtmxComponentBase
     {
-        var html = await RenderComponent<TComponent>(parameters);
-        var beautified = beautifier.BeautifyHtml(html);
+        string html = await RenderComponent<TComponent>(parameters);
+        string beautified = beautifier.BeautifyHtml(html);
         return Results.Content(beautified, "text/html", Encoding.UTF8);
     }
 
@@ -35,7 +36,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
         Dictionary<string, object?>? dictionary = null)
         where TComponent : HtmxComponentBase
     {
-        var parameters = dictionary is null
+        ParameterView parameters = dictionary is null
             ? ParameterView.Empty
             : ParameterView.FromDictionary(dictionary);
 
@@ -56,7 +57,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
 
         async Task<string> Callback()
         {
-            var output = await htmlRenderer.RenderComponentAsync<TComponent>(parameters);
+            HtmlRootComponent output = await htmlRenderer.RenderComponentAsync<TComponent>(parameters);
             return output.ToHtmlString();
         }
     }

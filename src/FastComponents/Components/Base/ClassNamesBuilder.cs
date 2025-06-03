@@ -39,8 +39,10 @@ public readonly struct ClassNamesBuilder(
     public ClassNamesBuilder AddRawValue(string value)
     {
         if (!string.IsNullOrWhiteSpace(value))
+        {
             _stringBuffer.Append(value);
-    
+        }
+
         return this;
     }
 
@@ -84,7 +86,7 @@ public readonly struct ClassNamesBuilder(
 
     public ClassNamesBuilder AddClassFromAttributes(IReadOnlyDictionary<string, object>? additionalAttributes)
         => additionalAttributes != null
-           && additionalAttributes.TryGetValue("class", out var c)
+           && additionalAttributes.TryGetValue("class", out object? c)
            && c is string classes
             ? AddClass(classes)
             : this;

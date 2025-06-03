@@ -1,7 +1,8 @@
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Primitives;
 
 namespace FastComponents;
 
@@ -47,10 +48,10 @@ public static class HtmxComponentEndpoints
             HttpContext context) =>
         {
             // Bind query parameters to the parameters type
-            var parameters = new TParameters();
+            TParameters parameters = new();
             await context.Request.BindAsync(parameters);
             
-            var componentParameters = new Dictionary<string, object?> 
+            Dictionary<string, object?> componentParameters = new()
             { 
                 [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
             };
@@ -95,7 +96,7 @@ public static class HtmxComponentEndpoints
             ComponentHtmlResponseService service,
             TParameters parameters) =>
         {
-            var componentParameters = new Dictionary<string, object?> 
+            Dictionary<string, object?> componentParameters = new()
             { 
                 [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
             };
@@ -122,7 +123,7 @@ public static class HtmxComponentEndpoints
             ComponentHtmlResponseService service,
             TParameters parameters) =>
         {
-            var componentParameters = new Dictionary<string, object?> 
+            Dictionary<string, object?> componentParameters = new()
             { 
                 [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
             };
@@ -149,7 +150,7 @@ public static class HtmxComponentEndpoints
             ComponentHtmlResponseService service,
             TParameters parameters) =>
         {
-            var componentParameters = new Dictionary<string, object?> 
+            Dictionary<string, object?> componentParameters = new()
             { 
                 [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
             };
@@ -176,7 +177,7 @@ public static class HtmxComponentEndpoints
             ComponentHtmlResponseService service,
             TParameters parameters) =>
         {
-            var componentParameters = new Dictionary<string, object?> 
+            Dictionary<string, object?> componentParameters = new()
             { 
                 [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
             };
@@ -190,14 +191,14 @@ public static class HtmxComponentEndpoints
     {
         await Task.CompletedTask; // Make async to match signature pattern
         
-        var properties = typeof(T).GetProperties();
-        foreach (var property in properties)
+        PropertyInfo[] properties = typeof(T).GetProperties();
+        foreach (PropertyInfo property in properties)
         {
-            if (request.Query.TryGetValue(property.Name, out var value))
+            if (request.Query.TryGetValue(property.Name, out StringValues value))
             {
                 try
                 {
-                    var convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
+                    object convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
                     property.SetValue(target, convertedValue);
                 }
                 catch
