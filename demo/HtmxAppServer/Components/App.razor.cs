@@ -1,16 +1,7 @@
 namespace HtmxAppServer.Components;
 
 public class AppEndpoint
-    : HtmxComponentEndpoint<App, AppEndpoint.AppParameters>
 {
-    // This method is inherited from FastEndpoints.
-    // It allows us to configure the Component. (route, access, cache...)
-    public override void Configure()
-    {
-        Get(RouteApp);
-        AllowAnonymous();
-    }
-
     // Define the parameters with a public record (immutable)
     // because we use a record, it's like a reducer:
     //   we can use the old parameters to create some new ones
@@ -27,7 +18,7 @@ public class AppEndpoint
             var parameters = this with { Theme = theme };
         
             // return the url with the new parameters as query string
-            return parameters.ToComponentUrl(RouteApp);
+            return parameters.ToComponentUrl(HtmxRoutes.RouteApp);
         }
     }
 }

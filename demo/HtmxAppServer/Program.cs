@@ -1,6 +1,7 @@
 global using FastComponents;
 global using static HtmxAppServer.Components.HtmxRoutes;
 
+using HtmxAppServer.Components;
 using HtmxAppServer.Services;
 
 // TODO: enable AOT compilation
@@ -21,7 +22,10 @@ var app = builder.Build();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-// Map endpoints to components
+// Use FastComponents (currently no-op, but kept for compatibility)
 app.UseFastComponents();
+
+// Map HTMX endpoints
+app.MapHtmxEndpoints();
 
 app.Run();

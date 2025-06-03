@@ -1,50 +1,210 @@
-using FastEndpoints;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace FastComponents;
 
-public abstract class HtmxComponentEndpoint<TComponent>
-    : EndpointWithoutRequest<string>, IHtmxComponentEndpoint
-    where TComponent : HtmxComponentBase
-{
-    public ComponentHtmlResponseService ComponentHtmlResponseService { get; set; } = null!;
-
-    public override async Task HandleAsync(CancellationToken ct)
-    {
-        await SendHtmlResultAsync();
-    }
-
-    private async Task SendHtmlResultAsync()
-    {
-        IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>();
-        await SendResultAsync(response);
-    }
-}
-
-public abstract class HtmxComponentEndpoint<TComponent, TParameters>
-    : Endpoint<TParameters, string>, IHtmxComponentEndpoint
-    where TComponent : HtmxComponentBase<TParameters>
-    where TParameters : class, new()
-{
-    public ComponentHtmlResponseService ComponentHtmlResponseService { get; set; } = null!;
-
-    public override async Task HandleAsync(TParameters req, CancellationToken ct)
-    {
-        Dictionary<string, object?> parameters = new() { [nameof(HtmxComponentBase<TParameters>.Parameters)] = req };
-        await SendHtmlResultAsync(parameters);
-    }
-
-    protected async Task SendHtmlResultAsync(Dictionary<string, object?>? parameters = null)
-    {
-        IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>(parameters);
-        await SendResultAsync(response);
-    }
-}
-
-file interface IHtmxComponentEndpoint
+/// <summary>
+/// Extension methods for registering HTMX component endpoints with ASP.NET Minimal APIs
+/// </summary>
+public static class HtmxComponentEndpoints
 {
     /// <summary>
-    /// This service is injected by the FastComponents builder
+    /// Maps a GET endpoint for an HTMX component without parameters
     /// </summary>
-    ComponentHtmlResponseService ComponentHtmlResponseService { get; set; }
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxGet<TComponent>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase
+    {
+        return endpoints.MapGet(pattern, async (ComponentHtmlResponseService service) =>
+        {
+            return await service.RenderAsHtmlContent<TComponent>();
+        });
+    }
+
+    /// <summary>
+    /// Maps a GET endpoint for an HTMX component with parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <typeparam name="TParameters">The parameters type</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxGet<TComponent, TParameters>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase<TParameters>
+        where TParameters : class, new()
+    {
+        return endpoints.MapGet(pattern, async (
+            ComponentHtmlResponseService service,
+            HttpContext context) =>
+        {
+            // Bind query parameters to the parameters type
+            var parameters = new TParameters();
+            await context.Request.BindAsync(parameters);
+            
+            var componentParameters = new Dictionary<string, object?> 
+            { 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+            };
+            
+            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
+        });
+    }
+
+    /// <summary>
+    /// Maps a POST endpoint for an HTMX component without parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxPost<TComponent>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase
+    {
+        return endpoints.MapPost(pattern, async (ComponentHtmlResponseService service) =>
+        {
+            return await service.RenderAsHtmlContent<TComponent>();
+        });
+    }
+
+    /// <summary>
+    /// Maps a POST endpoint for an HTMX component with parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <typeparam name="TParameters">The parameters type</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxPost<TComponent, TParameters>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase<TParameters>
+        where TParameters : class, new()
+    {
+        return endpoints.MapPost(pattern, async (
+            ComponentHtmlResponseService service,
+            TParameters parameters) =>
+        {
+            var componentParameters = new Dictionary<string, object?> 
+            { 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+            };
+            
+            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
+        });
+    }
+
+    /// <summary>
+    /// Maps a PUT endpoint for an HTMX component with parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <typeparam name="TParameters">The parameters type</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxPut<TComponent, TParameters>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase<TParameters>
+        where TParameters : class, new()
+    {
+        return endpoints.MapPut(pattern, async (
+            ComponentHtmlResponseService service,
+            TParameters parameters) =>
+        {
+            var componentParameters = new Dictionary<string, object?> 
+            { 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+            };
+            
+            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
+        });
+    }
+
+    /// <summary>
+    /// Maps a DELETE endpoint for an HTMX component with parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <typeparam name="TParameters">The parameters type</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxDelete<TComponent, TParameters>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase<TParameters>
+        where TParameters : class, new()
+    {
+        return endpoints.MapDelete(pattern, async (
+            ComponentHtmlResponseService service,
+            TParameters parameters) =>
+        {
+            var componentParameters = new Dictionary<string, object?> 
+            { 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+            };
+            
+            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
+        });
+    }
+
+    /// <summary>
+    /// Maps a PATCH endpoint for an HTMX component with parameters
+    /// </summary>
+    /// <typeparam name="TComponent">The component type to render</typeparam>
+    /// <typeparam name="TParameters">The parameters type</typeparam>
+    /// <param name="endpoints">The endpoint route builder</param>
+    /// <param name="pattern">The route pattern</param>
+    /// <returns>The route handler builder for further configuration</returns>
+    public static RouteHandlerBuilder MapHtmxPatch<TComponent, TParameters>(
+        this IEndpointRouteBuilder endpoints,
+        string pattern)
+        where TComponent : HtmxComponentBase<TParameters>
+        where TParameters : class, new()
+    {
+        return endpoints.MapPatch(pattern, async (
+            ComponentHtmlResponseService service,
+            TParameters parameters) =>
+        {
+            var componentParameters = new Dictionary<string, object?> 
+            { 
+                [nameof(HtmxComponentBase<TParameters>.Parameters)] = parameters 
+            };
+            
+            return await service.RenderAsHtmlContent<TComponent>(componentParameters);
+        });
+    }
+
+    // Helper method to bind query parameters to an object
+    private static async Task BindAsync<T>(this HttpRequest request, T target) where T : class
+    {
+        await Task.CompletedTask; // Make async to match signature pattern
+        
+        var properties = typeof(T).GetProperties();
+        foreach (var property in properties)
+        {
+            if (request.Query.TryGetValue(property.Name, out var value))
+            {
+                try
+                {
+                    var convertedValue = Convert.ChangeType(value.ToString(), property.PropertyType);
+                    property.SetValue(target, convertedValue);
+                }
+                catch
+                {
+                    // Ignore conversion errors for now
+                }
+            }
+        }
+    }
 }

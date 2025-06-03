@@ -1,4 +1,3 @@
-using FastEndpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +16,6 @@ public static class MainExtensions
     /// <returns>The service collection</returns>
     public static IServiceCollection AddFastComponents(this IServiceCollection services)
     {
-        services.AddFastEndpoints();
-        
         services.AddScoped<HtmlRenderer>();
         services.AddScoped<HtmlBeautifier>();
         services.AddScoped<ComponentHtmlResponseService>();
@@ -28,11 +25,11 @@ public static class MainExtensions
     /// <summary>
     /// Use FastComponents in the application
     /// </summary>
-    /// <param name="app">The application builder</param>
-    /// <returns>The application builder</returns>
-    public static IApplicationBuilder UseFastComponents(this IApplicationBuilder app)
+    /// <param name="app">The web application</param>
+    /// <returns>The web application</returns>
+    public static WebApplication UseFastComponents(this WebApplication app)
     {
-        app.UseFastEndpoints();
+        // No specific middleware needed for minimal API approach
         return app;
     }
 }
