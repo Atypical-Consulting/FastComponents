@@ -11,6 +11,8 @@ public interface IHxAdditionalAttributes
 
 Derived  
 &#8627; [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase')  
+&#8627; [HtmxSseTag](FastComponents.HtmxSseTag.md 'FastComponents\.HtmxSseTag')  
+&#8627; [HtmxWsTag](FastComponents.HtmxWsTag.md 'FastComponents\.HtmxWsTag')  
 &#8627; [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxAttributes')  
 &#8627; [IHxSseAttributes](FastComponents.IHxSseAttributes.md 'FastComponents\.IHxSseAttributes')  
 &#8627; [IHxWsAttributes](FastComponents.IHxWsAttributes.md 'FastComponents\.IHxWsAttributes')

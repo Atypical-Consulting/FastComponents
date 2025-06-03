@@ -170,6 +170,10 @@ public abstract class HtmxComponentBase
     [Parameter]
     public string? HxValidate { get; set; }
     
+    /// <inheritdoc />
+    [Parameter]
+    public string? HxVars { get; set; }
+    
     /// <summary>
     /// Gets or sets additional custom attributes for the component.
     /// </summary>

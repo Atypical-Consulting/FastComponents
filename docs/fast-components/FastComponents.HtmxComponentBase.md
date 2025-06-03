@@ -13,7 +13,9 @@ Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.
 
 Derived  
 &#8627; [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents\.HtmxComponentBase\<TParameters\>')  
-&#8627; [HtmxTag](FastComponents.HtmxTag.md 'FastComponents\.HtmxTag')
+&#8627; [HtmxSseTag](FastComponents.HtmxSseTag.md 'FastComponents\.HtmxSseTag')  
+&#8627; [HtmxTag](FastComponents.HtmxTag.md 'FastComponents\.HtmxTag')  
+&#8627; [HtmxWsTag](FastComponents.HtmxWsTag.md 'FastComponents\.HtmxWsTag')
 
 Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxAttributes'), [IHxCoreAttributes](FastComponents.IHxCoreAttributes.md 'FastComponents\.IHxCoreAttributes'), [IHxAdditionalAttributes](FastComponents.IHxAdditionalAttributes.md 'FastComponents\.IHxAdditionalAttributes')
 
@@ -55,6 +57,7 @@ Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxA
 | [HxTrigger](FastComponents.HtmxComponentBase.HxTrigger.md 'FastComponents\.HtmxComponentBase\.HxTrigger') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Specifies the event that triggers the request |
 | [HxValidate](FastComponents.HtmxComponentBase.HxValidate.md 'FastComponents\.HtmxComponentBase\.HxValidate') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Force elements to validate themselves before a request\. |
 | [HxVals](FastComponents.HtmxComponentBase.HxVals.md 'FastComponents\.HtmxComponentBase\.HxVals') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values to the parameters to submit with the request \(JSON\-formatted\) |
+| [HxVars](FastComponents.HtmxComponentBase.HxVars.md 'FastComponents\.HtmxComponentBase\.HxVars') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values dynamically to the parameters to submit with the request \(JavaScript expression\) |
 
 | Methods | |
 | :--- | :--- |

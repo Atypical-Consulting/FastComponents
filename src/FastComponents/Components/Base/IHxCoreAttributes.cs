@@ -104,4 +104,11 @@ public interface IHxCoreAttributes
     /// Adds values to the parameters to submit with the request (JSON-formatted)
     /// </summary>
     string? HxVals { get; set; }
+    
+    /// <summary>
+    /// CORE ATTRIBUTE<br/>
+    /// ------------------------------<br/>
+    /// Adds values dynamically to the parameters to submit with the request (JavaScript expression)
+    /// </summary>
+    string? HxVars { get; set; }
 }

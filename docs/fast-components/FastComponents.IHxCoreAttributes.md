@@ -11,6 +11,8 @@ public interface IHxCoreAttributes
 
 Derived  
 &#8627; [HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase')  
+&#8627; [HtmxSseTag](FastComponents.HtmxSseTag.md 'FastComponents\.HtmxSseTag')  
+&#8627; [HtmxWsTag](FastComponents.HtmxWsTag.md 'FastComponents\.HtmxWsTag')  
 &#8627; [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxAttributes')  
 &#8627; [IHxSseAttributes](FastComponents.IHxSseAttributes.md 'FastComponents\.IHxSseAttributes')  
 &#8627; [IHxWsAttributes](FastComponents.IHxWsAttributes.md 'FastComponents\.IHxWsAttributes')
@@ -29,3 +31,4 @@ Derived
 | [HxTarget](FastComponents.IHxCoreAttributes.HxTarget.md 'FastComponents\.IHxCoreAttributes\.HxTarget') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Specifies the target element to be swapped |
 | [HxTrigger](FastComponents.IHxCoreAttributes.HxTrigger.md 'FastComponents\.IHxCoreAttributes\.HxTrigger') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Specifies the event that triggers the request |
 | [HxVals](FastComponents.IHxCoreAttributes.HxVals.md 'FastComponents\.IHxCoreAttributes\.HxVals') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values to the parameters to submit with the request \(JSON\-formatted\) |
+| [HxVars](FastComponents.IHxCoreAttributes.HxVars.md 'FastComponents\.IHxCoreAttributes\.HxVars') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values dynamically to the parameters to submit with the request \(JavaScript expression\) |

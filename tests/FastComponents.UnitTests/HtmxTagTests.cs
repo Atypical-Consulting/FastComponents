@@ -41,6 +41,17 @@ public class HtmxTagTests : Bunit.TestContext
         // Assert
         component.Markup.ShouldBe("<span></span>");
     }
+    
+    [Fact]
+    public void HtmxTag_WithHxVals_ShouldRenderAttribute()
+    {
+        // Act
+        var component = RenderComponent<HtmxTag>(parameters => parameters
+            .Add(p => p.HxVals, "{\"myVar\":\"value\", \"otherVar\":123}"));
+
+        // Assert
+        component.Find("div").GetAttribute("hx-vals").ShouldBe("{\"myVar\":\"value\", \"otherVar\":123}");
+    }
 
     [Fact]
     public void HtmxTag_WithChildContent_ShouldRenderContent()

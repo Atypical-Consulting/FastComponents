@@ -29,7 +29,15 @@ public interface IHxAttributes
 public interface IHxSseAttributes
     : IHxAttributes
 {
-    // TODO: this extension will be used by a future component HtmxSseTag
+    /// <summary>
+    /// Establishes a Server-Sent Events connection to the specified URL
+    /// </summary>
+    string? SseConnect { get; set; }
+    
+    /// <summary>
+    /// Swaps content based on SSE messages with the given event name
+    /// </summary>
+    string? SseSwap { get; set; }
 }
 
 /// <summary>
@@ -38,5 +46,13 @@ public interface IHxSseAttributes
 public interface IHxWsAttributes
     : IHxAttributes
 {
-    // TODO: this extension will be used by a future component HtmxWsTag
+    /// <summary>
+    /// Establishes a WebSocket connection to the specified URL
+    /// </summary>
+    string? WsConnect { get; set; }
+    
+    /// <summary>
+    /// Sends WebSocket messages based on events
+    /// </summary>
+    string? WsSend { get; set; }
 }

@@ -11,7 +11,9 @@
 | [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents\.HtmxComponentBase\<TParameters\>') | Base class for all components that are rendered on the server\. |
 | [HtmxComponentEndpoints](FastComponents.HtmxComponentEndpoints.md 'FastComponents\.HtmxComponentEndpoints') | Extension methods for registering HTMX component endpoints with ASP\.NET Minimal APIs |
 | [HtmxComponentParameters](FastComponents.HtmxComponentParameters.md 'FastComponents\.HtmxComponentParameters') | Base class for HTMX component parameters |
+| [HtmxSseTag](FastComponents.HtmxSseTag.md 'FastComponents\.HtmxSseTag') | HTMX component that supports Server\-Sent Events \(SSE\) attributes\. |
 | [HtmxTag](FastComponents.HtmxTag.md 'FastComponents\.HtmxTag') | A component that renders a custom element with htmx attributes\. |
+| [HtmxWsTag](FastComponents.HtmxWsTag.md 'FastComponents\.HtmxWsTag') | HTMX component that supports WebSocket attributes\. |
 | [Hx](FastComponents.Hx.md 'FastComponents\.Hx') | Provides helper constants and methods for HTMX operations\. |
 | [Hx\.Swap](FastComponents.Hx.Swap.md 'FastComponents\.Hx\.Swap') | Constants for HTMX swap strategies\. |
 | [MainExtensions](FastComponents.MainExtensions.md 'FastComponents\.MainExtensions') | Main extensions for FastComponents |
