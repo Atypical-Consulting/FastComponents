@@ -242,19 +242,12 @@ public static class ConventionBasedRegistration
             return true;
         }
 
-        for (int i = 0; i < childArguments.Length; i++)
-        {
-            if (childArguments[i].Assembly != parentArguments[i].Assembly
-                || childArguments[i].Name != parentArguments[i].Name
-                || childArguments[i].Namespace != parentArguments[i].Namespace)
-            {
-                if (!childArguments[i].IsSubclassOf(parentArguments[i]))
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
+        return !childArguments
+            .Where((t, i) =>
+                (t.Assembly != parentArguments[i].Assembly
+                    || t.Name != parentArguments[i].Name
+                    || t.Namespace != parentArguments[i].Namespace)
+                    && !t.IsSubclassOf(parentArguments[i]))
+            .Any();
     }
 }

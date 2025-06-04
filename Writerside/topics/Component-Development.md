@@ -468,7 +468,7 @@ Graceful error handling in components:
 
 Cache rendered components:
 
-```csharp
+```C#
 app.MapHtmxGet<ExpensiveComponent, ComponentState>("/expensive")
    .CacheOutput(policy => policy.Expire(TimeSpan.FromMinutes(5)));
 ```
@@ -501,7 +501,7 @@ Prevent excessive requests:
 
 Test component logic:
 
-```csharp
+```C#
 [Fact]
 public void Counter_Increments_On_Post()
 {
@@ -521,7 +521,7 @@ public void Counter_Increments_On_Post()
 
 Test component rendering:
 
-```csharp
+```C#
 [Fact]
 public async Task Component_Renders_Correctly()
 {

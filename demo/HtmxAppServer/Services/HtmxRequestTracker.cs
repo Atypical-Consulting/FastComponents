@@ -86,7 +86,10 @@ public class HtmxRequestTracker(ILogger<HtmxRequestTracker> logger)
         _logger.RapidFireRequestsDetected(newRequest.Target, recentSimilarRequestsCount);
     }
 
-    public List<RequestInfo> GetActiveRequests() => [.. _activeRequests.Values];
+    public List<RequestInfo> GetActiveRequests()
+    {
+        return [.. _activeRequests.Values];
+    }
 
     public Dictionary<string, object> GetDebugInfo()
     {

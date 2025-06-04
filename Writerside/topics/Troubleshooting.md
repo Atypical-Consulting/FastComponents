@@ -11,7 +11,7 @@ This guide helps you diagnose and fix common issues when working with FastCompon
 **Solutions**:
 
 1. **Check service registration**:
-```csharp
+```C#
 // Ensure services are registered
 builder.Services.AddFastComponents();
 
@@ -20,7 +20,7 @@ app.UseFastComponents();
 ```
 
 2. **Verify endpoint mapping**:
-```csharp
+```C#
 // Check that endpoints are mapped
 app.MapHtmxGet<MyComponent, MyState>("/my-component");
 
@@ -29,7 +29,7 @@ app.UseFastComponentsAuto();
 ```
 
 3. **Confirm component inheritance**:
-```csharp
+```C#
 // Component must inherit from base class
 @inherits SimpleHtmxComponent<MyState>
 // or
@@ -50,7 +50,7 @@ app.UseFastComponentsAuto();
 ```
 
 2. **Check attribute syntax**:
-```razor
+```Razor
 <!-- Correct -->
 <button hx-get="/api/data" hx-target="#result">Click</button>
 
@@ -72,7 +72,7 @@ app.UseFastComponentsAuto();
 **Solutions**:
 
 1. **Use query string state**:
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record MyState : HtmxComponentParameters
 {
@@ -83,7 +83,7 @@ public partial record MyState : HtmxComponentParameters
 ```
 
 2. **Check state binding**:
-```csharp
+```C#
 // Ensure state is properly bound from query
 protected override MyState OnPost(MyState state)
 {
@@ -93,7 +93,7 @@ protected override MyState OnPost(MyState state)
 ```
 
 3. **Use session or database for complex state**:
-```csharp
+```C#
 protected override async Task<MyState> OnGetAsync(MyState state)
 {
     // Load from session
@@ -121,7 +121,7 @@ protected override async Task<MyState> OnGetAsync(MyState state)
 ```
 
 2. **Handle validation in component**:
-```csharp
+```C#
 protected override FormState OnPost(FormState state)
 {
     var errors = new List<string>();
@@ -137,7 +137,7 @@ protected override FormState OnPost(FormState state)
 ```
 
 3. **Display validation errors**:
-```razor
+```Razor
 @if (State.Errors.Any())
 {
     <div class="errors">
@@ -156,13 +156,13 @@ protected override FormState OnPost(FormState state)
 **Solutions**:
 
 1. **Enable output caching**:
-```csharp
+```C#
 app.MapHtmxGet<SlowComponent, ComponentState>("/slow")
    .CacheOutput(policy => policy.Expire(TimeSpan.FromMinutes(5)));
 ```
 
 2. **Optimize state serialization**:
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 public partial record OptimizedState : HtmxComponentParameters
 {
@@ -203,7 +203,7 @@ app.UseMiddleware<HtmxDebuggingMiddleware>();
 
 ### Server-Side Logging
 
-```csharp
+```C#
 public class MyComponent : SimpleHtmxComponent<MyState>
 {
     private readonly ILogger<MyComponent> _logger;
@@ -227,7 +227,7 @@ public class MyComponent : SimpleHtmxComponent<MyState>
 
 ### Request/Response Inspection
 
-```csharp
+```C#
 // Log HTMX headers
 app.Use(async (context, next) =>
 {
@@ -249,7 +249,7 @@ app.Use(async (context, next) =>
 **Cause**: Source generator requires partial modifier.
 
 **Fix**:
-```csharp
+```C#
 // ❌ Wrong
 [GenerateParameterMethods]
 public record MyState : HtmxComponentParameters { }
@@ -264,7 +264,7 @@ public partial record MyState : HtmxComponentParameters { }
 **Cause**: State record missing base class.
 
 **Fix**:
-```csharp
+```C#
 // ❌ Wrong
 public partial record MyState { }
 
@@ -277,7 +277,7 @@ public partial record MyState : HtmxComponentParameters { }
 **Cause**: FastComponents services not registered.
 
 **Fix**:
-```csharp
+```C#
 // Add in Program.cs
 builder.Services.AddFastComponents();
 ```
@@ -287,7 +287,7 @@ builder.Services.AddFastComponents();
 **Cause**: Trying to modify response after writing content.
 
 **Fix**:
-```csharp
+```C#
 // Set headers before writing response
 protected override async Task OnGetAsync(MyState state)
 {
@@ -305,7 +305,7 @@ protected override async Task OnGetAsync(MyState state)
 
 File paths are case-sensitive on Linux/macOS:
 
-```csharp
+```Razor
 // Windows (works)
 @using components.shared
 
@@ -317,7 +317,7 @@ File paths are case-sensitive on Linux/macOS:
 
 For AOT deployment:
 
-```csharp
+```C#
 // Suppress warnings where necessary
 [UnconditionalSuppressMessage("Trimming", "IL2026")]
 [UnconditionalSuppressMessage("AOT", "IL3050")]
@@ -331,7 +331,7 @@ public static void MapComponents(IEndpointRouteBuilder app)
 
 Ensure static files are included:
 
-```dockerfile
+```docker
 # Copy wwwroot
 COPY wwwroot ./wwwroot
 
@@ -378,7 +378,7 @@ When reporting issues, provide:
 ```
 
 2. **State definition**:
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record MyState : HtmxComponentParameters
 {
@@ -387,7 +387,7 @@ public partial record MyState : HtmxComponentParameters
 ```
 
 3. **Registration code**:
-```csharp
+```C#
 // Program.cs setup
 builder.Services.AddFastComponents();
 app.MapHtmxGet<MyComponent, MyState>("/test");

@@ -125,7 +125,7 @@ async Task HandleChatWebSocket(WebSocket webSocket)
 
 The source generator creates efficient query string handling:
 
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 public partial record SearchParameters : HtmxComponentParameters
 {
@@ -168,7 +168,7 @@ FastComponents supports AOT compilation with some considerations:
 
 ### AOT-Safe Component Registration
 
-```csharp
+```C#
 // Use explicit registration for AOT
 app.MapHtmxGet<CounterComponent, CounterState>("/counter")
    .RequireUnreferencedCode("Component rendering");
@@ -196,7 +196,7 @@ For full AOT support, use explicit registration and avoid convention-based featu
 
 Cache rendered components for better performance:
 
-```csharp
+```C#
 // Output caching
 app.MapHtmxGet<ExpensiveComponent, ComponentState>("/expensive")
    .CacheOutput(policy => policy
@@ -215,7 +215,7 @@ public class ProductListComponent : SimpleHtmxComponent<ProductListState>
 
 Optimize query string generation:
 
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 public partial record OptimizedState : HtmxComponentParameters
 {
@@ -230,7 +230,7 @@ public partial record OptimizedState : HtmxComponentParameters
 
 Stream large responses for better perceived performance:
 
-```csharp
+```C#
 public class StreamingComponent : SimpleHtmxComponent<StreamingState>
 {
     protected override async Task OnGetAsync(StreamingState state)
@@ -257,7 +257,7 @@ public class StreamingComponent : SimpleHtmxComponent<StreamingState>
 
 Integrate with ASP.NET Core's anti-forgery tokens:
 
-```razor
+```Razor
 @inject IAntiforgery Antiforgery
 
 <form hx-post="@Url" hx-target="this">
@@ -277,7 +277,7 @@ Integrate with ASP.NET Core's anti-forgery tokens:
 
 Configure CSP headers for HTMX:
 
-```csharp
+```C#
 app.Use(async (context, next) =>
 {
     context.Response.Headers.Add("Content-Security-Policy",
@@ -294,7 +294,7 @@ app.Use(async (context, next) =>
 
 Validate all input on the server:
 
-```csharp
+```C#
 public record SecureState : HtmxComponentParameters
 {
     private string _email = "";
@@ -348,7 +348,7 @@ Usage in components:
 
 Create middleware for cross-cutting concerns:
 
-```csharp
+```C#
 public class HtmxComponentMiddleware
 {
     private readonly RequestDelegate _next;
@@ -383,7 +383,7 @@ app.UseMiddleware<HtmxComponentMiddleware>();
 
 Combine FastComponents with other technologies:
 
-```csharp
+```C#
 // API endpoints for data
 app.MapGet("/api/products", () => GetProducts());
 
@@ -418,7 +418,7 @@ Start with working HTML, enhance with HTMX:
 
 Build complex UIs from simple components:
 
-```csharp
+```C#
 public abstract class ComposableComponent<TState> : SimpleHtmxComponent<TState>
     where TState : HtmxComponentParameters, new()
 {

@@ -35,7 +35,7 @@ Yes! FastComponents integrates seamlessly with existing ASP.NET Core application
 
 FastComponents uses immutable records for state that can be serialized to query strings:
 
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record MyState : HtmxComponentParameters
 {
@@ -49,7 +49,7 @@ State flows through URL parameters, making it shareable and bookmarkable.
 
 Yes, components support full dependency injection:
 
-```csharp
+```C#
 public class MyComponent : SimpleHtmxComponent<MyState>
 {
     [Inject] private IMyService MyService { get; set; } = null!;
@@ -66,7 +66,7 @@ public class MyComponent : SimpleHtmxComponent<MyState>
 
 Forms work like regular HTML forms with HTMX enhancement:
 
-```razor
+```Razor
 <form hx-post="@Url" hx-target="this" hx-swap="outerHTML">
     <input name="email" type="email" required />
     <button type="submit">Submit</button>
@@ -94,7 +94,7 @@ Yes! FastComponents renders plain HTML that works with any CSS framework:
 
 Use standard ASP.NET Core authentication:
 
-```csharp
+```C#
 app.MapHtmxGet<SecureComponent, SecureState>("/secure")
    .RequireAuthorization();
 
@@ -120,13 +120,13 @@ For many scenarios, yes:
 ### How do I optimize performance?
 
 1. **Use output caching**:
-```csharp
+```C#
 app.MapHtmxGet<MyComponent, MyState>("/cached")
    .CacheOutput();
 ```
 
 2. **Minimize state**:
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 ```
 
@@ -154,7 +154,7 @@ FastComponents works with:
 ### How do I debug components?
 
 Standard debugging techniques work:
-```csharp
+```C#
 protected override MyState OnPost(MyState state)
 {
     // Set breakpoint here
@@ -168,7 +168,7 @@ protected override MyState OnPost(MyState state)
 ### Can I unit test components?
 
 Yes, components are easily testable:
-```csharp
+```C#
 [Fact]
 public void Component_Updates_State()
 {
@@ -184,7 +184,7 @@ public void Component_Updates_State()
 ### How do I handle errors?
 
 Implement error handling in your components:
-```csharp
+```C#
 protected override async Task<MyState> OnGetAsync(MyState state)
 {
     try

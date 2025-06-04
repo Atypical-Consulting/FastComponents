@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 FastComponents is a .NET 9.0 Razor Class Library that enables building HTMX-powered web applications using Blazor components with server-side rendering. It provides type-safe C# properties for all HTMX attributes and integrates with ASP.NET Minimal APIs for endpoint routing.
 
+The library simplifies building Multiple Resources Applications (MRA) by combining the component model of Blazor with the simplicity of HTMX, allowing developers to build dynamic web applications without writing JavaScript.
+
 ## Common Development Commands
 
 ```bash
@@ -25,11 +27,18 @@ dotnet test
 dotnet test tests/FastComponents.UnitTests/FastComponents.UnitTests.csproj
 dotnet test tests/FastComponents.Generators.UnitTests/FastComponents.Generators.UnitTests.csproj
 
+# Run a single test
+dotnet test --filter "FullyQualifiedName~TestMethodName"
+dotnet test --filter "DisplayName~TestMethodName"
+
 # Pack NuGet package
 dotnet pack --configuration Release
 
 # Run the demo application
 dotnet run --project demo/HtmxAppServer/HtmxAppServer.csproj
+
+# Watch mode for development
+dotnet watch --project demo/HtmxAppServer/HtmxAppServer.csproj
 
 # Clean build artifacts
 dotnet clean
@@ -40,9 +49,11 @@ dotnet clean
 ### Core Components
 
 - **HtmxComponentBase** (`src/FastComponents/Components/Base/HtmxComponentBase.cs`) - Base class providing HTMX attribute properties for all components
+- **SimpleHtmxComponent** (`src/FastComponents/Components/Base/SimpleHtmxComponent.cs`) - Simplified base class with automatic route generation
 - **ComponentHtmlResponseService** (`src/FastComponents/Services/ComponentHtmlResponseService.cs`) - Renders Blazor components as HTML responses for HTMX requests
 - **HtmxComponentEndpoints** (`src/FastComponents/Endpoints/HtmxComponentEndpoints.cs`) - ASP.NET Minimal API integration for component routing
 - **ClassNamesBuilder** (`src/FastComponents/Components/Base/ClassNamesBuilder.cs`) - Fluent API for building CSS class names
+- **HtmxBuilder** (`src/FastComponents/Builders/HtmxBuilder.cs`) - Fluent builder for creating HTMX elements programmatically
 - **FastComponents.Generators** (`src/FastComponents.Generators/`) - Source generators for parameter method generation
 
 ### HTMX Integration Pattern
@@ -58,6 +69,29 @@ The project follows an MRA pattern where:
 1. Server renders Blazor components as HTML
 2. HTMX handles dynamic updates without full page reloads
 3. ASP.NET Minimal APIs provide endpoints for component requests
+
+### Simplified API and Convention-Based Registration
+
+FastComponents provides two API approaches:
+
+1. **Explicit Registration** - Traditional approach with manual endpoint mapping:
+   ```csharp
+   app.MapHtmxGet<CounterComponent, CounterState>("/htmx/counter");
+   ```
+
+2. **Convention-Based Registration** - Automatic discovery and registration:
+   ```csharp
+   // In Program.cs
+   builder.Services.AddFastComponentsAuto();
+   app.UseFastComponentsAuto();
+   ```
+   
+   Components are automatically discovered and mapped based on naming conventions:
+   - `CounterComponent` → `/htmx/counter`
+   - `MovieCharactersExample` → `/htmx/movie-characters`
+   - Routes are kebab-cased with common suffixes removed
+
+The convention-based approach is implemented in `ConventionBasedRegistration.cs` and `SimplifiedExtensions.cs`.
 
 ## Key Dependencies
 

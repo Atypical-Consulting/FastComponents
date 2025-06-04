@@ -35,7 +35,7 @@
       {
         <!-- Auto-loading trigger when scrolled into view -->
         <div id="load-more-trigger"
-             hx-get="/ui/examples/infinite-scroll?Page=@(Parameters.Page + 1)&LoadType=auto"
+             hx-get="@($"/ui/examples/infinite-scroll?Page={Parameters.Page + 1}&LoadType=auto")"
              hx-trigger="intersect once"
              hx-target="#characters-list"
              hx-swap="beforeend"

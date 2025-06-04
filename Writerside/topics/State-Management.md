@@ -30,7 +30,7 @@ graph LR
 
 Use records that inherit from `HtmxComponentParameters`:
 
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record TodoListState : HtmxComponentParameters
 {
@@ -52,7 +52,7 @@ public record TodoItem
 
 Always create new state instances instead of modifying existing ones:
 
-```csharp
+```C#
 // ❌ Wrong - Modifying state
 State.Items.Add(newItem);
 
@@ -67,7 +67,7 @@ State = State with
 
 Initialize state in different ways:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent<ProductListState>
 
 @code {
@@ -105,7 +105,7 @@ Initialize state in different ways:
 
 The `[GenerateParameterMethods]` attribute generates methods for URL state:
 
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record SearchState : HtmxComponentParameters
 {
@@ -123,7 +123,7 @@ public partial record SearchState : HtmxComponentParameters
 
 Use `SkipDefaults` to exclude default values:
 
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 public partial record FilterState : HtmxComponentParameters
 {
@@ -136,7 +136,7 @@ public partial record FilterState : HtmxComponentParameters
 
 For complex scenarios, implement custom serialization:
 
-```csharp
+```C#
 public record ComplexState : HtmxComponentParameters
 {
     public List<int> SelectedIds { get; init; } = [];
@@ -186,7 +186,7 @@ public record ComplexState : HtmxComponentParameters
 
 Organize complex state with nested records:
 
-```csharp
+```C#
 public record AppState : HtmxComponentParameters
 {
     public UserState User { get; init; } = new();
@@ -219,7 +219,7 @@ public record UIState
 
 Compose state from multiple sources:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent<DashboardState>
 @inject IUserService UserService
 @inject IStatsService StatsService
@@ -246,7 +246,7 @@ Compose state from multiple sources:
 
 Implement reducer pattern for complex state updates:
 
-```csharp
+```C#
 public static class TodoReducers
 {
     public static TodoState Reduce(TodoState state, TodoAction action)
@@ -302,7 +302,7 @@ protected override TodoState OnPost(TodoState state)
 
 Store user-specific state in sessions:
 
-```csharp
+```C#
 public class CartComponent : SimpleHtmxComponent<CartState>
 {
     [Inject] private IHttpContextAccessor HttpContextAccessor { get; set; } = null!;
@@ -337,7 +337,7 @@ public class CartComponent : SimpleHtmxComponent<CartState>
 
 Persist state to database:
 
-```csharp
+```C#
 public class UserPreferencesComponent : SimpleHtmxComponent<PreferencesState>
 {
     [Inject] private IDbContext DbContext { get; set; } = null!;
@@ -387,7 +387,7 @@ public class UserPreferencesComponent : SimpleHtmxComponent<PreferencesState>
 
 Share state across servers using cache:
 
-```csharp
+```C#
 public class LiveDashboard : SimpleHtmxComponent<DashboardState>
 {
     [Inject] private IDistributedCache Cache { get; set; } = null!;
@@ -422,7 +422,7 @@ public class LiveDashboard : SimpleHtmxComponent<DashboardState>
 
 Use events to synchronize state between components:
 
-```csharp
+```C#
 // Shared event service
 public class StateEventService
 {
@@ -471,7 +471,7 @@ public class HeaderComponent : SimpleHtmxComponent<HeaderState>
 
 Use SSE or WebSockets for real-time updates:
 
-```razor
+```Razor
 @* Real-time notifications component *@
 <div hx-ext="sse" sse-connect="/notifications/stream">
     <div id="notification-list" 
@@ -510,7 +510,7 @@ app.MapGet("/notifications/stream", async (HttpContext context) =>
 
 Use HTMX validation attributes:
 
-```razor
+```Razor
 <form hx-post="@Url" hx-validate="true">
     <input type="email" name="email" required />
     <input type="number" name="age" min="18" max="100" />
@@ -522,7 +522,7 @@ Use HTMX validation attributes:
 
 Validate state on the server:
 
-```csharp
+```C#
 public record RegistrationState : HtmxComponentParameters, IValidatableObject
 {
     public string Email { get; init; } = "";
@@ -567,7 +567,7 @@ protected override RegistrationState OnPost(RegistrationState state)
 
 Keep state minimal:
 
-```csharp
+```C#
 // ❌ Don't store derived values
 public record BadState : HtmxComponentParameters
 {
@@ -589,7 +589,7 @@ public record GoodState : HtmxComponentParameters
 
 Load expensive data on demand:
 
-```csharp
+```C#
 public record DashboardState : HtmxComponentParameters
 {
     public bool IsStatsLoaded { get; init; }

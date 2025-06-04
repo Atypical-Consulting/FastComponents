@@ -12,7 +12,7 @@ FastComponents provides several base classes for different scenarios:
 
 The foundation for all HTMX-enabled components:
 
-```csharp
+```Razor
 @inherits HtmxComponentBase
 
 <div @attributes="AdditionalAttributes">
@@ -30,7 +30,7 @@ Features:
 
 A simplified base class for stateless components:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent
 
 <button hx-get="@GetRoute<CounterComponent>()">
@@ -42,7 +42,7 @@ A simplified base class for stateless components:
 
 For components with state management:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent<TodoState>
 
 <div>
@@ -91,7 +91,7 @@ Dynamic styling during requests:
 
 Attributes can be set in multiple ways:
 
-```csharp
+```Razor
 // In code
 @code {
     protected override void OnInitialized()
@@ -117,7 +117,7 @@ Attributes can be set in multiple ways:
 
 Define strongly-typed parameters using records:
 
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record ProductListState : HtmxComponentParameters
 {
@@ -141,7 +141,7 @@ The `[GenerateParameterMethods]` attribute generates:
 
 Example flow:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent<SearchState>
 
 <!-- 1. Component renders with current state -->
@@ -171,7 +171,7 @@ Example flow:
 
 Map components to specific routes:
 
-```csharp
+```C#
 // GET requests
 app.MapHtmxGet<ProductList, ProductListState>("/products");
 
@@ -188,7 +188,7 @@ app.MapHtmxDelete<TodoItem, TodoState>("/todo/{id}");
 
 Automatically map components by naming convention:
 
-```csharp
+```C#
 // Maps all components ending with "Component" or "Example"
 app.MapHtmxComponentsByConvention();
 
@@ -203,7 +203,7 @@ app.MapHtmxComponentsByConvention();
 
 Access route values in your components:
 
-```csharp
+```Razor
 @inherits SimpleHtmxComponent<ProductState>
 @inject IHttpContextAccessor HttpContextAccessor
 
@@ -223,7 +223,7 @@ Access route values in your components:
 
 Access HTMX request headers:
 
-```csharp
+```C#
 public class MyEndpoint
 {
     public IResult Handle(HttpContext context)
@@ -251,7 +251,7 @@ public class MyEndpoint
 
 Control HTMX behavior with response headers:
 
-```csharp
+```C#
 public IResult Handle(HttpContext context)
 {
     var htmxResponse = context.GetHtmxResponseHeaders();
@@ -285,7 +285,7 @@ public IResult Handle(HttpContext context)
 
 Components can handle different HTTP methods:
 
-```csharp
+```C#
 @inherits SimpleHtmxComponent<ItemState>
 
 @code {
@@ -315,7 +315,7 @@ Components can handle different HTTP methods:
 
 Use the `ClassNamesBuilder` for dynamic CSS classes:
 
-```csharp
+```Razor
 @inherits HtmxComponentBase
 
 @code {

@@ -46,7 +46,7 @@ FastComponents follows a Multiple Resources Application (MRA) architecture:
 ### HTMX Components
 Components that inherit from `HtmxComponentBase` automatically gain access to all HTMX attributes as C# properties:
 
-```csharp
+```Razor
 @inherits HtmxComponentBase
 
 <div @attributes="AdditionalAttributes">
@@ -60,7 +60,7 @@ Components that inherit from `HtmxComponentBase` automatically gain access to al
 ### Component Parameters
 Create strongly-typed parameters for your components using records that inherit from `HtmxComponentParameters`:
 
-```csharp
+```C#
 [GenerateParameterMethods]
 public partial record CounterState : HtmxComponentParameters
 {
@@ -71,7 +71,7 @@ public partial record CounterState : HtmxComponentParameters
 ### Endpoint Mapping
 Map components to HTTP endpoints using the fluent API:
 
-```csharp
+```Razor
 app.MapHtmxGet<CounterComponent, CounterState>("/counter");
 ```
 

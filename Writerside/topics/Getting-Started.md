@@ -31,7 +31,7 @@ dotnet add package FastComponents
 
 Update your `Program.cs` to register FastComponents services:
 
-```csharp
+```C#
 using FastComponents;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -55,7 +55,7 @@ app.Run();
 
 Create a new file `Components/Counter.razor`:
 
-```razor
+```Razor
 @inherits SimpleHtmxComponent<CounterState>
 
 <div class="counter">
@@ -79,7 +79,7 @@ Create a new file `Components/Counter.razor`:
 
 Create `Models/CounterState.cs`:
 
-```csharp
+```C#
 using FastComponents;
 
 [GenerateParameterMethods]
@@ -93,7 +93,7 @@ public partial record CounterState : HtmxComponentParameters
 
 In your `Program.cs`, add the component mapping:
 
-```csharp
+```C#
 // Map the counter component
 app.MapHtmxGet<Counter, CounterState>("/counter");
 app.MapHtmxPost<Counter, CounterState>("/counter");
@@ -142,7 +142,7 @@ Create an `index.html` file in `wwwroot`:
 
 Update `Program.cs` to serve static files:
 
-```csharp
+```C#
 app.UseStaticFiles();
 app.MapFallbackToFile("index.html");
 ```
@@ -170,7 +170,7 @@ app.MapFallbackToFile("index.html");
 
 For even quicker setup, use the auto-configuration methods:
 
-```csharp
+```C#
 var builder = WebApplication.CreateBuilder(args);
 
 // Automatically configure everything

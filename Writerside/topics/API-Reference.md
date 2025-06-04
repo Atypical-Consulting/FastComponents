@@ -23,7 +23,7 @@ Complete API documentation for FastComponents, organized by namespace and functi
 
 Base class for all HTMX-enabled components.
 
-```csharp
+```C#
 public abstract class HtmxComponentBase : ComponentBase, IHxAttributes
 {
     // Core HTMX attributes
@@ -55,7 +55,7 @@ public abstract class HtmxComponentBase : ComponentBase, IHxAttributes
 
 Simplified base class for stateful components.
 
-```csharp
+```C#
 public abstract class SimpleHtmxComponent<TState> : HtmxComponentBase
     where TState : HtmxComponentParameters, new()
 {
@@ -75,7 +75,7 @@ public abstract class SimpleHtmxComponent<TState> : HtmxComponentBase
 
 Base class for component state/parameters.
 
-```csharp
+```C#
 public abstract record HtmxComponentParameters
 {
     // Query string serialization
@@ -95,7 +95,7 @@ public abstract record HtmxComponentParameters
 
 ### Service Registration
 
-```csharp
+```C#
 // Manual registration
 services.AddFastComponents();
 
@@ -105,7 +105,7 @@ services.AddFastComponentsAuto();
 
 ### Endpoint Mapping
 
-```csharp
+```C#
 // Manual mapping
 app.MapHtmxGet<MyComponent, MyState>("/my-component");
 app.MapHtmxPost<MyComponent, MyState>("/my-component");
@@ -119,7 +119,7 @@ app.UseFastComponentsAuto();
 
 ### HTTP Context Extensions
 
-```csharp
+```C#
 // Check if request is from HTMX
 if (context.IsHtmxRequest())
 {
@@ -140,7 +140,7 @@ if (context.IsHtmxRequest())
 
 Generates query string serialization methods.
 
-```csharp
+```C#
 [GenerateParameterMethods(SkipDefaults = true)]
 public partial record MyState : HtmxComponentParameters
 {
@@ -155,7 +155,7 @@ public partial record MyState : HtmxComponentParameters
 
 Complete set of HTMX attributes.
 
-```csharp
+```C#
 public interface IHxAttributes : IHxCoreAttributes, IHxAdditionalAttributes
 {
     // Combines all HTMX attribute interfaces
@@ -166,7 +166,7 @@ public interface IHxAttributes : IHxCoreAttributes, IHxAdditionalAttributes
 
 Core HTMX functionality.
 
-```csharp
+```C#
 public interface IHxCoreAttributes
 {
     string? HxGet { get; set; }
@@ -184,7 +184,7 @@ public interface IHxCoreAttributes
 
 Fluent API for building HTMX elements.
 
-```csharp
+```C#
 var builder = HtmxBuilder.Create()
     .Div()
     .Get("/api/data")
@@ -199,7 +199,7 @@ var builder = HtmxBuilder.Create()
 
 Fluent API for building CSS classes.
 
-```csharp
+```C#
 var classes = ClassNamesBuilder.Default("base-class")
     .AddClass("active", isActive)
     .AddClass("disabled", isDisabled)
@@ -213,7 +213,7 @@ var classes = ClassNamesBuilder.Default("base-class")
 
 Renders components as HTML responses.
 
-```csharp
+```C#
 public class ComponentHtmlResponseService
 {
     public async Task<IHtmlContent> RenderComponentAsync<TComponent>(
@@ -230,7 +230,7 @@ public class ComponentHtmlResponseService
 
 Formats HTML output for readability.
 
-```csharp
+```C#
 public static class HtmlBeautifier
 {
     public static string BeautifyHtml(string html);
@@ -243,7 +243,7 @@ public static class HtmlBeautifier
 
 All HTMX JavaScript events.
 
-```csharp
+```C#
 public static class HtmxEvents
 {
     // Lifecycle events
@@ -264,7 +264,7 @@ public static class HtmxEvents
 
 Default values for HTMX behavior.
 
-```csharp
+```C#
 public static class HtmxDefaults
 {
     public const string Swap = "innerHTML";

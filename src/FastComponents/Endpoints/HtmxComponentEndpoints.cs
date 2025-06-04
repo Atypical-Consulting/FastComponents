@@ -69,8 +69,8 @@ public static class HtmxComponentEndpoints
                 // Create new parameters and bind from query
                 TParameters baseParams = new();
                 HtmxComponentParameters boundParams = baseParams.BindFromQuery(context.Request.Query);
-                Dictionary<string, object?> componentParameters = new()
-                    { [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams };
+                Dictionary<string, object?> componentParameters =
+                    new() { [nameof(HtmxComponentBase<TParameters>.Parameters)] = boundParams };
                 return service.RenderAsHtmlContentAsync<TComponent>(componentParameters);
             });
     }
