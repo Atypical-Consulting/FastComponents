@@ -2,25 +2,28 @@
 
 Explore the advanced capabilities of FastComponents for building sophisticated web applications.
 
-## Server-Sent Events (SSE)
-
-### Overview
+<chapter title="Server-Sent Events (SSE)" id="server-sent-events">
 
 Server-Sent Events enable real-time, one-way communication from server to client. FastComponents provides the `HtmxSseTag` component for easy SSE integration.
 
-### Basic SSE Setup
+<procedure title="Setting up SSE" id="sse-setup">
 
-```razor
-@* Real-time notifications *@
-<HtmxSseTag SseConnect="/notifications/stream" 
-            SseSwap="message">
-    <div id="notifications">
-        <!-- Messages will appear here -->
-    </div>
-</HtmxSseTag>
+<step>Create the SSE component:
 
-@* Server endpoint *@
-app.MapGet("/notifications/stream", async (HttpContext context) =>
+<code-block lang="html">
+&lt;HtmxSseTag SseConnect="/notifications/stream" 
+            SseSwap="message"&gt;
+    &lt;div id="notifications"&gt;
+        &lt;!-- Messages will appear here --&gt;
+    &lt;/div&gt;
+&lt;/HtmxSseTag&gt;
+</code-block>
+</step>
+
+<step>Configure the server endpoint:
+
+<code-block lang="c#">
+app.MapGet("/notifications/stream", async (HttpContext context) =&gt;
 {
     context.Response.Headers.Append("Content-Type", "text/event-stream");
     context.Response.Headers.Append("Cache-Control", "no-cache");
@@ -28,13 +31,18 @@ app.MapGet("/notifications/stream", async (HttpContext context) =>
     
     await foreach (var notification in GetNotificationsAsync(context.RequestAborted))
     {
-        var html = $"<div class='notification'>{notification.Message}</div>";
+        var html = $"&lt;div class='notification'&gt;{notification.Message}&lt;/div&gt;";
         await context.Response.WriteAsync($"event: message\n");
         await context.Response.WriteAsync($"data: {html}\n\n");
         await context.Response.Body.FlushAsync();
     }
 });
-```
+</code-block>
+</step>
+
+</procedure>
+
+</chapter>
 
 ### Multiple Event Types
 

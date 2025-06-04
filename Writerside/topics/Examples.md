@@ -1,57 +1,98 @@
 # Examples and Tutorials
 
+<tldr>
+<p>Practical examples and real-world patterns for building interactive web applications with FastComponents.</p>
+<p>From simple forms to complex dashboards - learn by example.</p>
+</tldr>
+
 This section provides practical examples of common patterns and real-world scenarios using FastComponents.
 
 ## Interactive Examples
 
-### 1. Live Search
+<tabs>
+<tab title="Live Search" id="live-search-tab">
+Build a responsive search component that updates results as you type
+</tab>
+<tab title="Inline Editing" id="inline-edit-tab">
+Create seamless in-place editing without page navigation
+</tab>
+<tab title="Shopping Cart" id="cart-tab">
+Implement a dynamic cart with real-time updates
+</tab>
+<tab title="Tabbed Interface" id="tabs-tab">
+Create dynamic tabs with lazy-loaded content
+</tab>
+<tab title="Data Table" id="table-tab">
+Build feature-rich tables with sorting and filtering
+</tab>
+</tabs>
 
-A search component that updates results as you type:
+<chapter title="Live Search Component" id="live-search-example">
 
-```razor
-@* Components/LiveSearch.razor *@
-@inherits SimpleHtmxComponent<SearchState>
+A search component that updates results as you type, providing instant feedback to users.
 
-<div class="search-container">
-    <form hx-get="@Url" 
+<procedure title="Building a Live Search Component" id="build-live-search">
+
+<step>Create the search state record:
+
+<code-block lang="c#">
+// Models/SearchState.cs
+[GenerateParameterMethods]
+public partial record SearchState : HtmxComponentParameters
+{
+    public string Query { get; init; } = "";
+    public List&lt;Product&gt; Results { get; init; } = [];
+    public bool IsLoading { get; init; }
+}
+</code-block>
+</step>
+
+<step>Implement the search component:
+
+<code-block lang="c#">
+// Components/LiveSearch.razor
+@inherits SimpleHtmxComponent&lt;SearchState&gt;
+
+&lt;div class="search-container"&gt;
+    &lt;form hx-get="@Url" 
           hx-target="#search-results" 
-          hx-trigger="keyup changed delay:500ms from:input">
-        <input type="search" 
+          hx-trigger="keyup changed delay:500ms from:input"&gt;
+        &lt;input type="search" 
                name="query" 
                value="@State.Query"
                placeholder="Search products..." 
-               autocomplete="off" />
-    </form>
+               autocomplete="off" /&gt;
+    &lt;/form&gt;
     
-    <div id="search-results">
+    &lt;div id="search-results"&gt;
         @if (!string.IsNullOrEmpty(State.Query))
         {
             @if (State.IsLoading)
             {
-                <div class="loading">Searching...</div>
+                &lt;div class="loading"&gt;Searching...&lt;/div&gt;
             }
             else if (!State.Results.Any())
             {
-                <div class="no-results">
+                &lt;div class="no-results"&gt;
                     No results found for "@State.Query"
-                </div>
+                &lt;/div&gt;
             }
             else
             {
-                <div class="results">
+                &lt;div class="results"&gt;
                     @foreach (var product in State.Results)
                     {
-                        <div class="result-item">
-                            <h4>@product.Name</h4>
-                            <p>@product.Description</p>
-                            <span class="price">$@product.Price</span>
-                        </div>
+                        &lt;div class="result-item"&gt;
+                            &lt;h4&gt;@product.Name&lt;/h4&gt;
+                            &lt;p&gt;@product.Description&lt;/p&gt;
+                            &lt;span class="price"&gt;$@product.Price&lt;/span&gt;
+                        &lt;/div&gt;
                     }
-                </div>
+                &lt;/div&gt;
             }
         }
-    </div>
-</div>
+    &lt;/div&gt;
+&lt;/div&gt;
 
 @code {
     [Inject] private IProductService ProductService { get; set; } = null!;
@@ -71,23 +112,28 @@ A search component that updates results as you type:
     }
 }
 
-// Models/SearchState.cs
-[GenerateParameterMethods]
-public partial record SearchState : HtmxComponentParameters
-{
-    public string Query { get; init; } = "";
-    public List<Product> Results { get; init; } = [];
-    public bool IsLoading { get; init; }
-}
-```
+</code-block>
+</step>
 
-### 2. Inline Editing
+</procedure>
 
-Edit content in place without navigating away:
+<tip>
+The `delay:500ms` trigger prevents excessive server requests while typing. Adjust the delay based on your application's needs.
+</tip>
 
-```razor
-@* Components/EditableField.razor *@
-@inherits SimpleHtmxComponent<EditableFieldState>
+</chapter>
+
+<chapter title="Inline Editing Component" id="inline-edit-example">
+
+Edit content in place without navigating away, providing a seamless user experience.
+
+<warning>
+Always validate and sanitize user input on the server side, even for inline editing scenarios.
+</warning>
+
+<code-block lang="c#">
+// Components/EditableField.razor
+@inherits SimpleHtmxComponent&lt;EditableFieldState&gt;
 
 @if (State.IsEditing)
 {
@@ -138,15 +184,21 @@ else
         return state with { IsEditing = false };
     }
 }
-```
+</code-block>
 
-### 3. Shopping Cart
+</chapter>
 
-A dynamic shopping cart with real-time updates:
+<chapter title="Shopping Cart Component" id="shopping-cart-example">
 
-```razor
-@* Components/ShoppingCart.razor *@
-@inherits SimpleHtmxComponent<CartState>
+A dynamic shopping cart with real-time updates that demonstrates complex state management.
+
+<note>
+This example shows how to handle multiple actions (add, remove, update quantities) within a single component.
+</note>
+
+<code-block lang="c#">
+// Components/ShoppingCart.razor
+@inherits SimpleHtmxComponent&lt;CartState&gt;
 
 <div class="shopping-cart" id="cart">
     <h3>Shopping Cart (@State.Items.Count items)</h3>
@@ -233,9 +285,11 @@ A dynamic shopping cart with real-time updates:
         return await LoadCartStateAsync();
     }
 }
-```
+</code-block>
 
-### 4. Tabbed Interface
+</chapter>
+
+<chapter title="Tabbed Interface Component" id="tabs-example">
 
 Dynamic tabs with lazy-loaded content:
 
@@ -426,11 +480,39 @@ A feature-rich data table:
 
 ## Complete Application Examples
 
-### Multi-Step Form Wizard
+<cards>
+<card title="📝 Multi-Step Form Wizard" id="wizard-card">
+Learn how to build complex forms with validation and progressive disclosure.
+</card>
+<card title="📊 Real-Time Dashboard" id="dashboard-card">
+Create live dashboards with Server-Sent Events and WebSocket integration.
+</card>
+</cards>
 
-A complete wizard implementation:
+<chapter title="Multi-Step Form Wizard" id="form-wizard-example">
 
-```razor
+A complete wizard implementation demonstrating step management, validation, and data flow.
+
+<procedure title="Creating a Form Wizard" id="build-wizard">
+
+<step>Define the wizard state:
+
+<code-block lang="c#">
+[GenerateParameterMethods]
+public partial record WizardState : HtmxComponentParameters
+{
+    public int CurrentStep { get; init; } = 1;
+    public int TotalSteps { get; init; } = 3;
+    public PersonalInfo PersonalInfo { get; init; } = new();
+    public Address Address { get; init; } = new();
+    public bool ShowErrors { get; init; }
+}
+</code-block>
+</step>
+
+<step>Implement the wizard component:
+
+<code-block lang="c#">
 @* Components/FormWizard.razor *@
 @inherits SimpleHtmxComponent<WizardState>
 
@@ -537,9 +619,14 @@ A complete wizard implementation:
         };
     }
 }
-```
+</code-block>
+</step>
 
-### Real-Time Dashboard
+</procedure>
+
+</chapter>
+
+<chapter title="Real-Time Dashboard" id="dashboard-example">
 
 A dashboard with live updates:
 
@@ -596,41 +683,43 @@ A dashboard with live updates:
         <!-- Chart rendered here -->
     </div>
 </div>
-```
+</code-block>
+</step>
+
+</procedure>
+
+<tip>
+Use SSE for one-way real-time updates and WebSockets for 
+bidirectional communication.
+</tip>
+
+</chapter>
 
 ## Best Practices from Examples
 
-### 1. User Feedback
-Always provide visual feedback during operations:
-- Loading states
-- Success/error messages
-- Progress indicators
-- Confirmation dialogs
-
-### 2. Progressive Enhancement
-Start with a working non-JavaScript version when possible:
-- Forms should work without HTMX
-- Links should have valid href attributes
-- Enhance with HTMX attributes
-
-### 3. State Management
-Keep component state minimal and focused:
-- Only store what's needed for rendering
-- Derive computed values
-- Use URL state for shareable views
-
-### 4. Error Handling
-Handle errors gracefully:
-- Show user-friendly error messages
-- Provide retry mechanisms
-- Log errors for debugging
-
-### 5. Performance
-Optimize for performance:
-- Debounce rapid triggers
-- Use appropriate swap strategies
-- Implement caching where beneficial
-- Lazy load expensive content
+<deflist>
+<def title="User Feedback">
+Always provide visual feedback during operations - loading states, 
+success/error messages, progress indicators, and confirmation dialogs.
+</def>
+<def title="Progressive Enhancement">
+Start with a working non-JavaScript version when possible - forms should 
+work without HTMX, links should have valid href attributes.
+</def>
+<def title="State Management">
+Keep component state minimal and focused - only store what's needed 
+for rendering, derive computed values, use URL state for shareable views.
+</def>
+<def title="Error Handling">
+Handle errors gracefully - show user-friendly error messages, 
+provide retry mechanisms, log errors for debugging.
+</def>
+<def title="Performance">
+Optimize for performance - debounce rapid triggers, use appropriate 
+swap strategies, implement caching where beneficial, lazy load 
+content.
+</def>
+</deflist>
 
 ## Next Steps
 

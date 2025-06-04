@@ -2,20 +2,33 @@
 
 Complete API documentation for FastComponents, organized by namespace and functionality.
 
-## Namespaces
+<chapter title="Namespaces" id="namespaces">
 
-- **FastComponents** - Core components and base classes
-- **FastComponents.Http** - HTTP request/response handling
-- **FastComponents.Events** - HTMX event constants
-- **FastComponents.Generators** - Source generators and analyzers
+FastComponents : Core components and base classes
+FastComponents.Http : HTTP request/response handling  
+FastComponents.Events : HTMX event constants
+FastComponents.Generators : Source generators and analyzers
 
-## Quick Links
+</chapter>
 
-- [Components API](Components-API.md) - Component base classes and interfaces
-- [Endpoints API](Endpoints-API.md) - Endpoint mapping and routing
-- [HTTP API](HTTP-API.md) - Request and response headers
-- [Events API](Events-API.md) - HTMX event handling
-- [Builders API](Builders-API.md) - Fluent builders and helpers
+<chapter title="Quick Navigation" id="quick-navigation">
+
+<a href="Components-API.md">Components API</a>
+: Component base classes and interfaces
+
+<a href="Endpoints-API.md">Endpoints API</a>
+: Endpoint mapping and routing
+
+<a href="HTTP-API.md">HTTP API</a>
+: Request and response headers
+
+<a href="Events-API.md">Events API</a>  
+: HTMX event handling
+
+<a href="Builders-API.md">Builders API</a>
+: Fluent builders and helpers
+
+</chapter>
 
 ## Core Types
 

@@ -2,36 +2,43 @@
 
 This guide will help you set up your first FastComponents project and create a simple interactive component.
 
-## Prerequisites
+<chapter title="Prerequisites" id="prerequisites">
 
-- .NET 9.0 SDK or later
-- A code editor (Visual Studio, VS Code, or JetBrains Rider)
-- Basic knowledge of C# and ASP.NET Core
+Before you begin, ensure you have:
 
-## Installation
+.NET 9.0 SDK or later
+: Download from [Microsoft's official site](https://dotnet.microsoft.com/download)
 
-### 1. Create a New Project
+Code Editor
+: Visual Studio, VS Code, or JetBrains Rider
 
-Create a new ASP.NET Core Web Application:
+Basic Knowledge
+: C# and ASP.NET Core fundamentals
 
-```bash
+</chapter>
+
+<chapter title="Installation" id="installation">
+
+<procedure title="Setting up FastComponents" id="setup-procedure">
+
+<step>Create a new ASP.NET Core Web Application:
+
+<code-block lang="bash">
 dotnet new web -n MyFastComponentsApp
 cd MyFastComponentsApp
-```
+</code-block>
+</step>
 
-### 2. Install FastComponents
+<step>Install the FastComponents NuGet package:
 
-Add the FastComponents NuGet package:
-
-```bash
+<code-block lang="bash">
 dotnet add package FastComponents
-```
+</code-block>
+</step>
 
-### 3. Configure Services
+<step>Configure services in `Program.cs`:
 
-Update your `Program.cs` to register FastComponents services:
-
-```C#
+<code-block lang="c#">
 using FastComponents;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -47,25 +54,30 @@ app.UseFastComponents();
 // Your endpoints will go here
 
 app.Run();
-```
+</code-block>
+</step>
 
-## Creating Your First Component
+</procedure>
 
-### 1. Create a Counter Component
+</chapter>
 
-Create a new file `Components/Counter.razor`:
+<chapter title="Creating Your First Component" id="first-component">
 
-```Razor
-@inherits SimpleHtmxComponent<CounterState>
+<procedure title="Building a Counter Component" id="counter-component">
 
-<div class="counter">
-    <h2>Counter: @State.Count</h2>
-    <button hx-post="@Url" 
+<step>Create the component file `Components/Counter.razor`:
+
+<code-block lang="razor">
+@inherits SimpleHtmxComponent&lt;CounterState&gt;
+
+&lt;div class="counter"&gt;
+    &lt;h2&gt;Counter: @State.Count&lt;/h2&gt;
+    &lt;button hx-post="@Url" 
             hx-target="closest .counter" 
-            hx-swap="outerHTML">
+            hx-swap="outerHTML"&gt;
         Increment
-    </button>
-</div>
+    &lt;/button&gt;
+&lt;/div&gt;
 
 @code {
     protected override CounterState OnPost(CounterState state)
@@ -73,13 +85,12 @@ Create a new file `Components/Counter.razor`:
         return state with { Count = state.Count + 1 };
     }
 }
-```
+</code-block>
+</step>
 
-### 2. Define the Component State
+<step>Define the component state in `Models/CounterState.cs`:
 
-Create `Models/CounterState.cs`:
-
-```C#
+<code-block lang="c#">
 using FastComponents;
 
 [GenerateParameterMethods]
@@ -87,29 +98,58 @@ public partial record CounterState : HtmxComponentParameters
 {
     public int Count { get; init; } = 0;
 }
-```
+</code-block>
+</step>
 
-### 3. Map the Component Endpoint
+</procedure>
 
-In your `Program.cs`, add the component mapping:
+</chapter>
 
-```C#
-// Map the counter component
-app.MapHtmxGet<Counter, CounterState>("/counter");
-app.MapHtmxPost<Counter, CounterState>("/counter");
-```
+<chapter title="Component Registration" id="registration">
+
+Choose your preferred registration method:
+
+<tabs>
+    <tab title="Manual Registration" id="manual-tab">
+        <p>Explicit endpoint mapping in your <code>Program.cs</code>:</p>
+        
+        <code-block lang="c#">
+        // Map the counter component
+        app.MapHtmxGet&lt;Counter, CounterState&gt;("/counter");
+        app.MapHtmxPost&lt;Counter, CounterState&gt;("/counter");
+        </code-block>
+    </tab>
+    
+    <tab title="Auto Registration">
+        <p>Convention-based automatic discovery:</p>
+        
+        <code-block lang="c#">
+        // Replace AddFastComponents() and UseFastComponents() with:
+        builder.Services.AddFastComponentsAuto();
+        
+        var app = builder.Build();
+        app.UseFastComponentsAuto();
+        
+        // Components are automatically mapped based on naming conventions
+        // Counter component → /htmx/counter
+        </code-block>
+    </tab>
+</tabs>
+
+</chapter>
 
 ### 4. Create the Main Page
 
 Create an `index.html` file in `wwwroot`:
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-    <title>FastComponents Demo</title>
-    <script src="https://unpkg.com/htmx.org@2.0.0"></script>
-    <style>
+<code-block lang="html">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;FastComponents Demo&lt;/title&gt;
+    &lt;script src="https://unpkg.com/htmx.org@2.0.0"&gt;
+    &lt;/script&gt;
+    &lt;style&gt;
         body {
             font-family: system-ui, -apple-system, sans-serif;
             max-width: 800px;
@@ -127,16 +167,16 @@ Create an `index.html` file in `wwwroot`:
             font-size: 1rem;
             cursor: pointer;
         }
-    </style>
-</head>
-<body>
-    <h1>FastComponents Demo</h1>
+    &lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;FastComponents Demo&lt;/h1&gt;
     
-    <!-- Load the counter component -->
-    <div hx-get="/counter" hx-trigger="load"></div>
-</body>
-</html>
-```
+    &lt;!-- Load the counter component --&gt;
+    &lt;div hx-get="/counter" hx-trigger="load"&gt;&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code-block>
 
 ### 5. Serve Static Files
 

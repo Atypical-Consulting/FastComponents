@@ -1,14 +1,69 @@
 # Core Concepts
 
+<tldr>
+<p>Master the fundamental concepts: component architecture, state management, HTMX integration, and routing patterns.</p>
+<p>Build on these foundations to create powerful, interactive web applications.</p>
+</tldr>
+
 Understanding the core concepts of FastComponents will help you build more effective and maintainable applications.
 
-## Component Architecture
+<tabs>
+<tab title="Component Architecture" id="arch-tab">
+Learn about the different base classes and their use cases
+</tab>
+<tab title="State Management" id="state-tab">
+Understand how to manage and pass state between components
+</tab>
+<tab title="HTMX Integration" id="htmx-tab">
+Discover how HTMX attributes work with C# properties
+</tab>
+<tab title="Routing & Endpoints" id="routing-tab">
+Master URL patterns and endpoint configuration
+</tab>
+</tabs>
 
-### Base Classes
+<chapter title="Component Architecture" id="component-architecture">
 
-FastComponents provides several base classes for different scenarios:
+FastComponents provides several base classes for different scenarios, each optimized for specific use cases.
 
-#### HtmxComponentBase
+<cards>
+<card title="🏗️ HtmxComponentBase" id="base-card">
+The foundation class providing full HTMX attribute access and flexibility.
+</card>
+<card title="⚡ SimpleHtmxComponent" id="simple-card">
+Streamlined base class for stateless components with convention-based routing.
+</card>
+<card title="📊 SimpleHtmxComponent&lt;TState&gt;" id="state-card">
+Stateful components with automatic state management and URL binding.
+</card>
+</cards>
+
+<procedure title="Choosing the Right Base Class" id="choose-base">
+
+<step>Use <code>HtmxComponentBase</code> when you need:
+- Full control over HTMX attributes
+- Custom attribute handling
+- Complex component logic
+- Integration with existing Blazor patterns
+</step>
+
+<step>Use <code>SimpleHtmxComponent</code> when you need:
+- Simple, stateless components
+- Convention-based routing
+- Minimal boilerplate code
+- Quick prototyping
+</step>
+
+<step>Use <code>SimpleHtmxComponent&lt;TState&gt;</code> when you need:
+- State management with URL binding
+- Type-safe parameter handling
+- Automatic serialization/deserialization
+- Component state persistence
+</step>
+
+</procedure>
+
+### HtmxComponentBase
 
 The foundation for all HTMX-enabled components:
 
@@ -26,7 +81,7 @@ Features:
 - CSS class building support
 - Custom attribute handling
 
-#### SimpleHtmxComponent
+#### SimpleHtmxComponent {#simple-component}
 
 A simplified base class for stateless components:
 
@@ -38,7 +93,7 @@ A simplified base class for stateless components:
 </button>
 ```
 
-#### SimpleHtmxComponent<TState>
+#### SimpleHtmxComponent&lt;TState&gt; {#simple-component-state}
 
 For components with state management:
 
@@ -165,7 +220,9 @@ Example flow:
 }
 ```
 
-## Endpoint Routing
+</chapter>
+
+<chapter title="Endpoint Routing" id="endpoint-routing">
 
 ### Manual Mapping
 
@@ -311,7 +368,9 @@ Components can handle different HTTP methods:
 }
 ```
 
-## CSS Class Building
+</chapter>
+
+<chapter title="CSS Class Building" id="css-class-building">
 
 Use the `ClassNamesBuilder` for dynamic CSS classes:
 
@@ -319,7 +378,8 @@ Use the `ClassNamesBuilder` for dynamic CSS classes:
 @inherits HtmxComponentBase
 
 @code {
-    protected override void OnBuildClassNames(ClassNamesBuilder builder)
+    protected override void OnBuildClassNames(
+        ClassNamesBuilder builder)
     {
         builder
             .AddClass("card")
@@ -329,6 +389,8 @@ Use the `ClassNamesBuilder` for dynamic CSS classes:
     }
 }
 ```
+
+</chapter>
 
 ## Best Practices
 

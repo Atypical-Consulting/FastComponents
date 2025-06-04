@@ -2,35 +2,48 @@
 
 FastComponents is a modern .NET library that seamlessly integrates HTMX with Blazor components for building dynamic web applications with server-side rendering. It provides a type-safe, component-based approach to creating interactive web experiences without writing JavaScript.
 
+<tldr>
+<p>FastComponents = Blazor Components + HTMX + ASP.NET Core</p>
+<p>Build interactive web apps with server-side rendering, type safety, and zero JavaScript.</p>
+</tldr>
+
 ## What is FastComponents?
 
 FastComponents bridges the gap between ASP.NET Core's server-side capabilities and HTMX's dynamic HTML approach. It allows you to:
 
 - Build interactive web applications using familiar Blazor component syntax
-- Leverage HTMX attributes through strongly-typed C# properties
+- Leverage HTMX attributes through strongly-typed C# properties  
 - Create reusable components that render as pure HTML
 - Handle dynamic updates without full page reloads
 - Maintain type safety throughout your application
 
 ## Key Features
 
-### 🚀 Type-Safe HTMX Integration
+<cards>
+<card title="🚀 Type-Safe HTMX Integration" id="type-safety">
 All HTMX attributes are exposed as strongly-typed C# properties, providing IntelliSense support and compile-time validation.
+</card>
 
-### 🎯 Component-Based Architecture
+<card title="🎯 Component-Based Architecture" id="components">
 Build your UI using reusable Blazor components that render to clean, semantic HTML enhanced with HTMX attributes.
+</card>
 
-### ⚡ Server-Side Rendering
+<card title="⚡ Server-Side Rendering" id="ssr">
 Components are rendered on the server and sent as HTML fragments, ensuring fast initial page loads and SEO-friendly content.
+</card>
 
-### 🔧 ASP.NET Core Integration
+<card title="🔧 ASP.NET Core Integration" id="integration">
 Seamlessly integrates with ASP.NET Core Minimal APIs for endpoint routing and request handling.
+</card>
 
-### 📦 Zero JavaScript Required
+<card title="📦 Zero JavaScript Required" id="no-js">
 Create fully interactive web applications without writing any client-side JavaScript code.
+</card>
 
-### 🎨 Flexible Styling
+<card title="🎨 Flexible Styling" id="styling">
 Works with any CSS framework - components render clean HTML that you can style however you prefer.
+</card>
+</cards>
 
 ## Architecture Overview
 
