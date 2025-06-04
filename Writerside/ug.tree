@@ -3,8 +3,48 @@
         SYSTEM "https://resources.jetbrains.com/writerside/1.0/product-profile.dtd">
 
 <instance-profile id="ug"
-                 name="FastComponents User Guide"
-                 start-page="starter-topic.md">
+                 name="FastComponents Documentation"
+                 start-page="Overview.md">
 
-    <toc-element topic="starter-topic.md"/>
+    <toc-element topic="Overview.md">
+        <toc-element topic="Getting-Started.md"/>
+    </toc-element>
+    
+    <toc-element topic="Core-Concepts.md"/>
+    
+    <toc-element topic="Component-Development.md"/>
+    
+    <toc-element topic="HTMX-Attributes.md"/>
+    
+    <toc-element topic="State-Management.md"/>
+    
+    <toc-element topic="Examples.md"/>
+    
+    <toc-element topic="API-Reference.md">
+        <toc-element topic="Components-API.md"/>
+        <toc-element topic="Endpoints-API.md"/>
+        <toc-element topic="HTTP-API.md"/>
+        <toc-element topic="Events-API.md"/>
+        <toc-element topic="Builders-API.md"/>
+    </toc-element>
+    
+    <toc-element topic="Advanced-Features.md">
+        <toc-element topic="SSE-WebSockets.md"/>
+        <toc-element topic="Source-Generators.md"/>
+        <toc-element topic="AOT-Support.md"/>
+        <toc-element topic="Performance.md"/>
+        <toc-element topic="Security.md"/>
+    </toc-element>
+    
+    <toc-element topic="Testing.md"/>
+    
+    <toc-element topic="Deployment.md"/>
+    
+    <toc-element topic="Migration-Guide.md"/>
+    
+    <toc-element topic="Troubleshooting.md"/>
+    
+    <toc-element topic="FAQ.md"/>
+    
+    <toc-element topic="Changelog.md"/>
 </instance-profile>
