@@ -67,7 +67,7 @@
   <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="AngleSharp" Version="1.4.0" />
-    <PackageReference Include="FastEndpoints" Version="5.35.0" />
+    <PackageReference Include="FastEndpoints" Version="8.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.0.24"/>
   </ItemGroup>
 
