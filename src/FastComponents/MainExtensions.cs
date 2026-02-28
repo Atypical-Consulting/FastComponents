@@ -1,3 +1,6 @@
+// Copyright (c) Atypical Consulting SRL. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using FastEndpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Web;
@@ -17,11 +20,11 @@ public static class MainExtensions
     /// <returns>The service collection</returns>
     public static IServiceCollection AddFastComponents(this IServiceCollection services)
     {
-        services.AddFastEndpoints();
-        
-        services.AddScoped<HtmlRenderer>();
-        services.AddScoped<HtmlBeautifier>();
-        services.AddScoped<ComponentHtmlResponseService>();
+        _ = services.AddFastEndpoints();
+
+        _ = services.AddScoped<HtmlRenderer>();
+        _ = services.AddScoped<HtmlBeautifier>();
+        _ = services.AddScoped<ComponentHtmlResponseService>();
         return services;
     }
     
@@ -32,7 +35,7 @@ public static class MainExtensions
     /// <returns>The application builder</returns>
     public static IApplicationBuilder UseFastComponents(this IApplicationBuilder app)
     {
-        app.UseFastEndpoints();
+        _ = app.UseFastEndpoints();
         return app;
     }
 }

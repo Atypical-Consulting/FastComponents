@@ -1,15 +1,15 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
-### [FastComponents](FastComponents.md 'FastComponents').[IHxCssClasses](FastComponents.IHxCssClasses.md 'FastComponents.IHxCssClasses')
+### [FastComponents](FastComponents.md 'FastComponents').[IHxCssClasses](FastComponents.IHxCssClasses.md 'FastComponents\.IHxCssClasses')
 
-## IHxCssClasses.HxCssIndicator Property
+## IHxCssClasses\.HxCssIndicator Property
 
-CSS CLASS<br/>  
-------------------------------<br/>  
-A dynamically generated class that will toggle visible (opacity:1) when a htmx-request class is present
+CSS CLASS<br/>
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/>
+A dynamically generated class that will toggle visible \(opacity:1\) when a htmx\-request class is present
 
 ```csharp
 string? HxCssIndicator { get; set; }
 ```
 
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

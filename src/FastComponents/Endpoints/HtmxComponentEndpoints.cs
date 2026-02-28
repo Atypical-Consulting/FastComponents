@@ -1,3 +1,6 @@
+// Copyright (c) Atypical Consulting SRL. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using FastEndpoints;
 using Microsoft.AspNetCore.Http;
 
@@ -17,7 +20,7 @@ public abstract class HtmxComponentEndpoint<TComponent>
     private async Task SendHtmlResultAsync()
     {
         IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>();
-        await SendResultAsync(response);
+        await response.ExecuteAsync(HttpContext);
     }
 }
 
@@ -30,14 +33,14 @@ public abstract class HtmxComponentEndpoint<TComponent, TParameters>
 
     public override async Task HandleAsync(TParameters req, CancellationToken ct)
     {
-        Dictionary<string, object?> parameters = new() { [nameof(HtmxComponentBase<TParameters>.Parameters)] = req };
+        Dictionary<string, object?> parameters = new() { [nameof(HtmxComponentBase<>.Parameters)] = req };
         await SendHtmlResultAsync(parameters);
     }
 
     protected async Task SendHtmlResultAsync(Dictionary<string, object?>? parameters = null)
     {
         IResult response = await ComponentHtmlResponseService.RenderAsHtmlContent<TComponent>(parameters);
-        await SendResultAsync(response);
+        await response.ExecuteAsync(HttpContext);
     }
 }
 

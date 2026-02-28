@@ -1,17 +1,17 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
-### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents.HtmxComponentBase')
+### [FastComponents](FastComponents.md 'FastComponents').[HtmxComponentBase](FastComponents.HtmxComponentBase.md 'FastComponents\.HtmxComponentBase')
 
-## HtmxComponentBase.HxHistoryElt Property
+## HtmxComponentBase\.HxHistoryElt Property
 
-ADDITIONAL ATTRIBUTE<br/>  
-------------------------------<br/>  
-The element to snapshot and restore during history navigation.
+ADDITIONAL ATTRIBUTE<br/>
+\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/>
+The element to snapshot and restore during history navigation\.
 
 ```csharp
 public string? HxHistoryElt { get; set; }
 ```
 
-Implements [HxHistoryElt](FastComponents.IHxAdditionalAttributes.HxHistoryElt.md 'FastComponents.IHxAdditionalAttributes.HxHistoryElt')
+Implements [HxHistoryElt](FastComponents.IHxAdditionalAttributes.HxHistoryElt.md 'FastComponents\.IHxAdditionalAttributes\.HxHistoryElt')
 
 #### Property Value
-[System.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

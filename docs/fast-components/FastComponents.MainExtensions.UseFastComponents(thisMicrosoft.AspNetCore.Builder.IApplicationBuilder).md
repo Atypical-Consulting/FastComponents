@@ -1,7 +1,7 @@
 #### [FastComponents](FastComponents.md 'FastComponents')
-### [FastComponents](FastComponents.md 'FastComponents').[MainExtensions](FastComponents.MainExtensions.md 'FastComponents.MainExtensions')
+### [FastComponents](FastComponents.md 'FastComponents').[MainExtensions](FastComponents.MainExtensions.md 'FastComponents\.MainExtensions')
 
-## MainExtensions.UseFastComponents(this IApplicationBuilder) Method
+## MainExtensions\.UseFastComponents\(this IApplicationBuilder\) Method
 
 Use FastComponents in the application
 
@@ -12,10 +12,10 @@ public static Microsoft.AspNetCore.Builder.IApplicationBuilder UseFastComponents
 
 <a name='FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.IApplicationBuilder).app'></a>
 
-`app` [Microsoft.AspNetCore.Builder.IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.IApplicationBuilder 'Microsoft.AspNetCore.Builder.IApplicationBuilder')
+`app` [Microsoft\.AspNetCore\.Builder\.IApplicationBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder 'Microsoft\.AspNetCore\.Builder\.IApplicationBuilder')
 
 The application builder
 
 #### Returns
-[Microsoft.AspNetCore.Builder.IApplicationBuilder](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.IApplicationBuilder 'Microsoft.AspNetCore.Builder.IApplicationBuilder')  
+[Microsoft\.AspNetCore\.Builder\.IApplicationBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.iapplicationbuilder 'Microsoft\.AspNetCore\.Builder\.IApplicationBuilder')  
 The application builder
