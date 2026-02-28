@@ -25,7 +25,7 @@
   <PropertyGroup>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
-    <AnalysisLevel>8.0-recommended</AnalysisLevel>
+    <AnalysisLevel>10.0-recommended</AnalysisLevel>
     <AnalysisModeDesign>All</AnalysisModeDesign>
     <AnalysisModeDocumentation>All</AnalysisModeDocumentation>
     <AnalysisModeGlobalization>All</AnalysisModeGlobalization>
@@ -81,10 +81,10 @@
     <Company>Atypical Consulting SRL</Company>
     <Product>FastComponents</Product>
     <Description>
-      Code web, think .NET 8 with FastComponents for a successful MRA (Multiple Resources Application).
+      Code web, think .NET 10 with FastComponents for a successful MRA (Multiple Resources Application).
     </Description>
-    <PackageTags>fastcomponents;mra architecture;core;net8</PackageTags>
-    <Copyright>Copyright (c) 2020-2024 Atypical Consulting SRL</Copyright>
+    <PackageTags>fastcomponents;mra architecture;core;net10</PackageTags>
+    <Copyright>Copyright (c) 2020-2026 Atypical Consulting SRL</Copyright>
     <PackageProjectUrl>https://github.com/Atypical-Consulting/FastComponents</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Atypical-Consulting/FastComponents.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
