@@ -1,11 +1,11 @@
 # FastComponents
 
-> **Server-side Blazor components rendered as HTMX-powered HTML fragments -- build interactive web UIs with .NET 8 and zero client-side Blazor runtime.**
+> **Server-side Blazor components rendered as HTMX-powered HTML fragments -- build interactive web UIs with .NET 10 and zero client-side Blazor runtime.**
 
 <!-- Badges: Row 1 — Identity -->
 [![Atypical-Consulting - FastComponents](https://img.shields.io/static/v1?label=Atypical-Consulting&message=FastComponents&color=blue&logo=github)](https://github.com/Atypical-Consulting/FastComponents)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-[![.NET 8](https://img.shields.io/badge/.NET-8.0-purple?logo=dotnet)](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+[![.NET 10](https://img.shields.io/badge/.NET-10.0-purple?logo=dotnet)](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 [![stars - FastComponents](https://img.shields.io/github/stars/Atypical-Consulting/FastComponents?style=social)](https://github.com/Atypical-Consulting/FastComponents)
 [![forks - FastComponents](https://img.shields.io/github/forks/Atypical-Consulting/FastComponents?style=social)](https://github.com/Atypical-Consulting/FastComponents)
 
@@ -76,10 +76,10 @@ Building interactive web UIs with .NET typically means choosing between the full
 
 | Layer | Technology |
 |-------|-----------|
-| Runtime | .NET 8.0 / C# 12 |
-| Component model | Blazor SSR (`Microsoft.AspNetCore.Components.Web` 8.0) |
-| Endpoint routing | [FastEndpoints](https://fast-endpoints.com/) 5.21 |
-| HTML parsing | [AngleSharp](https://anglesharp.github.io/) 1.0 |
+| Runtime | .NET 10.0 / C# 14 |
+| Component model | Blazor SSR (`Microsoft.AspNetCore.Components.Web` 10.0) |
+| Endpoint routing | [FastEndpoints](https://fast-endpoints.com/) 8.0 |
+| HTML parsing | [AngleSharp](https://anglesharp.github.io/) 1.4 |
 | Client interactivity | [htmx](https://htmx.org/) (bundled) |
 | Versioning | [MinVer](https://github.com/adamralph/minver) (git-tag based) |
 | CI/CD | GitHub Actions (build, NuGet pack, validate, publish) |
@@ -88,7 +88,7 @@ Building interactive web UIs with .NET typically means choosing between the full
 
 ### Prerequisites
 
-- [.NET SDK](https://dotnet.microsoft.com/download) >= 8.0
+- [.NET SDK](https://dotnet.microsoft.com/download) >= 10.0
 
 ### Installation
 
@@ -232,7 +232,7 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 
 ## License
 
-[Apache-2.0](LICENSE) (c) 2020-2024 [Atypical Consulting](https://atypical.garry-ai.cloud)
+[Apache-2.0](LICENSE) (c) 2020-2026 [Atypical Consulting](https://atypical.garry-ai.cloud)
 
 ---
 
