@@ -64,6 +64,9 @@ jobs:
         with:
           dotnet-version: 10.x
       
+      - name: Restore dependencies
+        run: dotnet restore
+
       # Build the project first so that staticwebassets.build.json manifest is generated
       - name: Build
         run: dotnet build --configuration Release --no-restore
