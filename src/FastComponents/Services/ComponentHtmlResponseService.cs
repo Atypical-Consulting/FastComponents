@@ -1,3 +1,6 @@
+// Copyright (c) Atypical Consulting SRL. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
@@ -8,7 +11,7 @@ namespace FastComponents;
 /// <summary>
 /// Service responsible for rendering components as HTML and returning them as HTTP responses.
 /// </summary>
-public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautifier beautifier)
+public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
 {
     /// <summary>
     /// Renders a component as HTML and returns it as an HTTP content result.
@@ -21,7 +24,7 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer, HtmlBeautif
         where TComponent : HtmxComponentBase
     {
         var html = await RenderComponent<TComponent>(parameters);
-        var beautified = beautifier.BeautifyHtml(html);
+        string beautified = HtmlBeautifier.BeautifyHtml(html);
         return Results.Content(beautified, "text/html", Encoding.UTF8);
     }
 

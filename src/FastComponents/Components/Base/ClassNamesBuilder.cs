@@ -1,3 +1,6 @@
+// Copyright (c) Atypical Consulting SRL. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
 using System.Text;
 
 namespace FastComponents;
@@ -39,8 +42,8 @@ public readonly struct ClassNamesBuilder(
     public ClassNamesBuilder AddRawValue(string value)
     {
         if (!string.IsNullOrWhiteSpace(value))
-            _stringBuffer.Append(value);
-    
+            _ = _stringBuffer.Append(value);
+
         return this;
     }
 

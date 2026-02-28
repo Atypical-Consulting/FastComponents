@@ -141,7 +141,7 @@ dotnet_naming_symbols.all_members.applicable_kinds = *
 
 dotnet_naming_style.pascal_case_style.capitalization = pascal_case
 
-file_header_template = Copyright (c) 2023 Philippe Matray. All rights reserved.\nThis file is part of TaLibStandard.\nTaLibStandard is licensed under the GNU General Public License v3.0.\nSee the LICENSE file in the project root for the full license text.\nFor more information, visit https://github.com/phmatray/TaLibStandard.
+file_header_template = Copyright (c) Atypical Consulting SRL. All rights reserved.\nLicensed under the MIT License. See LICENSE in the project root for license information.
 
 # RS0016: Only enable if API files are present
 dotnet_public_api_analyzer.require_api_files = true

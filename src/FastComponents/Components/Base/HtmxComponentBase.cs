@@ -1,3 +1,7 @@
+// Copyright (c) Atypical Consulting SRL. All rights reserved.
+// Licensed under the MIT License. See LICENSE in the project root for license information.
+
+using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Components;
 
 namespace FastComponents;
@@ -12,8 +16,9 @@ public abstract class HtmxComponentBase
     /// Gets or sets a custom tag name for the component.
     /// </summary>
     [Parameter]
+    [SuppressMessage("Naming", "CA1716:Identifiers should not match keywords", Justification = "Public API; renaming would be a breaking change")]
     public virtual string As { get; set; } = "div";
-    
+
     /////////////////////
     // Core Attributes //
     /////////////////////
@@ -188,8 +193,8 @@ public abstract class HtmxComponentBase
         builder = OnBuildClassNames(builder);
 
         // add class names from attributes
-        builder.AddClassFromAttributes(CustomAttributes);
-        
+        _ = builder.AddClassFromAttributes(CustomAttributes);
+
         return builder.Build();
     }
 }
@@ -212,5 +217,5 @@ public abstract class HtmxComponentBase<TParameters> : HtmxComponentBase
     /// </summary>
     /// <returns>The default parameters.</returns>
     private static TParameters CreateDefaultParameters()
-        => (TParameters)Activator.CreateInstance(typeof(TParameters))!;
+        => Activator.CreateInstance<TParameters>();
 }
