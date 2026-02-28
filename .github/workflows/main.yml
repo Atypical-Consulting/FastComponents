@@ -29,24 +29,28 @@ defaults:
 permissions:
   contents: read
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-#  run_test:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Checkout Source Code
-#        uses: actions/checkout@v3
-#
-#      - name: Setup .NET SDK
-#        uses: actions/setup-dotnet@v5
-#        with:
-#          dotnet-version: 10.x
-#
-#      - name: Run Unit Tests
-#        run: dotnet test --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
-#
-#      - name: Upload Code Coverage
-#        uses: codecov/codecov-action@v3
-  
+  run_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v6
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: 10.x
+
+      - name: Run Unit Tests
+        run: dotnet test --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
+
+      - name: Upload Code Coverage
+        uses: codecov/codecov-action@v5
+
   create_nuget:
     runs-on: ubuntu-latest
     steps:
@@ -113,8 +117,7 @@ jobs:
     # https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository
     # You can update this logic if you want to manage releases differently
     runs-on: ubuntu-latest
-    needs: [ validate_nuget, update_release_draft ]
-#    needs: [ validate_nuget, run_test, update_release_draft ]
+    needs: [ validate_nuget, run_test, update_release_draft ]
     steps:
       # Download the NuGet package created in the previous job
       - uses: actions/download-artifact@v8
@@ -134,5 +137,5 @@ jobs:
       - name: Publish NuGet package
         run: |
           foreach($file in (Get-ChildItem "${{ env.NuGetDirectory }}" -Recurse -Include *.nupkg)) {
-              dotnet nuget push $file --api-key "${{ secrets.NUGET_APIKEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
+              dotnet nuget push $file --api-key "${{ secrets.NUGET_API_KEY }}" --source https://api.nuget.org/v3/index.json --skip-duplicate
           }
