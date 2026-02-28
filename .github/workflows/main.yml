@@ -39,7 +39,7 @@ jobs:
 #      - name: Setup .NET SDK
 #        uses: actions/setup-dotnet@v5
 #        with:
-#          dotnet-version: 8.x
+#          dotnet-version: 10.x
 #
 #      - name: Run Unit Tests
 #        run: dotnet test --configuration Release --verbosity normal --collect:"XPlat Code Coverage"
@@ -58,7 +58,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
       
       # Create the NuGet package in the folder from the environment variable NuGetDirectory
       - run: dotnet pack --configuration Release --output ${{ env.NuGetDirectory }}
@@ -79,7 +79,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
       
       # Download the NuGet package created in the previous job
       - uses: actions/download-artifact@v8
@@ -126,7 +126,7 @@ jobs:
       - name: Setup .NET Core
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: 8.x
+          dotnet-version: 10.x
 
       # Publish all NuGet packages to NuGet.org
       # Use --skip-duplicate to prevent errors if a package with the same version already exists.
