@@ -3,11 +3,13 @@
 
 ## Hx Class
 
+Provides helper constants and methods for HTMX operations\.
+
 ```csharp
 public static class Hx
 ```
 
-Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; Hx
+Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; Hx
 
 | Methods | |
 | :--- | :--- |

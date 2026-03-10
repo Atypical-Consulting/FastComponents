@@ -1,23 +1,14 @@
 namespace HtmxAppServer.Components.Blocks;
 
-public class MovieCharactersRowsEndpoint
-    : HtmxComponentEndpoint<MovieCharactersRows, MovieCharactersRowsEndpoint.MovieCharacterRowsParameters>
+[GenerateParameterMethods]
+public partial record MovieCharactersRowsParameters : HtmxComponentParameters
 {
-    public override void Configure()
-    {
-        Get(RouteMovieCharactersRows);
-        AllowAnonymous();
-    }
+    public int Page { get; init; } = 1;
+    public int PageSize { get; init; } = 5;
     
-    public record MovieCharacterRowsParameters : HtmxComponentParameters
+    public string NextPage()
     {
-        public int Page { get; init; } = 1;
-        public int PageSize { get; init; } = 5;
-        
-        public string NextPage()
-        {
-            var parameters = this with { Page = Page + 1 };
-            return parameters.ToComponentUrl(RouteMovieCharactersRows);
-        }
+        MovieCharactersRowsParameters parameters = this with { Page = Page + 1 };
+        return parameters.ToComponentUrl(HtmxRoutes.RouteMovieCharactersRows);
     }
 }

@@ -14,4 +14,4 @@ public virtual string? HxBoost { get; set; }
 Implements [HxBoost](FastComponents.IHxCoreAttributes.HxBoost.md 'FastComponents\.IHxCoreAttributes\.HxBoost')
 
 #### Property Value
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')

@@ -1,0 +1,24 @@
+@inherits SimpleHtmxComponent<CounterState>
+
+<div id="simple-counter">
+  <h3>📊 Simplified Counter</h3>
+  <div class="grid">
+    @HtmxBuilderExtensions.Button("−", Url(s => new CounterState { Count = s.Count - 1 }), "simple-counter")
+    <span style="text-align: center; font-weight: bold;">@State.Count</span>
+    @HtmxBuilderExtensions.Button("+", Url(s => new CounterState { Count = s.Count + 1 }), "simple-counter")
+  </div>
+</div>
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+@code {
+  protected override void OnInitialized()
+  {
+    // Auto-bind from query parameters
+    var query = HttpContextAccessor.HttpContext?.Request.Query;
+    if (query is not null && int.TryParse(query["Count"], out var count))
+    {
+      State = new CounterState { Count = count };
+    }
+  }
+}

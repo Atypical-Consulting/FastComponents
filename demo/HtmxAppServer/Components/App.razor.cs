@@ -1,33 +1,22 @@
 namespace HtmxAppServer.Components;
 
-public class AppEndpoint
-    : HtmxComponentEndpoint<App, AppEndpoint.AppParameters>
+// Define the parameters with a public record (immutable)
+// because we use a record, it's like a reducer:
+//   we can use the old parameters to create some new ones
+[GenerateParameterMethods]
+public partial record AppParameters : HtmxComponentParameters
 {
-    // This method is inherited from FastEndpoints.
-    // It allows us to configure the Component. (route, access, cache...)
-    public override void Configure()
-    {
-        Get(RouteApp);
-        AllowAnonymous();
-    }
+    // define the parameters that we want to pass to the component
+    // and their default values
+    public string Theme { get; init; } = "dark";
+    public string Language { get; init; } = "en";
 
-    // Define the parameters with a public record (immutable)
-    // because we use a record, it's like a reducer:
-    //   we can use the old parameters to create some new ones
-    public record AppParameters : HtmxComponentParameters
+    public string SetTheme(string theme)
     {
-        // define the parameters that we want to pass to the component
-        // and their default values
-        public string Theme { get; init; } = "dark";
-        public string Language { get; init; } = "en";
+        // create a new set of parameters 
+        AppParameters parameters = this with { Theme = theme };
     
-        public string SetTheme(string theme)
-        {
-            // create a new set of parameters 
-            var parameters = this with { Theme = theme };
-        
-            // return the url with the new parameters as query string
-            return parameters.ToComponentUrl(RouteApp);
-        }
+        // return the url with the new parameters as query string
+        return parameters.ToComponentUrl(HtmxRoutes.RouteApp);
     }
 }

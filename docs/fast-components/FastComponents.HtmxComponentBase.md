@@ -9,17 +9,21 @@ Base class for all components that are rendered on the server\.
 public abstract class HtmxComponentBase : Microsoft.AspNetCore.Components.ComponentBase, FastComponents.IHxAttributes, FastComponents.IHxCoreAttributes, FastComponents.IHxAdditionalAttributes
 ```
 
-Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.componentbase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; HtmxComponentBase
+Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.ComponentBase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; HtmxComponentBase
 
 Derived  
 &#8627; [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents\.HtmxComponentBase\<TParameters\>')  
-&#8627; [HtmxTag](FastComponents.HtmxTag.md 'FastComponents\.HtmxTag')
+&#8627; [HtmxSseTag](FastComponents.HtmxSseTag.md 'FastComponents\.HtmxSseTag')  
+&#8627; [HtmxTag](FastComponents.HtmxTag.md 'FastComponents\.HtmxTag')  
+&#8627; [HtmxWsTag](FastComponents.HtmxWsTag.md 'FastComponents\.HtmxWsTag')
 
 Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxAttributes'), [IHxCoreAttributes](FastComponents.IHxCoreAttributes.md 'FastComponents\.IHxCoreAttributes'), [IHxAdditionalAttributes](FastComponents.IHxAdditionalAttributes.md 'FastComponents\.IHxAdditionalAttributes')
 
 | Properties | |
 | :--- | :--- |
-| [As](FastComponents.HtmxComponentBase.As.md 'FastComponents\.HtmxComponentBase\.As') | Gets or sets a custom tag name for the component\. |
+| [ClassName](FastComponents.HtmxComponentBase.ClassName.md 'FastComponents\.HtmxComponentBase\.ClassName') | Gets the computed CSS class names for the component\. |
+| [CustomAttributes](FastComponents.HtmxComponentBase.CustomAttributes.md 'FastComponents\.HtmxComponentBase\.CustomAttributes') | Gets or sets additional custom attributes for the component\. |
+| [Element](FastComponents.HtmxComponentBase.Element.md 'FastComponents\.HtmxComponentBase\.Element') | Gets or sets a custom tag name for the component\. |
 | [HxBoost](FastComponents.HtmxComponentBase.HxBoost.md 'FastComponents\.HtmxComponentBase\.HxBoost') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Add or remove progressive enhancement for links and forms |
 | [HxConfirm](FastComponents.HtmxComponentBase.HxConfirm.md 'FastComponents\.HtmxComponentBase\.HxConfirm') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Shows a confirm\(\) dialog before issuing a request\. |
 | [HxDelete](FastComponents.HtmxComponentBase.HxDelete.md 'FastComponents\.HtmxComponentBase\.HxDelete') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Issues a DELETE to the specified URL\. |
@@ -53,3 +57,9 @@ Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxA
 | [HxTrigger](FastComponents.HtmxComponentBase.HxTrigger.md 'FastComponents\.HtmxComponentBase\.HxTrigger') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Specifies the event that triggers the request |
 | [HxValidate](FastComponents.HtmxComponentBase.HxValidate.md 'FastComponents\.HtmxComponentBase\.HxValidate') | ADDITIONAL ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Force elements to validate themselves before a request\. |
 | [HxVals](FastComponents.HtmxComponentBase.HxVals.md 'FastComponents\.HtmxComponentBase\.HxVals') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values to the parameters to submit with the request \(JSON\-formatted\) |
+| [HxVars](FastComponents.HtmxComponentBase.HxVars.md 'FastComponents\.HtmxComponentBase\.HxVars') | CORE ATTRIBUTE<br/> \-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-<br/> Adds values dynamically to the parameters to submit with the request \(JavaScript expression\) |
+
+| Methods | |
+| :--- | :--- |
+| [OnBuildClassNames\(ClassNamesBuilder\)](FastComponents.HtmxComponentBase.OnBuildClassNames(FastComponents.ClassNamesBuilder).md 'FastComponents\.HtmxComponentBase\.OnBuildClassNames\(FastComponents\.ClassNamesBuilder\)') | Override this method to add custom class names to the component\. |
+| [OnParametersSet\(\)](FastComponents.HtmxComponentBase.OnParametersSet().md 'FastComponents\.HtmxComponentBase\.OnParametersSet\(\)') | Method invoked when the component has received parameters from its parent in the render tree, and the incoming values have been assigned to properties\. |

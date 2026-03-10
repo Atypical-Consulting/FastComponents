@@ -12,4 +12,4 @@ public ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRend
 
 <a name='FastComponents.ComponentHtmlResponseService.ComponentHtmlResponseService(Microsoft.AspNetCore.Components.Web.HtmlRenderer).htmlRenderer'></a>
 
-`htmlRenderer` [Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.web.htmlrenderer 'Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer')
+`htmlRenderer` [Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.Web.HtmlRenderer 'Microsoft\.AspNetCore\.Components\.Web\.HtmlRenderer')

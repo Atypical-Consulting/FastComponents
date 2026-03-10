@@ -12,7 +12,7 @@ public FastComponents.ClassNamesBuilder AddRawValue(string value);
 
 <a name='FastComponents.ClassNamesBuilder.AddRawValue(string).value'></a>
 
-`value` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+`value` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
 
 The value to add\.
 

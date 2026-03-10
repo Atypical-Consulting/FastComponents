@@ -12,10 +12,10 @@ public static Microsoft.Extensions.DependencyInjection.IServiceCollection AddFas
 
 <a name='FastComponents.MainExtensions.AddFastComponents(thisMicrosoft.Extensions.DependencyInjection.IServiceCollection).services'></a>
 
-`services` [Microsoft\.Extensions\.DependencyInjection\.IServiceCollection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection 'Microsoft\.Extensions\.DependencyInjection\.IServiceCollection')
+`services` [Microsoft\.Extensions\.DependencyInjection\.IServiceCollection](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection 'Microsoft\.Extensions\.DependencyInjection\.IServiceCollection')
 
 The service collection
 
 #### Returns
-[Microsoft\.Extensions\.DependencyInjection\.IServiceCollection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.iservicecollection 'Microsoft\.Extensions\.DependencyInjection\.IServiceCollection')  
+[Microsoft\.Extensions\.DependencyInjection\.IServiceCollection](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.Extensions.DependencyInjection.IServiceCollection 'Microsoft\.Extensions\.DependencyInjection\.IServiceCollection')  
 The service collection

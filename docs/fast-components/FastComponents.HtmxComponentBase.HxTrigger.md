@@ -14,4 +14,4 @@ public string? HxTrigger { get; set; }
 Implements [HxTrigger](FastComponents.IHxCoreAttributes.HxTrigger.md 'FastComponents\.IHxCoreAttributes\.HxTrigger')
 
 #### Property Value
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')

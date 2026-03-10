@@ -1,30 +1,21 @@
 namespace HtmxAppServer.Components.Blocks;
 
-public class CounterEndpoint
-    : HtmxComponentEndpoint<Counter, CounterEndpoint.CounterParameters>
+[GenerateParameterMethods]
+public partial record CounterParameters : HtmxComponentParameters
 {
-    public override void Configure()
+    public int Count { get; init; } = 10;
+
+    // this method is not used by example
+    public string Decrement()
     {
-        Get(RouteCounter);
-        AllowAnonymous();
+        CounterParameters parameters = new() { Count = Count - 1 };
+        return parameters.ToComponentUrl(HtmxRoutes.RouteCounter);
     }
-    
-    public record CounterParameters : HtmxComponentParameters
+
+    // but this one is
+    public string Increment()
     {
-        public int Count { get; init; } = 10;
-    
-        // this method is not used by example
-        public string Decrement()
-        {
-            var parameters = this with { Count = Count - 1 }; 
-            return parameters.ToComponentUrl(RouteCounter);
-        }
-    
-        // but this one is
-        public string Increment()
-        {
-            var parameters = this with { Count = Count + 1 }; 
-            return parameters.ToComponentUrl(RouteCounter);
-        }
+        CounterParameters parameters = new() { Count = Count + 1 };
+        return parameters.ToComponentUrl(HtmxRoutes.RouteCounter);
     }
 }

@@ -1,9 +1,24 @@
-// Copyright (c) Atypical Consulting SRL. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+/*
+ * Copyright 2025 Atypical Consulting SRL
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
+using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.HtmlRendering;
 using Microsoft.AspNetCore.Http;
 
 namespace FastComponents;
@@ -19,11 +34,11 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <typeparam name="TComponent">The type of the Blazor component to render.</typeparam>
     /// <param name="parameters">Optional parameters to pass to the component during rendering.</param>
     /// <returns>An <see cref="IResult"/> representing the HTTP content result of the rendered HTML.</returns>
-    public async Task<IResult> RenderAsHtmlContent<TComponent>(
+    public async Task<IResult> RenderAsHtmlContentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? parameters = null)
         where TComponent : HtmxComponentBase
     {
-        var html = await RenderComponent<TComponent>(parameters);
+        string html = await RenderComponentAsync<TComponent>(parameters).ConfigureAwait(false);
         string beautified = HtmlBeautifier.BeautifyHtml(html);
         return Results.Content(beautified, "text/html", Encoding.UTF8);
     }
@@ -34,15 +49,15 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <param name="dictionary">The dictionary of parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    public Task<string> RenderComponent<TComponent>(
+    public Task<string> RenderComponentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
         Dictionary<string, object?>? dictionary = null)
         where TComponent : HtmxComponentBase
     {
-        var parameters = dictionary is null
+        ParameterView parameters = dictionary is null
             ? ParameterView.Empty
             : ParameterView.FromDictionary(dictionary);
 
-        return RenderComponent<TComponent>(parameters);
+        return RenderComponentAsync<TComponent>(parameters);
     }
 
     /// <summary>
@@ -52,14 +67,18 @@ public class ComponentHtmlResponseService(HtmlRenderer htmlRenderer)
     /// <param name="parameters">The parameters to pass to the component</param>
     /// <typeparam name="TComponent">The component to render</typeparam>
     /// <returns>The rendered component as a string</returns>
-    private Task<string> RenderComponent<TComponent>(ParameterView parameters)
+    private Task<string> RenderComponentAsync<[DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] TComponent>(
+        ParameterView parameters)
         where TComponent : HtmxComponentBase
     {
         return htmlRenderer.Dispatcher.InvokeAsync(Callback);
 
         async Task<string> Callback()
         {
-            var output = await htmlRenderer.RenderComponentAsync<TComponent>(parameters);
+            HtmlRootComponent output = await htmlRenderer
+                .RenderComponentAsync<TComponent>(parameters)
+                .ConfigureAwait(false);
+
             return output.ToHtmlString();
         }
     }

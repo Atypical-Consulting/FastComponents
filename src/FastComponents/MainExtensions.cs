@@ -1,7 +1,19 @@
-// Copyright (c) Atypical Consulting SRL. All rights reserved.
-// Licensed under the MIT License. See LICENSE in the project root for license information.
+/*
+ * Copyright 2025 Atypical Consulting SRL
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
-using FastEndpoints;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,22 +32,19 @@ public static class MainExtensions
     /// <returns>The service collection</returns>
     public static IServiceCollection AddFastComponents(this IServiceCollection services)
     {
-        _ = services.AddFastEndpoints();
-
         _ = services.AddScoped<HtmlRenderer>();
-        _ = services.AddScoped<HtmlBeautifier>();
         _ = services.AddScoped<ComponentHtmlResponseService>();
         return services;
     }
-    
+
     /// <summary>
     /// Use FastComponents in the application
     /// </summary>
-    /// <param name="app">The application builder</param>
-    /// <returns>The application builder</returns>
-    public static IApplicationBuilder UseFastComponents(this IApplicationBuilder app)
+    /// <param name="app">The web application</param>
+    /// <returns>The web application</returns>
+    public static WebApplication UseFastComponents(this WebApplication app)
     {
-        _ = app.UseFastEndpoints();
+        // Currently no middleware needed, but this provides extension point
         return app;
     }
 }

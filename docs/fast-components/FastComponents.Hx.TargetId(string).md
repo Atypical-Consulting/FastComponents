@@ -12,10 +12,10 @@ public static string TargetId(string id);
 
 <a name='FastComponents.Hx.TargetId(string).id'></a>
 
-`id` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+`id` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
 
 The Id to prepend\.
 
 #### Returns
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')  
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')  
 The Id prepended with a \#\.

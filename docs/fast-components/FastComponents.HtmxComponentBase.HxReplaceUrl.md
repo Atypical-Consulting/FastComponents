@@ -14,4 +14,4 @@ public string? HxReplaceUrl { get; set; }
 Implements [HxReplaceUrl](FastComponents.IHxAdditionalAttributes.HxReplaceUrl.md 'FastComponents\.IHxAdditionalAttributes\.HxReplaceUrl')
 
 #### Property Value
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')

@@ -1,0 +1,22 @@
+<Project>
+  <!-- Import the root Directory.Build.props -->
+  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+  <!-- Demo project specific settings -->
+  <PropertyGroup>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <!-- Demo projects have relaxed quality requirements -->
+  <PropertyGroup>
+    <!-- Allow file-scoped namespaces choice -->
+    <NoWarn>$(NoWarn);IDE0160</NoWarn>
+    <!-- Allow var usage -->
+    <NoWarn>$(NoWarn);IDE0008</NoWarn>
+    <!-- Allow formatting differences -->
+    <NoWarn>$(NoWarn);IDE0055</NoWarn>
+  </PropertyGroup>
+
+</Project>

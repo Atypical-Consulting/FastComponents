@@ -14,4 +14,4 @@ public string? HxHeaders { get; set; }
 Implements [HxHeaders](FastComponents.IHxAdditionalAttributes.HxHeaders.md 'FastComponents\.IHxAdditionalAttributes\.HxHeaders')
 
 #### Property Value
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')

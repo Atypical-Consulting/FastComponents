@@ -1,0 +1,94 @@
+@inherits HtmxComponentBase
+
+<div>
+  <header style="text-align: center; margin-bottom: 2rem;">
+    <h1>FastComponents + HTMX Examples</h1>
+    <p>Explore how to build dynamic web applications using Blazor components with HTMX patterns</p>
+  </header>
+
+  <nav style="margin-bottom: 2rem;">
+    <ul class="grid" style="list-style: none; padding: 0;">
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/counter" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          📊 Counter
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/search" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          🔍 Live Search
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/validation" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          ✅ Form Validation
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/modal" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          🗪 Modal Dialog
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/tabs" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          📑 Tabs
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/infinite-scroll" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          📜 Infinite Scroll
+        </HtmxTag>
+      </li>
+      <li>
+        <HtmxTag Element="button" 
+                 HxGet="/ui/examples/edit-in-place" 
+                 HxTarget="#example-content" 
+                 HxSwap="@Hx.Swap.InnerHtml"
+                 class="outline">
+          ✏️ Edit In Place
+        </HtmxTag>
+      </li>
+    </ul>
+  </nav>
+
+  <div id="example-content" style="min-height: 400px; border: 1px solid var(--muted-border-color); border-radius: 0.5rem; padding: 1rem;">
+    <div style="text-align: center; padding: 2rem; color: var(--muted-color);">
+      <h3>👆 Select an example above</h3>
+      <p>Each example demonstrates different HTMX patterns using FastComponents</p>
+      
+      <details style="margin-top: 2rem; text-align: left;">
+        <summary>What makes FastComponents special?</summary>
+        <ul style="margin-top: 1rem;">
+          <li><strong>Type-safe HTMX attributes</strong> - IntelliSense support for all hx-* attributes</li>
+          <li><strong>Blazor component integration</strong> - Use familiar Razor syntax with HTMX behavior</li>
+          <li><strong>Server-side rendering</strong> - Components render on the server and update the DOM</li>
+          <li><strong>Minimal JavaScript</strong> - HTMX handles all the AJAX/DOM manipulation</li>
+          <li><strong>MRA Architecture</strong> - Multiple Resources Application pattern for scalable web apps</li>
+        </ul>
+      </details>
+    </div>
+  </div>
+</div>

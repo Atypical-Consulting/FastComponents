@@ -12,18 +12,18 @@ public ClassNamesBuilder(string value, string prefix="", string suffix="");
 
 <a name='FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).value'></a>
 
-`value` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+`value` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
 
 The initial value\.
 
 <a name='FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).prefix'></a>
 
-`prefix` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+`prefix` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
 
 A optional prefix to add to each class name\.
 
 <a name='FastComponents.ClassNamesBuilder.ClassNamesBuilder(string,string,string).suffix'></a>
 
-`suffix` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+`suffix` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
 
 A optional suffix to add to each class name\.

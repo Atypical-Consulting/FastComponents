@@ -14,4 +14,4 @@ public string? HxPushUrl { get; set; }
 Implements [HxPushUrl](FastComponents.IHxCoreAttributes.HxPushUrl.md 'FastComponents\.IHxCoreAttributes\.HxPushUrl')
 
 #### Property Value
-[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
+[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
