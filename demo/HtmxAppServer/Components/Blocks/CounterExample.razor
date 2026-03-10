@@ -1,0 +1,89 @@
+@inherits HtmxComponentBase<CounterParameters>
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>📊 Counter Example</h2>
+    <p>Demonstrates basic HTMX interactions with server-side state management</p>
+  </header>
+
+  <div class="grid" style="margin-bottom: 2rem;">
+    <div>
+      <h4>Standard HTML Attributes</h4>
+      <div class="counter-section" id="counter-standard">
+        <div class="grid">
+          <button
+            hx-get="/ui/examples/counter?Count=@(Parameters.Count - 1)"
+            hx-swap="outerHTML"
+            hx-target="#counter-standard">
+            - Decrement
+          </button>
+
+          <input
+            name="count"
+            type="text"
+            value="@Parameters.Count"
+            style="text-align: center; font-weight: bold; font-size: 1.2rem;"
+            readonly/>
+
+          <button
+            hx-get="/ui/examples/counter?Count=@(Parameters.Count + 1)"
+            hx-swap="outerHTML"
+            hx-target="#counter-standard">
+            + Increment
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <h4>FastComponents HtmxTag</h4>
+      <div class="counter-section" id="counter-component">
+        <div class="grid">
+          <HtmxTag
+            Element="button"
+            HxGet="@Parameters.Decrement()"
+            HxSwap="@Hx.Swap.OuterHtml"
+            HxTarget="#counter-component">
+            - Decrement
+          </HtmxTag>
+
+          <input
+            name="count"
+            type="text"
+            value="@Parameters.Count"
+            style="text-align: center; font-weight: bold; font-size: 1.2rem;"
+            readonly/>
+
+          <HtmxTag
+            Element="button"
+            HxGet="@Parameters.Increment()"
+            HxSwap="@Hx.Swap.OuterHtml"
+            HxTarget="#counter-component">
+            + Increment
+          </HtmxTag>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Key Concepts:</h5>
+      <ul>
+        <li><strong>hx-get</strong> - Makes GET request to server endpoint</li>
+        <li><strong>hx-target</strong> - Specifies which DOM element to update</li>
+        <li><strong>hx-swap</strong> - Controls how the response replaces content (outerHTML, innerHTML, etc.)</li>
+        <li><strong>Component Parameters</strong> - Server-side state passed through URL parameters</li>
+      </ul>
+
+      <h5>Benefits:</h5>
+      <ul>
+        <li>✅ No JavaScript required</li>
+        <li>✅ Server-side state management</li>
+        <li>✅ Type-safe parameter binding</li>
+        <li>✅ Automatic URL generation with @Parameters.Increment()</li>
+      </ul>
+    </div>
+  </details>
+</div>

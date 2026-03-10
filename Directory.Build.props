@@ -1,20 +1,95 @@
 <Project>
   
+  <!-- Common build properties -->
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <LangVersion>14</LangVersion>
+    <LangVersion>latest</LangVersion>
+    <TreatWarningsAsErrors Condition="'$(MSBuildProjectName)' != 'FastComponents.Generators'">true</TreatWarningsAsErrors>
+    <RunAnalyzersDuringBuild>true</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>true</RunAnalyzersDuringLiveAnalysis>
+  </PropertyGroup>
+  
+  <!-- Dependencies custom properties -->
+  <PropertyGroup>
+    <IncludeAnalyzers Condition="'$(IncludeAnalyzers)' == ''">true</IncludeAnalyzers>
+  </PropertyGroup>
+
+  <!-- Organization metadata -->
+  <PropertyGroup>
     <Company>Atypical Consulting SRL</Company>
+    <Authors>Philippe Matray</Authors>
+    <Product>FastComponents</Product>
+    <Copyright>Copyright (c) 2020-2025 Atypical Consulting SRL</Copyright>
+  </PropertyGroup>
+
+  <!-- Repository metadata -->
+  <PropertyGroup>
+    <RepositoryUrl>https://github.com/Atypical-Consulting/FastComponents.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageProjectUrl>https://github.com/Atypical-Consulting/FastComponents</PackageProjectUrl>
   </PropertyGroup>
 
   <!-- Versioning -->
-  <!-- https://saebamini.com/how-to-version-your-net-nuget-packages-libraries-and-assemblies-azure-yaml-pipelines-example-using-net-core-cli/ -->
+  <!-- Uses MinVer for automatic versioning based on Git tags -->
   <PropertyGroup>
-    <Version>0.1.0</Version>
-    <AssemblyVersion>0.1.0</AssemblyVersion>
-    <FileVersion>0.1.0</FileVersion>
-    <InformationalVersion>0.1.0</InformationalVersion>
+    <MinVerTagPrefix>v</MinVerTagPrefix>
+    <MinVerDefaultPreReleaseIdentifiers>preview</MinVerDefaultPreReleaseIdentifiers>
+    <MinVerSkip Condition="'$(Configuration)' == 'Debug'">true</MinVerSkip>
   </PropertyGroup>
+
+  <!-- Source Link -->
+  <PropertyGroup>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <!-- Deterministic builds -->
+  <PropertyGroup>
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild Condition="'$(CI)' == 'true'">true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+  <!-- Code quality -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <CodeAnalysisTreatWarningsAsErrors>true</CodeAnalysisTreatWarningsAsErrors>
+
+    <AnalysisLevel>latest</AnalysisLevel>
+    <AnalysisMode>AllDisabledByDefault</AnalysisMode>
+  </PropertyGroup>
+
+  <!-- Common suppressions -->
+  <PropertyGroup>
+    <!-- IDE0073: File header -->
+    <NoWarn>$(NoWarn);IDE0073</NoWarn>
+    <!-- IL2026: Using member with RequiresUnreferencedCodeAttribute -->
+    <NoWarn>$(NoWarn);IL2026</NoWarn>
+    <!-- IL3050: Using member with RequiresDynamicCodeAttribute -->
+    <NoWarn>$(NoWarn);IL3050</NoWarn>
+    <!-- CA2263: Prefer generic overload (not applicable for dynamic scenarios) -->
+    <NoWarn>$(NoWarn);CA2263</NoWarn>
+    <!-- ASP0006: Sequence number usage (acceptable in component rendering) -->
+    <NoWarn>$(NoWarn);ASP0006</NoWarn>
+  </PropertyGroup>
+
+  <!-- Output paths -->
+  <PropertyGroup>
+    <BaseOutputPath Condition="'$(BaseOutputPath)' == ''">$(MSBuildProjectDirectory)\bin\</BaseOutputPath>
+    <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)' == ''">$(MSBuildProjectDirectory)\obj\</BaseIntermediateOutputPath>
+    <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">$(MSBuildThisFileDirectory)artifacts\</PackageOutputPath>
+  </PropertyGroup>
+  
+  <!-- Conditional Package Versions for Analyzers -->
+  <ItemGroup Condition="'$(IncludeAnalyzers)' == 'true'">
+    <PackageReference Include="Roslynator.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.CodeAnalysis.Analyzers" PrivateAssets="all" />
+    <PackageReference Include="Roslynator.Formatting.Analyzers" PrivateAssets="all" />
+  </ItemGroup>
   
 </Project>

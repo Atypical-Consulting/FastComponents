@@ -4,11 +4,15 @@
 GET {{HtmxAppServer_HostAddress}}/
 Accept: text/html
 
-### Components > Counter
-@count = 5
-GET {{HtmxAppServer_HostAddress}}/ui/blocks/counter/{{count}}
+### Examples Dashboard
+GET {{HtmxAppServer_HostAddress}}/ui/examples
 Accept: text/html
 
-### Components > Table
-GET {{HtmxAppServer_HostAddress}}/htmx/table
+### Counter Example
+@count = 5
+GET {{HtmxAppServer_HostAddress}}/ui/examples/counter?Count={{count}}
+Accept: text/html
+
+### Live Search
+GET {{HtmxAppServer_HostAddress}}/ui/examples/live-search?Query=luke
 Accept: text/html

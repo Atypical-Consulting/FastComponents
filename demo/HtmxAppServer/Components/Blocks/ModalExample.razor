@@ -1,0 +1,185 @@
+@inherits HtmxComponentBase<ModalParameters>
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>🗪 Modal Dialog Example</h2>
+    <p>Dynamic modal dialogs with server-side content and HTMX interactions</p>
+  </header>
+
+  <div style="margin-bottom: 2rem;">
+    <div class="grid">
+      <HtmxTag Element="button"
+               HxGet="/ui/examples/modal?ModalType=info&Title=Information&Message=This is an informational modal with server-rendered content."
+               HxTarget="#modal-container"
+               HxSwap="@Hx.Swap.InnerHtml">
+        📘 Info Modal
+      </HtmxTag>
+
+      <HtmxTag Element="button"
+               HxGet="/ui/examples/modal?ModalType=warning&Title=Warning&Message=This is a warning modal. Are you sure you want to continue?"
+               HxTarget="#modal-container"
+               HxSwap="@Hx.Swap.InnerHtml">
+        ⚠️ Warning Modal
+      </HtmxTag>
+
+      <HtmxTag Element="button"
+               HxGet="/ui/examples/modal?ModalType=form&Title=Edit Profile"
+               HxTarget="#modal-container"
+               HxSwap="@Hx.Swap.InnerHtml">
+        📝 Form Modal
+      </HtmxTag>
+    </div>
+  </div>
+
+  <div id="modal-container">
+    @if (!string.IsNullOrEmpty(Parameters.ModalType))
+    {
+      <div class="modal-backdrop" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1000; display: flex; align-items: center; justify-content: center;">
+        <div class="modal-content" style="background: var(--background-color); border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 80vh; overflow-y: auto; border: 1px solid var(--muted-border-color);">
+          
+          @if (Parameters.ModalType == "info")
+          {
+            <header style="margin-bottom: 1rem;">
+              <h3 style="margin: 0; color: var(--primary);">📘 @Parameters.Title</h3>
+            </header>
+            <p>@Parameters.Message</p>
+            <footer style="margin-top: 1.5rem; text-align: right;">
+              <HtmxTag Element="button"
+                       HxGet="/ui/examples/modal"
+                       HxTarget="#modal-container"
+                       HxSwap="@Hx.Swap.InnerHtml"
+                       class="secondary">
+                Close
+              </HtmxTag>
+            </footer>
+          }
+          else if (Parameters.ModalType == "warning")
+          {
+            <header style="margin-bottom: 1rem;">
+              <h3 style="margin: 0; color: #ff6b35;">⚠️ @Parameters.Title</h3>
+            </header>
+            <p>@Parameters.Message</p>
+            <footer style="margin-top: 1.5rem; text-align: right;">
+              <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <HtmxTag Element="button"
+                         HxGet="/ui/examples/modal"
+                         HxTarget="#modal-container"
+                         HxSwap="@Hx.Swap.InnerHtml"
+                         class="secondary">
+                  Cancel
+                </HtmxTag>
+                <HtmxTag Element="button"
+                         HxGet="/ui/examples/modal?confirmed=true"
+                         HxTarget="#modal-container"
+                         HxSwap="@Hx.Swap.InnerHtml">
+                  Confirm
+                </HtmxTag>
+              </div>
+            </footer>
+          }
+          else if (Parameters.ModalType == "form")
+          {
+            <header style="margin-bottom: 1rem;">
+              <h3 style="margin: 0;">📝 @Parameters.Title</h3>
+            </header>
+            
+            <form>
+              <div style="margin-bottom: 1rem;">
+                <label for="modal-name">Name:</label>
+                <input id="modal-name" type="text" name="name" value="@Parameters.FormName" placeholder="Enter your name" />
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <label for="modal-email">Email:</label>
+                <input id="modal-email" type="email" name="email" value="@Parameters.FormEmail" placeholder="Enter your email" />
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <label for="modal-bio">Bio:</label>
+                <textarea id="modal-bio" name="bio" rows="3" placeholder="Tell us about yourself">@Parameters.FormBio</textarea>
+              </div>
+            </form>
+            
+            <footer style="margin-top: 1.5rem; text-align: right;">
+              <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <HtmxTag Element="button"
+                         HxGet="/ui/examples/modal"
+                         HxTarget="#modal-container"
+                         HxSwap="@Hx.Swap.InnerHtml"
+                         class="secondary">
+                  Cancel
+                </HtmxTag>
+                <HtmxTag Element="button"
+                         HxPost="/ui/examples/modal"
+                         HxInclude="form"
+                         HxTarget="#modal-container"
+                         HxSwap="@Hx.Swap.InnerHtml">
+                  Save Changes
+                </HtmxTag>
+              </div>
+            </footer>
+          }
+          else if (Parameters.Confirmed)
+          {
+            <header style="margin-bottom: 1rem;">
+              <h3 style="margin: 0; color: var(--ins-color);">✅ Success</h3>
+            </header>
+            <p>Action confirmed successfully! The operation has been completed.</p>
+            <footer style="margin-top: 1.5rem; text-align: right;">
+              <HtmxTag Element="button"
+                       HxGet="/ui/examples/modal"
+                       HxTarget="#modal-container"
+                       HxSwap="@Hx.Swap.InnerHtml">
+                Close
+              </HtmxTag>
+            </footer>
+          }
+          else if (!string.IsNullOrEmpty(Parameters.FormName))
+          {
+            <header style="margin-bottom: 1rem;">
+              <h3 style="margin: 0; color: var(--ins-color);">✅ Profile Updated</h3>
+            </header>
+            <div>
+              <p><strong>Name:</strong> @Parameters.FormName</p>
+              <p><strong>Email:</strong> @Parameters.FormEmail</p>
+              @if (!string.IsNullOrEmpty(Parameters.FormBio))
+              {
+                <p><strong>Bio:</strong> @Parameters.FormBio</p>
+              }
+            </div>
+            <footer style="margin-top: 1.5rem; text-align: right;">
+              <HtmxTag Element="button"
+                       HxGet="/ui/examples/modal"
+                       HxTarget="#modal-container"
+                       HxSwap="@Hx.Swap.InnerHtml">
+                Close
+              </HtmxTag>
+            </footer>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Modal Features:</h5>
+      <ul>
+        <li><strong>Server-side rendering</strong> - All modal content is rendered on the server</li>
+        <li><strong>Dynamic content</strong> - Different modal types with conditional rendering</li>
+        <li><strong>Form handling</strong> - Complete form submission within modals</li>
+        <li><strong>State management</strong> - Modal state handled through URL parameters</li>
+        <li><strong>hx-include</strong> - Form data automatically included in requests</li>
+      </ul>
+
+      <h5>HTMX Patterns:</h5>
+      <ul>
+        <li>✅ **Target-based updates** - Modal content updates without page refresh</li>
+        <li>✅ **Conditional rendering** - Different modal types based on parameters</li>
+        <li>✅ **Form integration** - Seamless form submission with validation</li>
+        <li>✅ **State transitions** - Smooth flow between modal states</li>
+      </ul>
+    </div>
+  </details>
+</div>

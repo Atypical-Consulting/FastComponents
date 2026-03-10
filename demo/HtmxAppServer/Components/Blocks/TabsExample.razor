@@ -1,0 +1,259 @@
+@inherits HtmxComponentBase<TabsParameters>
+
+<div>
+  <header style="margin-bottom: 1.5rem;">
+    <h2>📑 Tabs Example</h2>
+    <p>Dynamic tab navigation with server-side content loading</p>
+  </header>
+
+  <div style="border: 1px solid var(--muted-border-color); border-radius: 0.5rem; overflow: hidden;">
+    <!-- Tab Navigation -->
+    <nav style="background: var(--card-background-color); border-bottom: 1px solid var(--muted-border-color); padding: 0;">
+      <ul style="display: flex; margin: 0; padding: 0; list-style: none;">
+        <li style="flex: 1;">
+          <HtmxTag Element="button"
+                   HxGet="/ui/examples/tabs?ActiveTab=overview"
+                   HxTarget="#tab-content"
+                   HxSwap="@Hx.Swap.InnerHtml"
+                   style="@GetTabStyle("overview")"
+                   class="@GetTabClass("overview")">
+            📊 Overview
+          </HtmxTag>
+        </li>
+        <li style="flex: 1;">
+          <HtmxTag Element="button"
+                   HxGet="/ui/examples/tabs?ActiveTab=features"
+                   HxTarget="#tab-content"
+                   HxSwap="@Hx.Swap.InnerHtml"
+                   style="@GetTabStyle("features")"
+                   class="@GetTabClass("features")">
+            ⚡ Features
+          </HtmxTag>
+        </li>
+        <li style="flex: 1;">
+          <HtmxTag Element="button"
+                   HxGet="/ui/examples/tabs?ActiveTab=examples"
+                   HxTarget="#tab-content"
+                   HxSwap="@Hx.Swap.InnerHtml"
+                   style="@GetTabStyle("examples")"
+                   class="@GetTabClass("examples")">
+            💡 Examples
+          </HtmxTag>
+        </li>
+        <li style="flex: 1;">
+          <HtmxTag Element="button"
+                   HxGet="/ui/examples/tabs?ActiveTab=settings"
+                   HxTarget="#tab-content"
+                   HxSwap="@Hx.Swap.InnerHtml"
+                   style="@GetTabStyle("settings")"
+                   class="@GetTabClass("settings")">
+            ⚙️ Settings
+          </HtmxTag>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Tab Content -->
+    <div id="tab-content" style="padding: 2rem; min-height: 300px;">
+      @if (Parameters.ActiveTab == "overview" || string.IsNullOrEmpty(Parameters.ActiveTab))
+      {
+        <div>
+          <h3 style="margin-top: 0;">📊 FastComponents Overview</h3>
+          <p>FastComponents enables building HTMX-powered web applications using Blazor components with server-side rendering.</p>
+          
+          <div class="grid" style="margin-top: 1.5rem;">
+            <article style="margin: 0;">
+              <header><h5>🎯 Type Safety</h5></header>
+              <p style="font-size: 0.9rem;">IntelliSense support for all HTMX attributes with compile-time checking.</p>
+            </article>
+            <article style="margin: 0;">
+              <header><h5>🚀 Performance</h5></header>
+              <p style="font-size: 0.9rem;">Server-side rendering with minimal JavaScript and optimal SEO.</p>
+            </article>
+          </div>
+          
+          <div style="margin-top: 1.5rem; padding: 1rem; background: var(--card-background-color); border-radius: 0.25rem;">
+            <h6>📈 Key Statistics</h6>
+            <ul style="margin: 0.5rem 0;">
+              <li>30+ HTMX attributes supported</li>
+              <li>5 CSS classes for styling</li>
+              <li>100% server-side rendering</li>
+              <li>Zero JavaScript frameworks required</li>
+            </ul>
+          </div>
+        </div>
+      }
+      else if (Parameters.ActiveTab == "features")
+      {
+        <div>
+          <h3 style="margin-top: 0;">⚡ Core Features</h3>
+          <p>Comprehensive HTMX integration with modern .NET development practices.</p>
+          
+          <div style="display: grid; gap: 1rem; margin-top: 1.5rem;">
+            <details>
+              <summary><strong>🏗️ Component Architecture</strong></summary>
+              <p style="margin-top: 0.5rem;">Build reusable components that inherit from <code>HtmxComponentBase</code> for automatic HTMX attribute support.</p>
+            </details>
+            
+            <details>
+              <summary><strong>🔄 Parameter Binding</strong></summary>
+              <p style="margin-top: 0.5rem;">Automatic URL parameter binding with type-safe records and source generation.</p>
+            </details>
+            
+            <details>
+              <summary><strong>🎨 CSS Integration</strong></summary>
+              <p style="margin-top: 0.5rem;">Built-in support for HTMX CSS classes like <code>htmx-request</code>, <code>htmx-swapping</code>, etc.</p>
+            </details>
+            
+            <details>
+              <summary><strong>📡 HTTP Headers</strong></summary>
+              <p style="margin-top: 0.5rem;">Full support for HTMX request and response headers with fluent API.</p>
+            </details>
+          </div>
+        </div>
+      }
+      else if (Parameters.ActiveTab == "examples")
+      {
+        <div>
+          <h3 style="margin-top: 0;">💡 Code Examples</h3>
+          <p>Real-world examples showing FastComponents in action.</p>
+          
+          <div style="margin-top: 1.5rem;">
+            <h5>Basic Component Usage</h5>
+            <pre style="background: var(--card-background-color); padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.8rem;"><code>&lt;HtmxTag Element="button"
+         HxGet="/api/data"
+         HxTarget="#result"
+         HxSwap="@Hx.Swap.InnerHtml"&gt;
+  Load Data
+&lt;/HtmxTag&gt;</code></pre>
+          </div>
+          
+          <div style="margin-top: 1.5rem;">
+            <h5>Parameter Generation</h5>
+            <pre style="background: var(--card-background-color); padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.8rem;"><code>[GenerateParameterMethods]
+public partial record MyParameters : HtmxComponentParameters
+{
+    public string Name { get; init; } = "";
+    public int Count { get; init; } = 0;
+}</code></pre>
+          </div>
+          
+          <div style="margin-top: 1.5rem;">
+            <h5>Endpoint Registration</h5>
+            <pre style="background: var(--card-background-color); padding: 1rem; border-radius: 0.25rem; overflow-x: auto; font-size: 0.8rem;"><code>app.MapHtmxGet&lt;MyComponent, MyParameters&gt;("/my-route")
+   .AllowAnonymous();</code></pre>
+          </div>
+        </div>
+      }
+      else if (Parameters.ActiveTab == "settings")
+      {
+        <div>
+          <h3 style="margin-top: 0;">⚙️ Configuration Settings</h3>
+          <p>Customize your FastComponents experience with these settings.</p>
+          
+          <form style="margin-top: 1.5rem;">
+            <div style="margin-bottom: 1rem;">
+              <label>
+                <input type="checkbox" name="enableDebug" @(Parameters.EnableDebug ? "checked" : "") 
+                       hx-post="/ui/examples/tabs?ActiveTab=settings"
+                       hx-include="form"
+                       hx-target="#tab-content"
+                       hx-swap="outerHTML" />
+                Enable Debug Mode
+              </label>
+              <small style="display: block; margin-top: 0.25rem; color: var(--muted-color);">
+                Shows detailed HTMX request/response information
+              </small>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+              <label>
+                <input type="checkbox" name="enableCaching" @(Parameters.EnableCaching ? "checked" : "")
+                       hx-post="/ui/examples/tabs?ActiveTab=settings"
+                       hx-include="form"
+                       hx-target="#tab-content"
+                       hx-swap="outerHTML" />
+                Enable Component Caching
+              </label>
+              <small style="display: block; margin-top: 0.25rem; color: var(--muted-color);">
+                Cache rendered components for better performance
+              </small>
+            </div>
+            
+            <div style="margin-bottom: 1rem;">
+              <label for="theme-select">Theme:</label>
+              <select id="theme-select" name="theme"
+                      hx-post="/ui/examples/tabs?ActiveTab=settings"
+                      hx-include="form"
+                      hx-target="#tab-content"
+                      hx-swap="outerHTML">
+                <option value="auto" @(Parameters.Theme == "auto" ? "selected" : "")>Auto</option>
+                <option value="light" @(Parameters.Theme == "light" ? "selected" : "")>Light</option>
+                <option value="dark" @(Parameters.Theme == "dark" ? "selected" : "")>Dark</option>
+              </select>
+            </div>
+          </form>
+          
+          @if (Parameters.EnableDebug || Parameters.EnableCaching || Parameters.Theme != "auto")
+          {
+            <div style="margin-top: 2rem; padding: 1rem; background: var(--card-background-color); border-radius: 0.25rem;">
+              <h6>Current Settings:</h6>
+              <ul style="margin: 0.5rem 0;">
+                @if (Parameters.EnableDebug)
+                {
+                  <li>🐛 Debug mode enabled</li>
+                }
+                @if (Parameters.EnableCaching)
+                {
+                  <li>💾 Component caching enabled</li>
+                }
+                @if (Parameters.Theme != "auto")
+                {
+                  <li>🎨 Theme: @Parameters.Theme</li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+      }
+    </div>
+  </div>
+
+  <details style="margin-top: 2rem;">
+    <summary>📝 Code Explanation</summary>
+    <div style="margin-top: 1rem;">
+      <h5>Tab Implementation:</h5>
+      <ul>
+        <li><strong>State management</strong> - Active tab tracked via URL parameters</li>
+        <li><strong>Content loading</strong> - Each tab loads content from server</li>
+        <li><strong>Form integration</strong> - Settings tab demonstrates form handling</li>
+        <li><strong>Visual feedback</strong> - Active tab styling based on state</li>
+        <li><strong>Progressive enhancement</strong> - Works without JavaScript</li>
+      </ul>
+
+      <h5>HTMX Benefits:</h5>
+      <ul>
+        <li>✅ **No JavaScript routing** - Server handles all navigation</li>
+        <li>✅ **SEO friendly** - Each tab state has a unique URL</li>
+        <li>✅ **Fast switching** - Only content area updates</li>
+        <li>✅ **Form handling** - Real-time form updates within tabs</li>
+      </ul>
+    </div>
+  </details>
+</div>
+
+@code {
+  private string GetTabStyle(string tabName)
+  {
+    var isActive = Parameters.ActiveTab == tabName || (string.IsNullOrEmpty(Parameters.ActiveTab) && tabName == "overview");
+    return isActive 
+      ? "width: 100%; border: none; padding: 1rem; background: var(--primary); color: var(--primary-inverse); cursor: pointer;"
+      : "width: 100%; border: none; padding: 1rem; background: transparent; color: var(--color); cursor: pointer; border-bottom: 2px solid transparent;";
+  }
+  
+  private string GetTabClass(string tabName)
+  {
+    var isActive = Parameters.ActiveTab == tabName || (string.IsNullOrEmpty(Parameters.ActiveTab) && tabName == "overview");
+    return isActive ? "" : "outline";
+  }
+}
