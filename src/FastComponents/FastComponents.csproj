@@ -45,7 +45,6 @@
   <!-- Dependencies -->
   <ItemGroup>
     <PackageReference Include="AngleSharp" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
   </ItemGroup>
 

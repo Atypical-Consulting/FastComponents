@@ -12,7 +12,7 @@ public FastComponents.Http.HtmxResponseHeaders TriggerAfterSwapWithDetails(objec
 
 <a name='FastComponents.Http.HtmxResponseHeaders.TriggerAfterSwapWithDetails(object).eventDetails'></a>
 
-`eventDetails` [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object')
+`eventDetails` [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

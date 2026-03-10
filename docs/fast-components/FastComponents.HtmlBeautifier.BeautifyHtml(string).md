@@ -12,10 +12,10 @@ public static string BeautifyHtml(string html);
 
 <a name='FastComponents.HtmlBeautifier.BeautifyHtml(string).html'></a>
 
-`html` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`html` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The HTML string to beautify\.
 
 #### Returns
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')  
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')  
 The beautified HTML string\.

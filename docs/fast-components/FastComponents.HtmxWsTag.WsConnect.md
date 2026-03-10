@@ -12,4 +12,4 @@ public string? WsConnect { get; set; }
 Implements [WsConnect](FastComponents.IHxWsAttributes.WsConnect.md 'FastComponents\.IHxWsAttributes\.WsConnect')
 
 #### Property Value
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

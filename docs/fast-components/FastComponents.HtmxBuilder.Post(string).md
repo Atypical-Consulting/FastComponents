@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Post(string url);
 
 <a name='FastComponents.HtmxBuilder.Post(string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

@@ -9,7 +9,7 @@ Smart defaults for common HTMX patterns
 public static class HtmxDefaults
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; HtmxDefaults
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; HtmxDefaults
 
 | Properties | |
 | :--- | :--- |

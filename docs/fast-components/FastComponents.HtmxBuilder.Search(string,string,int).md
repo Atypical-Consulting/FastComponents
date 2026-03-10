@@ -12,15 +12,15 @@ public FastComponents.HtmxBuilder Search(string url, string target, int delayMs=
 
 <a name='FastComponents.HtmxBuilder.Search(string,string,int).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilder.Search(string,string,int).target'></a>
 
-`target` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`target` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilder.Search(string,string,int).delayMs'></a>
 
-`delayMs` [System\.Int32](https://docs.microsoft.com/en-us/dotnet/api/System.Int32 'System\.Int32')
+`delayMs` [System\.Int32](https://learn.microsoft.com/en-us/dotnet/api/system.int32 'System\.Int32')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

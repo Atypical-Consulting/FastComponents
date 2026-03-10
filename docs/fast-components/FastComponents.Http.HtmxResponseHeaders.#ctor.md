@@ -21,7 +21,7 @@ public HtmxResponseHeaders(Microsoft.AspNetCore.Http.HttpContext context);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.HtmxResponseHeaders(Microsoft.AspNetCore.Http.HttpContext).context'></a>
 
-`context` [Microsoft\.AspNetCore\.Http\.HttpContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Http.HttpContext 'Microsoft\.AspNetCore\.Http\.HttpContext')
+`context` [Microsoft\.AspNetCore\.Http\.HttpContext](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext 'Microsoft\.AspNetCore\.Http\.HttpContext')
 
 <a name='ctor.md#FastComponents.Http.HtmxResponseHeaders.HtmxResponseHeaders(Microsoft.AspNetCore.Http.IHeaderDictionary)'></a>
 
@@ -36,4 +36,4 @@ public HtmxResponseHeaders(Microsoft.AspNetCore.Http.IHeaderDictionary headers);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.HtmxResponseHeaders(Microsoft.AspNetCore.Http.IHeaderDictionary).headers'></a>
 
-`headers` [Microsoft\.AspNetCore\.Http\.IHeaderDictionary](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Http.IHeaderDictionary 'Microsoft\.AspNetCore\.Http\.IHeaderDictionary')
+`headers` [Microsoft\.AspNetCore\.Http\.IHeaderDictionary](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iheaderdictionary 'Microsoft\.AspNetCore\.Http\.IHeaderDictionary')

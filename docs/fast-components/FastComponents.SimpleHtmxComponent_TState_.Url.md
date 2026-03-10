@@ -21,10 +21,10 @@ public string Url(System.Func<TState,TState> updateState);
 
 <a name='FastComponents.SimpleHtmxComponent_TState_.Url(System.Func_TState,TState_).updateState'></a>
 
-`updateState` [System\.Func&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System\.Func\`2')[TState](FastComponents.SimpleHtmxComponent_TState_.md#FastComponents.SimpleHtmxComponent_TState_.TState 'FastComponents\.SimpleHtmxComponent\<TState\>\.TState')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System\.Func\`2')[TState](FastComponents.SimpleHtmxComponent_TState_.md#FastComponents.SimpleHtmxComponent_TState_.TState 'FastComponents\.SimpleHtmxComponent\<TState\>\.TState')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Func-2 'System\.Func\`2')
+`updateState` [System\.Func&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-2 'System\.Func\`2')[TState](FastComponents.SimpleHtmxComponent_TState_.md#FastComponents.SimpleHtmxComponent_TState_.TState 'FastComponents\.SimpleHtmxComponent\<TState\>\.TState')[,](https://learn.microsoft.com/en-us/dotnet/api/system.func-2 'System\.Func\`2')[TState](FastComponents.SimpleHtmxComponent_TState_.md#FastComponents.SimpleHtmxComponent_TState_.TState 'FastComponents\.SimpleHtmxComponent\<TState\>\.TState')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.func-2 'System\.Func\`2')
 
 #### Returns
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.SimpleHtmxComponent_TState_.Url(TState)'></a>
 
@@ -42,4 +42,4 @@ public string Url(TState? newState=null);
 `newState` [TState](FastComponents.SimpleHtmxComponent_TState_.md#FastComponents.SimpleHtmxComponent_TState_.TState 'FastComponents\.SimpleHtmxComponent\<TState\>\.TState')
 
 #### Returns
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

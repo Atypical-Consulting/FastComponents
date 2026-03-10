@@ -12,7 +12,7 @@ public static FastComponents.Http.HtmxResponseHeaders GetHtmxResponseHeaders(thi
 
 <a name='FastComponents.Http.HtmxHttpContextExtensions.GetHtmxResponseHeaders(thisMicrosoft.AspNetCore.Http.HttpContext).context'></a>
 
-`context` [Microsoft\.AspNetCore\.Http\.HttpContext](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Http.HttpContext 'Microsoft\.AspNetCore\.Http\.HttpContext')
+`context` [Microsoft\.AspNetCore\.Http\.HttpContext](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.httpcontext 'Microsoft\.AspNetCore\.Http\.HttpContext')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

@@ -12,10 +12,10 @@ public string ToComponentUrl(string route);
 
 <a name='FastComponents.HtmxComponentParameters.ToComponentUrl(string).route'></a>
 
-`route` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`route` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The route to append parameters to
 
 #### Returns
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')  
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')  
 The full URL with query string

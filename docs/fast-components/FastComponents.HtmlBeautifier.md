@@ -9,7 +9,7 @@ Provides HTML beautification services\.
 public static class HtmlBeautifier
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; HtmlBeautifier
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; HtmlBeautifier
 
 | Methods | |
 | :--- | :--- |

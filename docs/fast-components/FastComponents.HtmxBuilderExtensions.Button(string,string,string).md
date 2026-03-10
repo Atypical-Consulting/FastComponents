@@ -12,15 +12,15 @@ public static Microsoft.AspNetCore.Components.RenderFragment Button(string text,
 
 <a name='FastComponents.HtmxBuilderExtensions.Button(string,string,string).text'></a>
 
-`text` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`text` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilderExtensions.Button(string,string,string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilderExtensions.Button(string,string,string).id'></a>
 
-`id` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`id` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
-[Microsoft\.AspNetCore\.Components\.RenderFragment](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.RenderFragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')
+[Microsoft\.AspNetCore\.Components\.RenderFragment](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.renderfragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')

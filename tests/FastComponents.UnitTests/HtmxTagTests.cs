@@ -25,7 +25,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithDefaultProperties_ShouldRenderDivElement()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>();
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>();
 
         // Assert
         component.Markup.ShouldBe("<div></div>");
@@ -35,7 +35,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithCustomElement_ShouldRenderCorrectElement()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.Element, "span"));
 
         // Assert
@@ -46,7 +46,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxVals_ShouldRenderAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxVals, "{\"myVar\":\"value\", \"otherVar\":123}"));
 
         // Assert
@@ -57,7 +57,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithChildContent_ShouldRenderContent()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .AddChildContent("Test Content"));
 
         // Assert
@@ -68,7 +68,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxGet_ShouldRenderHxGetAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxGet, "/api/test"));
 
         // Assert
@@ -79,7 +79,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxPost_ShouldRenderHxPostAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxPost, "/api/submit"));
 
         // Assert
@@ -90,7 +90,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxTrigger_ShouldRenderHxTriggerAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxTrigger, "click"));
 
         // Assert
@@ -101,7 +101,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxTarget_ShouldRenderHxTargetAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxTarget, "#result"));
 
         // Assert
@@ -112,7 +112,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxSwap_ShouldRenderHxSwapAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxSwap, "innerHTML"));
 
         // Assert
@@ -123,7 +123,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithHxConfirm_ShouldRenderHxConfirmAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxConfirm, "Are you sure?"));
 
         // Assert
@@ -134,7 +134,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithMultipleHxAttributes_ShouldRenderAllAttributes()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxGet, "/api/test")
             .Add(p => p.HxTrigger, "click")
             .Add(p => p.HxTarget, "#result")
@@ -152,7 +152,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithCustomAttributes_ShouldRenderCustomAttributes()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .AddUnmatched("data-test", "value")
             .AddUnmatched("id", "test-id"));
 
@@ -166,7 +166,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithClassAttribute_ShouldRenderClassAttribute()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .AddUnmatched("class", "test-class"));
 
         // Assert
@@ -177,7 +177,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithAllCoreAttributes_ShouldRenderAllCoreAttributes()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxBoost, "true")
             .Add(p => p.HxGet, "/api/get")
             .Add(p => p.HxPost, "/api/post")
@@ -211,7 +211,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithAllAdditionalAttributes_ShouldRenderAllAdditionalAttributes()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxConfirm, "Are you sure?")
             .Add(p => p.HxDelete, "/api/delete")
             .Add(p => p.HxDisable, "true")
@@ -263,7 +263,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithEmptyStringAttributes_ShouldNotRenderThoseAttributes()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.HxGet, string.Empty)
             .Add(p => p.HxPost, " ")
             .Add(p => p.HxTarget, "/api/valid"));
@@ -279,7 +279,7 @@ public class HtmxTagTests : Bunit.TestContext
     public void HtmxTag_WithComplexChildContent_ShouldRenderCorrectly()
     {
         // Act
-        IRenderedComponent<HtmxTag> component = RenderComponent<HtmxTag>(parameters => parameters
+        IRenderedComponent<HtmxTag> component = Render<HtmxTag>(parameters => parameters
             .Add(p => p.Element, "button")
             .Add(p => p.HxPost, "/api/submit")
             .AddChildContent("<span>Click me</span>"));

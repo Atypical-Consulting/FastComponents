@@ -12,7 +12,7 @@ public FastComponents.Http.HtmxResponseHeaders PushUrl(string url);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.PushUrl(string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

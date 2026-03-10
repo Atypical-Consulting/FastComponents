@@ -30,12 +30,12 @@ The component to render
 
 <a name='FastComponents.ComponentHtmlResponseService.RenderComponentAsync_TComponent_(Microsoft.AspNetCore.Components.ParameterView).parameters'></a>
 
-`parameters` [Microsoft\.AspNetCore\.Components\.ParameterView](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.ParameterView 'Microsoft\.AspNetCore\.Components\.ParameterView')
+`parameters` [Microsoft\.AspNetCore\.Components\.ParameterView](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.parameterview 'Microsoft\.AspNetCore\.Components\.ParameterView')
 
 The parameters to pass to the component
 
 #### Returns
-[System\.Threading\.Tasks\.Task&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Threading.Tasks.Task-1 'System\.Threading\.Tasks\.Task\`1')[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Threading.Tasks.Task-1 'System\.Threading\.Tasks\.Task\`1')  
+[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 The rendered component as a string
 
 <a name='FastComponents.ComponentHtmlResponseService.RenderComponentAsync_TComponent_(System.Collections.Generic.Dictionary_string,object_)'></a>
@@ -59,10 +59,10 @@ The component to render
 
 <a name='FastComponents.ComponentHtmlResponseService.RenderComponentAsync_TComponent_(System.Collections.Generic.Dictionary_string,object_).dictionary'></a>
 
-`dictionary` [System\.Collections\.Generic\.Dictionary&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')[,](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Collections.Generic.Dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')
+`dictionary` [System\.Collections\.Generic\.Dictionary&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[,](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')[System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.dictionary-2 'System\.Collections\.Generic\.Dictionary\`2')
 
 The dictionary of parameters to pass to the component
 
 #### Returns
-[System\.Threading\.Tasks\.Task&lt;](https://docs.microsoft.com/en-us/dotnet/api/System.Threading.Tasks.Task-1 'System\.Threading\.Tasks\.Task\`1')[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')[&gt;](https://docs.microsoft.com/en-us/dotnet/api/System.Threading.Tasks.Task-1 'System\.Threading\.Tasks\.Task\`1')  
+[System\.Threading\.Tasks\.Task&lt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[&gt;](https://learn.microsoft.com/en-us/dotnet/api/system.threading.tasks.task-1 'System\.Threading\.Tasks\.Task\`1')  
 The rendered component as a string

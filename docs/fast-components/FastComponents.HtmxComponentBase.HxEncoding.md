@@ -14,4 +14,4 @@ public string? HxEncoding { get; set; }
 Implements [HxEncoding](FastComponents.IHxAdditionalAttributes.HxEncoding.md 'FastComponents\.IHxAdditionalAttributes\.HxEncoding')
 
 #### Property Value
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

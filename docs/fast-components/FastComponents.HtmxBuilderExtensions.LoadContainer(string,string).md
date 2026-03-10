@@ -12,11 +12,11 @@ public static Microsoft.AspNetCore.Components.RenderFragment LoadContainer(strin
 
 <a name='FastComponents.HtmxBuilderExtensions.LoadContainer(string,string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilderExtensions.LoadContainer(string,string).loadingText'></a>
 
-`loadingText` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`loadingText` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
-[Microsoft\.AspNetCore\.Components\.RenderFragment](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.RenderFragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')
+[Microsoft\.AspNetCore\.Components\.RenderFragment](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.renderfragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')

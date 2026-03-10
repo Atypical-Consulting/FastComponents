@@ -12,11 +12,11 @@ protected static string? GetQueryValue(Microsoft.AspNetCore.Http.IQueryCollectio
 
 <a name='FastComponents.HtmxComponentParameters.GetQueryValue(Microsoft.AspNetCore.Http.IQueryCollection,string).query'></a>
 
-`query` [Microsoft\.AspNetCore\.Http\.IQueryCollection](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Http.IQueryCollection 'Microsoft\.AspNetCore\.Http\.IQueryCollection')
+`query` [Microsoft\.AspNetCore\.Http\.IQueryCollection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iquerycollection 'Microsoft\.AspNetCore\.Http\.IQueryCollection')
 
 <a name='FastComponents.HtmxComponentParameters.GetQueryValue(Microsoft.AspNetCore.Http.IQueryCollection,string).key'></a>
 
-`key` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`key` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

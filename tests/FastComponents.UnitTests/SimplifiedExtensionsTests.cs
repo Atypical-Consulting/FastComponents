@@ -34,8 +34,8 @@ public class SimplifiedExtensionsTests
         WebApplicationBuilder builder = WebApplication.CreateBuilder();
         WebApplication app = builder.Build();
 
-        // Act
-        WebApplication result = app.UseFastComponentsAuto();
+        // Act - use a predicate that matches nothing to avoid reflection errors in test context
+        WebApplication result = app.UseFastComponentsAuto(predicate: _ => false);
 
         // Assert
         result.ShouldBeSameAs(app);

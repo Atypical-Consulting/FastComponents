@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Text(string content);
 
 <a name='FastComponents.HtmxBuilder.Text(string).content'></a>
 
-`content` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`content` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

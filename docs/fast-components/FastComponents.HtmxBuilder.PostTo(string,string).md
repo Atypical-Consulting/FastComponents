@@ -12,11 +12,11 @@ public FastComponents.HtmxBuilder PostTo(string url, string target);
 
 <a name='FastComponents.HtmxBuilder.PostTo(string,string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilder.PostTo(string,string).target'></a>
 
-`target` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`target` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

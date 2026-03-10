@@ -9,7 +9,7 @@ Fluent builder for creating HTMX elements with less boilerplate
 public class HtmxBuilder
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; HtmxBuilder
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; HtmxBuilder
 
 | Methods | |
 | :--- | :--- |

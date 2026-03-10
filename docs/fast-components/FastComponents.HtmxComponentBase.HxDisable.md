@@ -14,4 +14,4 @@ public string? HxDisable { get; set; }
 Implements [HxDisable](FastComponents.IHxAdditionalAttributes.HxDisable.md 'FastComponents\.IHxAdditionalAttributes\.HxDisable')
 
 #### Property Value
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

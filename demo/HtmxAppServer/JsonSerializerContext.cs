@@ -13,7 +13,6 @@ namespace HtmxAppServer;
 [JsonSerializable(typeof(DebugDashboardParameters))]
 [JsonSerializable(typeof(CounterParameters))]
 [JsonSerializable(typeof(AppParameters))]
-[JsonSerializable(typeof(MovieCharactersRowsParameters))]
 [JsonSourceGenerationOptions(
     PropertyNamingPolicy = JsonKnownNamingPolicy.CamelCase,
     WriteIndented = false,

@@ -9,7 +9,7 @@ Extension methods for registering HTMX component endpoints with ASP\.NET Minimal
 public static class HtmxComponentEndpoints
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; HtmxComponentEndpoints
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; HtmxComponentEndpoints
 
 | Methods | |
 | :--- | :--- |

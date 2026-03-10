@@ -12,4 +12,4 @@ public void Render(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder b
 
 <a name='FastComponents.HtmxBuilder.Render(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder).builder'></a>
 
-`builder` [Microsoft\.AspNetCore\.Components\.Rendering\.RenderTreeBuilder](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder 'Microsoft\.AspNetCore\.Components\.Rendering\.RenderTreeBuilder')
+`builder` [Microsoft\.AspNetCore\.Components\.Rendering\.RenderTreeBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.rendering.rendertreebuilder 'Microsoft\.AspNetCore\.Components\.Rendering\.RenderTreeBuilder')

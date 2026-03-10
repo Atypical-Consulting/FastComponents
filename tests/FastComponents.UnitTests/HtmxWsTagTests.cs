@@ -11,7 +11,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersDefaultElement()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>();
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>();
 
         // Assert
         cut.Find("div").ShouldNotBeNull();
@@ -21,7 +21,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersCustomElement()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.Element, "article"));
 
         // Assert
@@ -32,7 +32,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersWsConnectAttribute()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.WsConnect, "ws://localhost:8080/websocket"));
 
         // Assert
@@ -44,7 +44,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersWsSendAttribute()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.WsSend, "submit"));
 
         // Assert
@@ -56,7 +56,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersHtmxCoreAttributes()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.HxPost, "/api/message")
             .Add(p => p.HxTrigger, "submit")
             .Add(p => p.HxTarget, "#messages")
@@ -76,7 +76,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersChildContent()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(
                 p => p.ChildContent,
                 (RenderFragment)(builder =>
@@ -93,7 +93,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersCustomAttributes()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .AddUnmatched("data-ws-room", "chat-123")
             .AddUnmatched("role", "region"));
 
@@ -107,7 +107,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_DoesNotRenderEmptyAttributes()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.WsConnect, string.Empty)
             .Add(p => p.WsSend, null)
             .Add(p => p.HxPost, "   "));
@@ -123,7 +123,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_RendersAdditionalHtmxAttributes()
     {
         // Act
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.HxConfirm, "Are you sure?")
             .Add(p => p.HxIndicator, "#spinner")
             .Add(p => p.HxExt, "ws"));
@@ -139,7 +139,7 @@ public class HtmxWsTagTests : Bunit.TestContext
     public void HtmxWsTag_CombinesWithSseExtension()
     {
         // Act - WebSocket tag can have hx-ext that includes multiple extensions
-        IRenderedComponent<HtmxWsTag> cut = RenderComponent<HtmxWsTag>(parameters => parameters
+        IRenderedComponent<HtmxWsTag> cut = Render<HtmxWsTag>(parameters => parameters
             .Add(p => p.WsConnect, "/ws")
             .Add(p => p.HxExt, "ws,sse"));
 

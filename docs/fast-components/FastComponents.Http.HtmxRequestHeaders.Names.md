@@ -9,7 +9,7 @@ Header names for HTMX requests
 public static class HtmxRequestHeaders.Names
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; Names
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; Names
 
 | Fields | |
 | :--- | :--- |

@@ -12,7 +12,7 @@ public FastComponents.Http.HtmxResponseHeaders Reselect(string selector);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Reselect(string).selector'></a>
 
-`selector` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`selector` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

@@ -12,7 +12,7 @@ public virtual FastComponents.HtmxComponentParameters BindFromQuery(Microsoft.As
 
 <a name='FastComponents.HtmxComponentParameters.BindFromQuery(Microsoft.AspNetCore.Http.IQueryCollection).query'></a>
 
-`query` [Microsoft\.AspNetCore\.Http\.IQueryCollection](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Http.IQueryCollection 'Microsoft\.AspNetCore\.Http\.IQueryCollection')
+`query` [Microsoft\.AspNetCore\.Http\.IQueryCollection](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.http.iquerycollection 'Microsoft\.AspNetCore\.Http\.IQueryCollection')
 
 The query collection from the HTTP request
 

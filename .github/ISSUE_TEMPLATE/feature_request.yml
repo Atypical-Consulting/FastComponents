@@ -1,0 +1,69 @@
+name: Feature Request
+description: Suggest a new feature for FastComponents
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature! Please describe your idea below.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve? Is it related to a frustration?
+      placeholder: I'm frustrated when...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the solution you'd like.
+      placeholder: I would like...
+    validations:
+      required: true
+
+  - type: textarea
+    id: api
+    attributes:
+      label: Proposed API
+      description: If applicable, sketch out what the API might look like.
+      render: csharp
+      placeholder: |
+        // Example API usage
+        builder.Services.AddFastComponents(options =>
+        {
+            options.YourNewFeature = true;
+        });
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Describe any alternative solutions or features you've considered.
+      placeholder: I also considered...
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: Which part of FastComponents does this relate to?
+      options:
+        - Components (HtmxComponentBase, HtmxTag)
+        - Endpoints (routing, registration)
+        - Source Generators
+        - Services (rendering, HTML processing)
+        - Documentation
+        - Demo Application
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Any other context, mockups, or examples.

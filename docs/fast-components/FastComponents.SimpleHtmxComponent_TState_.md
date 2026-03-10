@@ -17,7 +17,7 @@ public abstract class SimpleHtmxComponent<TState> : Microsoft.AspNetCore.Compone
 
 The state/parameters type
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.ComponentBase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; SimpleHtmxComponent<TState>
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.componentbase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; SimpleHtmxComponent\<TState\>
 
 | Properties | |
 | :--- | :--- |

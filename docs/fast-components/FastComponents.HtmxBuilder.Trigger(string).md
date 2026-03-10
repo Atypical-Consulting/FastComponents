@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Trigger(string trigger);
 
 <a name='FastComponents.HtmxBuilder.Trigger(string).trigger'></a>
 
-`trigger` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`trigger` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

@@ -27,16 +27,16 @@ The parameters type
 
 <a name='FastComponents.HtmxComponentEndpoints.MapHtmxPatch_TComponent,TParameters_(thisMicrosoft.AspNetCore.Routing.IEndpointRouteBuilder,string).endpoints'></a>
 
-`endpoints` [Microsoft\.AspNetCore\.Routing\.IEndpointRouteBuilder](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Routing.IEndpointRouteBuilder 'Microsoft\.AspNetCore\.Routing\.IEndpointRouteBuilder')
+`endpoints` [Microsoft\.AspNetCore\.Routing\.IEndpointRouteBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.routing.iendpointroutebuilder 'Microsoft\.AspNetCore\.Routing\.IEndpointRouteBuilder')
 
 The endpoint route builder
 
 <a name='FastComponents.HtmxComponentEndpoints.MapHtmxPatch_TComponent,TParameters_(thisMicrosoft.AspNetCore.Routing.IEndpointRouteBuilder,string).pattern'></a>
 
-`pattern` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`pattern` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 The route pattern
 
 #### Returns
-[Microsoft\.AspNetCore\.Builder\.RouteHandlerBuilder](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.RouteHandlerBuilder 'Microsoft\.AspNetCore\.Builder\.RouteHandlerBuilder')  
+[Microsoft\.AspNetCore\.Builder\.RouteHandlerBuilder](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.routehandlerbuilder 'Microsoft\.AspNetCore\.Builder\.RouteHandlerBuilder')  
 The route handler builder for further configuration

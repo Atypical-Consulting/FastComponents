@@ -12,10 +12,10 @@ public static Microsoft.AspNetCore.Builder.WebApplication UseFastComponents(this
 
 <a name='FastComponents.MainExtensions.UseFastComponents(thisMicrosoft.AspNetCore.Builder.WebApplication).app'></a>
 
-`app` [Microsoft\.AspNetCore\.Builder\.WebApplication](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.WebApplication 'Microsoft\.AspNetCore\.Builder\.WebApplication')
+`app` [Microsoft\.AspNetCore\.Builder\.WebApplication](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication 'Microsoft\.AspNetCore\.Builder\.WebApplication')
 
 The web application
 
 #### Returns
-[Microsoft\.AspNetCore\.Builder\.WebApplication](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Builder.WebApplication 'Microsoft\.AspNetCore\.Builder\.WebApplication')  
+[Microsoft\.AspNetCore\.Builder\.WebApplication](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication 'Microsoft\.AspNetCore\.Builder\.WebApplication')  
 The web application

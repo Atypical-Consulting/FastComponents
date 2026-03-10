@@ -11,7 +11,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersDefaultElement()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>();
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>();
 
         // Assert
         cut.Find("div").ShouldNotBeNull();
@@ -21,7 +21,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersCustomElement()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.Element, "section"));
 
         // Assert
@@ -32,7 +32,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersSseConnectAttribute()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.SseConnect, "/sse-endpoint"));
 
         // Assert
@@ -44,7 +44,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersSseSwapAttribute()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.SseSwap, "message"));
 
         // Assert
@@ -56,7 +56,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersHtmxCoreAttributes()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.HxGet, "/api/data")
             .Add(p => p.HxTrigger, "click")
             .Add(p => p.HxTarget, "#result")
@@ -76,7 +76,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersChildContent()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.ChildContent, (RenderFragment)(builder => builder.AddMarkupContent(0, "<span>SSE Content</span>"))));
 
         // Assert
@@ -87,7 +87,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersCustomAttributes()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .AddUnmatched("data-test", "value")
             .AddUnmatched("id", "sse-component"));
 
@@ -101,7 +101,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_DoesNotRenderEmptyAttributes()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .Add(p => p.SseConnect, string.Empty)
             .Add(p => p.SseSwap, null)
             .Add(p => p.HxGet, "   "));
@@ -117,7 +117,7 @@ public class HtmxSseTagTests : Bunit.TestContext
     public void HtmxSseTag_RendersClassAttribute()
     {
         // Act
-        IRenderedComponent<HtmxSseTag> cut = RenderComponent<HtmxSseTag>(parameters => parameters
+        IRenderedComponent<HtmxSseTag> cut = Render<HtmxSseTag>(parameters => parameters
             .AddUnmatched("class", "sse-container"));
 
         // Assert

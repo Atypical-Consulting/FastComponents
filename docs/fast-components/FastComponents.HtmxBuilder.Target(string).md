@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Target(string target);
 
 <a name='FastComponents.HtmxBuilder.Target(string).target'></a>
 
-`target` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`target` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Content(Microsoft.AspNetCore.Components.Render
 
 <a name='FastComponents.HtmxBuilder.Content(Microsoft.AspNetCore.Components.RenderFragment).content'></a>
 
-`content` [Microsoft\.AspNetCore\.Components\.RenderFragment](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.RenderFragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')
+`content` [Microsoft\.AspNetCore\.Components\.RenderFragment](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.renderfragment 'Microsoft\.AspNetCore\.Components\.RenderFragment')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

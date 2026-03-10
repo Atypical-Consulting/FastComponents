@@ -9,7 +9,7 @@ Service responsible for rendering components as HTML and returning them as HTTP 
 public class ComponentHtmlResponseService
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; ComponentHtmlResponseService
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; ComponentHtmlResponseService
 
 | Constructors | |
 | :--- | :--- |

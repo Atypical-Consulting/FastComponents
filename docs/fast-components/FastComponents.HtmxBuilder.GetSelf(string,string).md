@@ -12,11 +12,11 @@ public FastComponents.HtmxBuilder GetSelf(string url, string id);
 
 <a name='FastComponents.HtmxBuilder.GetSelf(string,string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 <a name='FastComponents.HtmxBuilder.GetSelf(string,string).id'></a>
 
-`id` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`id` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

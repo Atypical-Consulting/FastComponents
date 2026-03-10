@@ -3,6 +3,7 @@
  * Licensed under the Apache License, Version 2.0
  */
 
+using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -23,21 +24,26 @@ public static class SimplifiedExtensions
         // Add core FastComponents services
         _ = services.AddFastComponents();
 
-        // TODO: Add automatic JSON context generation for discovered component states
-
         return services;
     }
 
     /// <summary>
-    /// Maps all HTMX components automatically using conventions
-    /// One line replaces all the manual MapHtmx* calls
+    /// Maps all HTMX components automatically using conventions.
+    /// One line replaces all the manual MapHtmx* calls.
     /// </summary>
     /// <param name="app">The web application</param>
+    /// <param name="routePrefix">The route prefix for convention-generated routes (default: "/htmx")</param>
+    /// <param name="predicate">Optional filter to select which component types to register</param>
+    /// <param name="assemblies">Assemblies to scan (defaults to entry assembly)</param>
     /// <returns>The web application for chaining</returns>
-    public static WebApplication UseFastComponentsAuto(this WebApplication app)
+    public static WebApplication UseFastComponentsAuto(
+        this WebApplication app,
+        string routePrefix = "/htmx",
+        Func<Type, bool>? predicate = null,
+        params Assembly[] assemblies)
     {
         // Auto-discover and register all HTMX components
-        _ = app.MapHtmxComponentsByConvention();
+        _ = app.MapHtmxComponentsByConvention(routePrefix, predicate, assemblies);
 
         return app;
     }

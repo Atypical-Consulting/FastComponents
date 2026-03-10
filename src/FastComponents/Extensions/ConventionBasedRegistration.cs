@@ -18,7 +18,9 @@ public static class ConventionBasedRegistration
     /// Automatically maps all HTMX components in the specified assemblies using conventions
     /// </summary>
     /// <param name="app">The endpoint route builder</param>
-    /// <param name="assemblies">Assemblies to scan for components (defaults to calling assembly)</param>
+    /// <param name="routePrefix">The route prefix for convention-generated routes (default: "/htmx")</param>
+    /// <param name="predicate">Optional filter to select which component types to register</param>
+    /// <param name="assemblies">Assemblies to scan for components (defaults to entry assembly)</param>
     /// <returns>The endpoint route builder for chaining</returns>
     [UnconditionalSuppressMessage(
         "Trimming",
@@ -26,21 +28,24 @@ public static class ConventionBasedRegistration
         Justification = "Convention-based registration requires reflection")]
     public static IEndpointRouteBuilder MapHtmxComponentsByConvention(
         this IEndpointRouteBuilder app,
+        string routePrefix = "/htmx",
+        Func<Type, bool>? predicate = null,
         params Assembly[] assemblies)
     {
         if (assemblies.Length == 0)
         {
-            assemblies = [Assembly.GetCallingAssembly()];
+            assemblies = [Assembly.GetEntryAssembly() ?? Assembly.GetCallingAssembly()];
         }
 
         foreach (Assembly assembly in assemblies)
         {
             Type[] componentTypes = [.. assembly.GetTypes()
-                .Where(t => t is { IsClass: true, IsAbstract: false } && IsHtmxComponent(t))];
+                .Where(t => t is { IsClass: true, IsAbstract: false } && IsHtmxComponent(t))
+                .Where(t => predicate is null || predicate(t))];
 
             foreach (Type componentType in componentTypes)
             {
-                RegisterComponent(app, componentType);
+                RegisterComponent(app, componentType, routePrefix);
             }
         }
 
@@ -65,9 +70,10 @@ public static class ConventionBasedRegistration
         Justification = "Convention-based registration requires reflection")]
     private static void RegisterComponent(
         IEndpointRouteBuilder app,
-        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType)
+        [DynamicallyAccessedMembers(DynamicallyAccessedMemberTypes.All)] Type componentType,
+        string routePrefix = "/htmx")
     {
-        string route = GetConventionalRoute(componentType);
+        string route = GetConventionalRoute(componentType, routePrefix);
 
         // Support both GET and POST by default
         MethodInfo? getMethod = typeof(HtmxComponentEndpoints)
@@ -112,7 +118,7 @@ public static class ConventionBasedRegistration
         }
     }
 
-    private static string GetConventionalRoute(Type componentType)
+    private static string GetConventionalRoute(Type componentType, string routePrefix = "/htmx")
     {
         string name = componentType.Name;
 
@@ -131,7 +137,7 @@ public static class ConventionBasedRegistration
         string kebabCase = string.Concat(name.Select((x, i) => i > 0 && char.IsUpper(x) ? "-" + x : x.ToString()))
             .ToLowerInvariant();
 
-        return $"/htmx/{kebabCase}";
+        return $"{routePrefix}/{kebabCase}";
     }
 
     private static Type? GetStateType(Type componentType)

@@ -21,7 +21,7 @@ public FastComponents.Http.HtmxResponseHeaders Location(object locationData);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Location(object).locationData'></a>
 
-`locationData` [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object')
+`locationData` [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')
@@ -39,7 +39,7 @@ public FastComponents.Http.HtmxResponseHeaders Location(string url);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Location(string).url'></a>
 
-`url` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`url` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

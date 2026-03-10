@@ -9,7 +9,7 @@ Base class for all components that are rendered on the server\.
 public abstract class HtmxComponentBase : Microsoft.AspNetCore.Components.ComponentBase, FastComponents.IHxAttributes, FastComponents.IHxCoreAttributes, FastComponents.IHxAdditionalAttributes
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://docs.microsoft.com/en-us/dotnet/api/Microsoft.AspNetCore.Components.ComponentBase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; HtmxComponentBase
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; [Microsoft\.AspNetCore\.Components\.ComponentBase](https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.components.componentbase 'Microsoft\.AspNetCore\.Components\.ComponentBase') &#129106; HtmxComponentBase
 
 Derived  
 &#8627; [HtmxComponentBase&lt;TParameters&gt;](FastComponents.HtmxComponentBase_TParameters_.md 'FastComponents\.HtmxComponentBase\<TParameters\>')  
@@ -62,4 +62,3 @@ Implements [IHxAttributes](FastComponents.IHxAttributes.md 'FastComponents\.IHxA
 | Methods | |
 | :--- | :--- |
 | [OnBuildClassNames\(ClassNamesBuilder\)](FastComponents.HtmxComponentBase.OnBuildClassNames(FastComponents.ClassNamesBuilder).md 'FastComponents\.HtmxComponentBase\.OnBuildClassNames\(FastComponents\.ClassNamesBuilder\)') | Override this method to add custom class names to the component\. |
-| [OnParametersSet\(\)](FastComponents.HtmxComponentBase.OnParametersSet().md 'FastComponents\.HtmxComponentBase\.OnParametersSet\(\)') | Method invoked when the component has received parameters from its parent in the render tree, and the incoming values have been assigned to properties\. |

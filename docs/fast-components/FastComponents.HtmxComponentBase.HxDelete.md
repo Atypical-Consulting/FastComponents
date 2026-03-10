@@ -14,4 +14,4 @@ public string? HxDelete { get; set; }
 Implements [HxDelete](FastComponents.IHxAdditionalAttributes.HxDelete.md 'FastComponents\.IHxAdditionalAttributes\.HxDelete')
 
 #### Property Value
-[System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+[System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')

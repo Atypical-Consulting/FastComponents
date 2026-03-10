@@ -21,7 +21,7 @@ public FastComponents.Http.HtmxResponseHeaders Trigger(string eventName);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Trigger(string).eventName'></a>
 
-`eventName` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`eventName` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')
@@ -39,7 +39,7 @@ public FastComponents.Http.HtmxResponseHeaders Trigger(params string[] eventName
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Trigger(string[]).eventNames'></a>
 
-`eventNames` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')[\[\]](https://docs.microsoft.com/en-us/dotnet/api/System.Array 'System\.Array')
+`eventNames` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')[\[\]](https://learn.microsoft.com/en-us/dotnet/api/system.array 'System\.Array')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

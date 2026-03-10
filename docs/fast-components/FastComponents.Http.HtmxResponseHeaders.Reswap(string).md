@@ -12,7 +12,7 @@ public FastComponents.Http.HtmxResponseHeaders Reswap(string swapStrategy);
 
 <a name='FastComponents.Http.HtmxResponseHeaders.Reswap(string).swapStrategy'></a>
 
-`swapStrategy` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`swapStrategy` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxResponseHeaders](FastComponents.Http.HtmxResponseHeaders.md 'FastComponents\.Http\.HtmxResponseHeaders')

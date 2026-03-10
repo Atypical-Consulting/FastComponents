@@ -9,7 +9,7 @@ Indicates that the parameter methods \(BuildQueryString and BindFromQuery\) shou
 public sealed class GenerateParameterMethodsAttribute : System.Attribute
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; [System\.Attribute](https://docs.microsoft.com/en-us/dotnet/api/System.Attribute 'System\.Attribute') &#129106; GenerateParameterMethodsAttribute
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; [System\.Attribute](https://learn.microsoft.com/en-us/dotnet/api/system.attribute 'System\.Attribute') &#129106; GenerateParameterMethodsAttribute
 
 | Properties | |
 | :--- | :--- |

@@ -12,7 +12,7 @@ public FastComponents.HtmxBuilder Swap(string swap);
 
 <a name='FastComponents.HtmxBuilder.Swap(string).swap'></a>
 
-`swap` [System\.String](https://docs.microsoft.com/en-us/dotnet/api/System.String 'System\.String')
+`swap` [System\.String](https://learn.microsoft.com/en-us/dotnet/api/system.string 'System\.String')
 
 #### Returns
 [HtmxBuilder](FastComponents.HtmxBuilder.md 'FastComponents\.HtmxBuilder')

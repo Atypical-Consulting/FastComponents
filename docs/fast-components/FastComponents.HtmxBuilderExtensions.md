@@ -9,7 +9,7 @@ Extension methods for easier HTMX building in components
 public static class HtmxBuilderExtensions
 ```
 
-Inheritance [System\.Object](https://docs.microsoft.com/en-us/dotnet/api/System.Object 'System\.Object') &#129106; HtmxBuilderExtensions
+Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system.object 'System\.Object') &#129106; HtmxBuilderExtensions
 
 | Methods | |
 | :--- | :--- |
