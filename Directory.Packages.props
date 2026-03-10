@@ -10,7 +10,7 @@
   </ItemGroup>
   <!-- Development Tools -->
   <ItemGroup>
-    <PackageVersion Include="DefaultDocumentation" Version="1.1.0" />
+    <PackageVersion Include="DefaultDocumentation" Version="1.2.4" />
     <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.25" />
     <PackageVersion Include="MinVer" Version="6.0.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.13.1" />
