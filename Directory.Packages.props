@@ -11,7 +11,7 @@
   <!-- Development Tools -->
   <ItemGroup>
     <PackageVersion Include="DefaultDocumentation" Version="1.2.4" />
-    <PackageVersion Include="DotNet.ReproducibleBuilds" Version="1.2.25" />
+    <PackageVersion Include="DotNet.ReproducibleBuilds" Version="2.0.2" />
     <PackageVersion Include="MinVer" Version="7.0.0" />
     <PackageVersion Include="Roslynator.Analyzers" Version="4.13.1" />
     <PackageVersion Include="Roslynator.CodeAnalysis.Analyzers" Version="4.15.0" />
