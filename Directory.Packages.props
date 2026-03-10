@@ -24,7 +24,7 @@
   </ItemGroup>
   <!-- Testing Dependencies -->
   <ItemGroup>
-    <PackageVersion Include="bunit" Version="1.39.5" />
+    <PackageVersion Include="bunit" Version="2.6.2" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="xunit.v3" Version="2.0.2" />
