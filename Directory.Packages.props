@@ -7,6 +7,7 @@
     <PackageVersion Include="AngleSharp" Version="1.4.0" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="9.0.14" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.5.2" />
+    <PackageVersion Include="TheAppManager" Version="2.0.0" />
   </ItemGroup>
   <!-- Development Tools -->
   <ItemGroup>
@@ -20,7 +21,7 @@
   <!-- Source Generators -->
   <ItemGroup>
     <PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="5.3.0" />
-    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="4.14.0" />
+    <PackageVersion Include="Microsoft.CodeAnalysis.Analyzers" Version="5.3.0-2.25625.1" />
   </ItemGroup>
   <!-- Testing Dependencies -->
   <ItemGroup>
