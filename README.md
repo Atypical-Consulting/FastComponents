@@ -1,3 +1,5 @@
+![FastComponents banner](.github/banner.png)
+
 # FastComponents
 
 > **Server-side Blazor components rendered as HTMX-powered HTML fragments -- build interactive web UIs with .NET 10 and zero client-side Blazor runtime.**
