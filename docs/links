@@ -151,6 +151,7 @@ P:FastComponents.HtmxSseTag.ChildContent|FastComponents.HtmxSseTag.ChildContent.
 T:FastComponents.HtmxSseTag|FastComponents.HtmxSseTag.md|HtmxSseTag
 P:FastComponents.HtmxTag.Element|FastComponents.HtmxTag.Element.md|Element
 P:FastComponents.HtmxTag.ChildContent|FastComponents.HtmxTag.ChildContent.md|ChildContent
+M:FastComponents.HtmxTag.IsTruthy(System.String)|FastComponents.HtmxTag.IsTruthy(string).md|IsTruthy(string)
 T:FastComponents.HtmxTag|FastComponents.HtmxTag.md|HtmxTag
 P:FastComponents.HtmxWsTag.WsConnect|FastComponents.HtmxWsTag.WsConnect.md|WsConnect
 P:FastComponents.HtmxWsTag.WsSend|FastComponents.HtmxWsTag.WsSend.md|WsSend

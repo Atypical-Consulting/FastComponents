@@ -15,3 +15,7 @@ Inheritance [System\.Object](https://learn.microsoft.com/en-us/dotnet/api/system
 | :--- | :--- |
 | [ChildContent](FastComponents.HtmxTag.ChildContent.md 'FastComponents\.HtmxTag\.ChildContent') | The content to be rendered inside this element\. |
 | [Element](FastComponents.HtmxTag.Element.md 'FastComponents\.HtmxTag\.Element') | The tag name to use for the root element, e\.g\. "div", "span", "li"\. Defaults to "div"\. |
+
+| Methods | |
+| :--- | :--- |
+| [IsTruthy\(string\)](FastComponents.HtmxTag.IsTruthy(string).md 'FastComponents\.HtmxTag\.IsTruthy\(string\)') | Check if the value is not null, empty, or whitespace |
