@@ -241,3 +241,10 @@ Contributions are welcome! Please read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 Built with care by [Atypical Consulting](https://atypical.garry-ai.cloud) -- opinionated, production-grade open source.
 
 [![Contributors](https://contrib.rocks/image?repo=Atypical-Consulting/FastComponents)](https://github.com/Atypical-Consulting/FastComponents/graphs/contributors)
+
+<!-- portfolio-nugetkeep:start -->
+---
+Built by [Atypical Consulting](https://www.atypical.consulting). We also make
+[NuGetKeep](https://nugetkeep.com/?utm_source=github-readme&utm_medium=readme&utm_campaign=launch-2026-07),
+a self-hosted NuGet server with supply-chain quarantine.
+<!-- portfolio-nugetkeep:end -->
