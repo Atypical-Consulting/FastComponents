@@ -4,7 +4,7 @@
   </PropertyGroup>
   <!-- Runtime Dependencies -->
   <ItemGroup>
-    <PackageVersion Include="AngleSharp" Version="1.7.1" />
+    <PackageVersion Include="AngleSharp" Version="1.7.2" />
     <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="9.0.19" />
     <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.10.0" />
     <PackageVersion Include="TheAppManager" Version="2.0.0" />
