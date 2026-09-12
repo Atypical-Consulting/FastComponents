@@ -4,9 +4,9 @@
   </PropertyGroup>
   <!-- Runtime Dependencies -->
   <ItemGroup>
-    <PackageVersion Include="AngleSharp" Version="1.7.2" />
-    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="9.0.19" />
-    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.10.0" />
+    <PackageVersion Include="AngleSharp" Version="1.8.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="9.0.20" />
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="18.11.0" />
     <PackageVersion Include="TheAppManager" Version="2.0.0" />
   </ItemGroup>
   <!-- Development Tools -->
@@ -25,7 +25,7 @@
   </ItemGroup>
   <!-- Testing Dependencies -->
   <ItemGroup>
-    <PackageVersion Include="bunit" Version="2.9.0" />
+    <PackageVersion Include="bunit" Version="2.10.3" />
     <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.9.0" />
     <PackageVersion Include="Shouldly" Version="4.3.0" />
     <PackageVersion Include="xunit.v3" Version="3.2.2" />
