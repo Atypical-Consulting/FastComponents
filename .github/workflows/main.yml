@@ -73,7 +73,11 @@ jobs:
       - name: Create NuGet package
         run: dotnet pack --configuration Release --no-build --output ${{ env.NuGetDirectory }}
       
-      # Publish the NuGet package as an artifact, so they can be used in the following jobs
+      # Publish the NuGet package as an artifact, so they can be used in the following jobs.
+      # Only .nupkg: symbols are embedded in the assembly (see Directory.Build.props), so no symbol
+      # package is produced. Were one ever added, it would have to be listed here too - `dotnet
+      # nuget push` only forwards a .snupkg that sits NEXT TO the .nupkg, and `*.nupkg` does not
+      # match `.snupkg`.
       - uses: actions/upload-artifact@v7
         with:
           name: nuget
