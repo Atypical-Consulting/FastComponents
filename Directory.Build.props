@@ -41,11 +41,19 @@
   </PropertyGroup>
 
   <!-- Source Link -->
+  <!--
+    No IncludeSymbols/SymbolPackageFormat here on purpose. DotNet.ReproducibleBuilds sets
+    DebugType=embedded, so the portable PDB lives inside the assembly and no separate .pdb is ever
+    produced; asking for a snupkg then packs an empty one - FastComponents.1.0.0.snupkg shipped as
+    a 3.5 KB shell holding nothing but a nuspec. nuget.org rejects such a package outright ("The
+    package does not contain any symbol (.pdb) files"), which the release never hit only because
+    the artifact step uploads *.nupkg and that pattern does not match .snupkg, so the empty symbol
+    package never reached the deploy job. Embedded is the better trade anyway: consumers get
+    symbols and Source Link with no symbol-server configuration at all.
+  -->
   <PropertyGroup>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <!-- Deterministic builds -->
